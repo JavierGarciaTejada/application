@@ -1,0 +1,116 @@
+<div>
+	<a href="<?=Config::$configuration->get('server_path')?>/index.php/adminafa/">
+		<i class="fa fa-angle-double-left"></i> Volver
+	</a>
+	<hr>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-3">
+			<div class="text-center">
+				<button class="btn btn-default" data-toggle="modal" id="btn-exp-user">
+					<i class="fa fa-user-o fa-4" aria-hidden="true"></i><br>
+					Exportar Usuarios
+				</button>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="text-center">
+				<button class="btn btn-default" data-toggle="modal" data-target="#modal-exp-bitacoras">
+					<i class="fa fa-book fa-4" aria-hidden="true"></i><br>
+					Exportar Bitacoras
+				</button>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
+<div class="modal fade modal-export" id="modal-exp-user" tabindex="-1" role="dialog" aria-labelledby="modal-exp-usr">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-exp-usr">Exportar Usuarios</h4>
+			</div>
+			<div class="modal-body">
+				<form id="form_export_user" class="form-val-bit" action="<?=Config::$configuration->get('server_path')?>/index.php/bitacoras/exporta_usuarios/" method="post" target="_blank">
+					<div class="form-group">
+						<label for="connect_instance_usr">Selecciona una area</label>
+						<select class="form-control" id="connect_instance_usr" name="connect_instance">
+							<option value="">Selecciona una opción</option>
+							<option value="_ALL">Todos</option>
+							<option value="occidente">Occidente</option>
+							<option value="noreste">Noreste</option>
+							<option value="norte">Norte</option>
+							<option value="noroeste">Noroeste</option>
+							<option value="golfo">Golfo</option>
+							<option value="centro">Centro</option>
+							<option value="sureste">Sureste</option>
+							<option value="metro">Metro</option>
+							<option value="ld">LD</option>
+							<option value="q825e">Q825 Ericsson</option>
+							<option value="q825e">Q825 Huawei</option>
+							<option value="telnor">Telnor</option>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary send-form">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade modal-export" id="modal-exp-bitacoras" tabindex="-1" role="dialog" aria-labelledby="modal-exp-bit">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-exp-bit">Exportar Bitacoras</h4>
+			</div>
+			<div class="modal-body">
+				<form id="form_export_bitacoras" class="form-val-bit" 
+					action="<?=Config::$configuration->get('server_path')?>/index.php/bitacoras/exporta_bitacoras/" method="post" target="_blank">
+					<div class="form-group row">
+						<label for="connect_instance_bit"> &nbsp; Selecciona una area</label>
+						<div class="col-md-12">
+							<select class="form-control" id="connect_instance_bit" name="connect_instance">
+								<option value="">Selecciona una opción</option>
+								<option value="_ALL">Todos</option>
+								<option value="occidente">Occidente</option>
+								<option value="noreste">Noreste</option>
+								<option value="norte">Norte</option>
+								<option value="noroeste">Noroeste</option>
+								<option value="golfo">Golfo</option>
+								<option value="centro">Centro</option>
+								<option value="sureste">Sureste</option>
+								<option value="metro">Metro</option>
+								<option value="ld">LD</option>
+								<option value="q825e">Q825 Ericsson</option>
+								<option value="q825e">Q825 Huawei</option>
+								<option value="telnor">Telnor</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="fec_ini"> &nbsp; Fecha Inicio</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control input-date-calendar" id="fec_ini" name="fec_ini">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="fec_fin"> &nbsp; Fecha Fin</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control input-date-calendar" id="fec_fin" name="fec_fin">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary send-form">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<form id="form-hide" method="post" style="display: none;" target="_blank"></form>

@@ -1,0 +1,22 @@
+.bg-success1{
+	background-color: #49ff00;
+}
+.bg-warning1{
+	background-color: #fffc00;
+}
+.bg-danger1{
+	background-color: #ee0000;
+}
+.bg-danger2{
+	background-color: #c70000;
+}
+
+.item{
+	font-weight: bolder;
+	font-size: 14px;
+}
+
+.action:hover{
+	background-color: #fbc912 !important;
+    cursor: pointer;
+}

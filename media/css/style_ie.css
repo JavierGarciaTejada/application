@@ -1,0 +1,15 @@
+div.panel-primary {
+	margin-left: 165px;
+	margin-right: 165px;
+}
+
+div.panel-body {
+	margin-left: 35px;
+	margin-right: 35px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#div-footer {
+	margin: 30px;
+}

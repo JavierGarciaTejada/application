@@ -1,0 +1,29 @@
+<div class="row" id="row-table-usuarios">
+	
+	<div id="div-actualizar-pwd" class="col-md-4 col-md-offset-4 col-sm-12">
+		
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4>Ingrese los datos</h4></div>
+			<div class="panel-body">
+				<form id="form-recuperacion">
+					<input type="hidden" id="id" name="id" value="<?= Session::getSession('id') ?>">
+					<div class="form-group">
+						<label for="actual">Contraseña Actual</label>
+						<input type="password" class="form-control" id="actual" name="actual">
+					</div>
+					<div class="form-group">
+						<label for="nueva">Contraseña Nueva</label>
+						<input type="password" class="form-control" id="nueva" name="nueva" placeholder="Solo números y letras">
+					</div>
+					<div class="form-group">
+						<label for="confirmacion">Confirme contraseña</label>
+						<input type="password" class="form-control" id="confirmacion" name="confirmacion" placeholder="Solo números y letras">
+					</div>
+					<button type="button" class="btn btn-primary" id="btn-actualizar-pwd">Actualizar</button>
+				</form>
+			</div>
+		</div>
+		
+	</div>
+
+</div>

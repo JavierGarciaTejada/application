@@ -1,0 +1,162 @@
+<div id="container-tablero">
+	<div class="col-sm-12 col-md-4 graf-content" >
+		<div class="row border" >
+			<div class="col-sm-12" id="evaluaciones-liberadas">
+
+			</div>
+			<div class="col-sm-12 table-responsive">
+				<table class="table table-hover table-condensed table-bordered text-center text-12" id="tbl-evaluaciones-liberadas">
+					<thead class="bg-primary">
+						<tr>
+							<th>Periodo</th>
+							<th>%</th>
+							<th>Evaluaciones</th>
+							<th>Liberadas</th>
+							<th>Canceladas</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-4 graf-content">
+		<div id="div-filtro" style="display: none;">
+			<div class="alert alert-info alert-dismissible fade in" role="alert">
+				<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> -->
+				<!-- <h4>Oh snap! You got an error!</h4> -->
+				<p><strong>Filtrando</strong></p>
+				<h6 id="text-filtro" ></h6>
+				<p class="text-right">
+					<button type="button" class="btn btn-info btn-sm" id="btn-del-filtro">Quitar filtro</button>
+				</p>
+			</div>
+		</div>
+		<div class="row border" >
+			<div class="col-sm-12" class="graf-titulo text-center"><h4 class="text-center highcharts-title" style="color:#0282EB;font-size:18px;fill:#0282EB;">Indicador de Tiempos</h4></div>
+			<div class="col-sm-12">
+				<div class="col-sm-6" id="indicador-tiempos">
+					
+				</div>
+				<div class="col-sm-6" id="indicador-tiempos2">
+					
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="col-sm-6" id="indicador-tiempos3">
+					
+				</div>
+				<div class="col-sm-6" id="indicador-tiempos4">
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12">
+				<div class="col-sm-12" id="indicador-tiempos5">
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12" id="indicador-prediccion">
+				<table class="table table-bordered">
+					<tr class="bg-primary">
+						<td>Evaluaciones en proceso</td>
+						<th id="en_proceso"></th>
+					</tr>
+					<tr class="bg-primary">
+						<td>Solicitudes Nuevas</td>
+						<th id="sol_nuevas"></th>
+					</tr>
+				</table>
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered table-condensed text-12" id="tbl-prediccion">
+						<thead class="bg-primary">
+							<tr>
+								<th></th>
+								<th>Días</th>
+								<th><?= date('Y-m-d') ?></th>
+								<th>D+1</th>
+								<th>D+2</th>
+								<th>D+3</th>
+								<th>D+4</th>
+								<th>D+5</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-sm-4 graf-content">
+		<div class="row border" >
+			<div class="col-sm-12" id="evaluaciones-gerencia">
+				
+			</div>
+		</div>
+
+		<div class="row border mt-15">
+			<div class="col-sm-12" id="evaluaciones-acumulado">
+
+			</div>
+		</div>
+	</div>
+	
+
+	<!-- MODAL DETALLES DE EVALUACIONES -->
+	<div class="modal fade" id="modal-detalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<center><h4 class="modal-title" id="modal-detalle-title">Modal title</h4></center>
+				</div>
+				<div class="modal-body fondo-gris">
+
+					<div class="container-fluid">
+
+						<div class="col-sm-6 graf-content">
+							<div class="row border" >
+								<div class="col-sm-12" id="evaluaciones-mercado">
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6 graf-content">
+							<div class="row border" >
+								<div class="col-sm-12" id="evaluaciones-provedor">
+									
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-sm-12 graf-content mt-15">
+							<div class="row border" >
+								<div class="col-sm-12" id="evaluaciones-tipo-solicitud">
+									
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

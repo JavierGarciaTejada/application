@@ -1,0 +1,32 @@
+.a-thumb {
+	text-decoration: none !important;
+}
+
+.thumbnail:hover{
+	background-color: #0282EB;
+}
+
+.thumbnail:hover > .caption{
+	color: #ffffff !important;
+}
+
+
+#accordion .panel-title a{
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 15px;
+}
+
+.item-accordion{
+	padding: 5px 10px;
+	font-weight: normal;
+}
+
+.item-accordion a{
+	text-decoration: none;
+}
+
+.item-accordion:hover{
+	background-color: #fff68f;
+}

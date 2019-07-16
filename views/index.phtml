@@ -1,0 +1,73 @@
+<div class='container'>
+	<?php if( empty($vars['options']) ) throw new Exception('No se encontraron registros para menu, verificar si_app') ?>
+	
+	<div class="row">
+
+		<div class="col-sm-12 col-md-6 col-md-offset-3">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<?php $i = 1; foreach( $vars['options'] as $option => $item ): ?>
+
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+						<i class="fa fa-arrow-circle-down"></i>
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne<?= $i ?>" aria-expanded="true" aria-controls="collapseOne">
+						 Menu <?= $option ?>
+						</a>
+						</h4>
+					</div>
+					<?php  $in = $i == 1 ? "collapse in" : ""; ?>
+					<div id="collapseOne<?= $i ?>" class="panel-collapse collapse <?= $in ?>" role="tabpanel" aria-labelledby="headingOne">
+
+						<?php foreach( $item as $kitem => $valItem ): ?>
+
+						<div class="list-group item-accordion">
+						<a class="link" href="<?=Config::$configuration->get('server_path')?><?= $valItem['resource'] ?>">
+							<i class="fa fa-<?= $valItem['cl'] ?>"></i> <?= $valItem['no'] ?>
+						</a>
+						</div>
+
+						<?php endforeach; ?>
+
+					</div>
+				</div>
+
+				<?php $i++; endforeach; ?>
+			</div>
+		</div>
+
+	</div>
+
+	<?php if( Session::getSession("ni") == "fgtejada@telmex.com" ): ?>
+	<div class="row">
+
+		<div class="col-sm-12 col-md-6 col-md-offset-3">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+						<i class="fa fa-arrow-circle-down"></i>
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOneDev" aria-expanded="true" aria-controls="collapseOne">
+						Desarrollador
+						</a>
+						</h4>
+					</div>
+					<div id="collapseOneDev" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+
+						<div class="list-group item-accordion">
+						<a class="link" href="<?=Config::$configuration->get('server_path')?>/index.php/test/correo">
+							<i class="fa fa-star"></i> Envio correo
+						</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+	</div>
+	<?php endif; ?>
+
+	
+</div>

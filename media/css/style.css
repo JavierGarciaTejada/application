@@ -1,0 +1,88 @@
+.elements{ 
+	margin-top: 8px; 
+}
+
+#btn-center-submit {
+	text-align: center;
+}
+
+.modal-header-yom{
+	color:#fff;
+	padding:9px 15px;
+	border-bottom:1px solid #eee;
+	background-color: #15ADEE;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#pie{ 
+	font-size: 12px; 
+}
+
+.lheft{
+	text-align: right;
+}
+
+.zenter{
+	text-align: center;
+}
+
+.fa-nx{
+	font-size: 20em;
+}
+
+.section-form {
+	padding-left: 75px;
+	padding-right: 75px;
+}
+
+div.panel-danger {
+	margin-left: 75px;
+	margin-right: 75px;
+}
+
+#modal-motivo-rechazo > div.modal-dialog > div.modal-content > div.modal-body > div{
+	margin: 10px 100px 10px 100px;
+}
+
+div.multi-select ul {
+	padding: 6px 12px 6px 12px;
+	border-radius: 0px 0px 4px 4px;
+	border: 1px solid #ccc;
+}
+
+.multi-select ul li {
+	float:left;
+	width: 45%;
+}
+
+.tooltip {
+	display: inline-block;
+	margin: 10px 20px;
+	opacity: 1;
+}
+
+.tooltip-right {
+	position: absolute;
+	right: -50px;
+	top: -5px;
+}
+
+.multi-drop-down-view {
+	font-size: 20px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.multi-select, #inp-mot-rechazo {
+	cursor: pointer;
+}
+
+.text-12{
+	font-size: 12px !important;
+}

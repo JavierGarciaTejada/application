@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login :: Admin AFA</title>
+		<link rel="shortcut icon" type="image/ico" href="<?=$this->pathMedia?>images/favicon.ico"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>librerias/Bootstrap/Bootstrap3.3.7/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>librerias/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>css/styles.css"/>
+		<?
+			$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+			if( preg_match('/MSIE/i', $user_agent) )
+			{
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Jquery/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/html5shiv-master/dist/html5shiv.min.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Respond-master/dest/respond.min.js"></script>
+		<? 
+			}
+			else 
+			{
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Jquery/jquery-3.2.1.min.js"></script>
+		<? 
+			}
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Bootstrap/Bootstrap3.3.7/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var path = "<?=Config::$configuration->get('server_path')?>/";
+		</script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/functions.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/login_admin_afa.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="div-form-login">
+				<form id="form-login">
+					<div class="form-group">
+						<label for="usuario">Usuario</label>
+						<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario">
+					</div>
+					<div class="form-group">
+						<label for="passwd">Contraseña</label>
+						<input type="password" class="form-control" id="passwd" name="passwd" placeholder="Contraseña de usuario">
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-primary" id="btn-login">Iniciar</button>
+					</div>
+					<div id="err-msg"></div>
+				</form>
+			</div>
+		</div>
+		<div id="modal-loader" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modal-loader" data-backdrop="static" 
+			data-keyboard="false">
+			<div class="modal-dialog modal-sm" role="document">
+				<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+				<span class="sr-only"> Loading... </span>
+			</div>
+		</div>
+	</body>
+</html>

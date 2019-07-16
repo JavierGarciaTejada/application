@@ -1,0 +1,6 @@
+.ui-datepicker-trigger {
+	position: absolute;
+	right: 25px;
+	top: 5px;
+	cursor: pointer;
+}

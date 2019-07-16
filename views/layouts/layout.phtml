@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><?=$this->title?></title>
+		<link rel="shortcut icon" type="image/ico" href="<?=$this->pathMedia?>images/favicon.ico"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>librerias/Bootstrap/Bootstrap3.3.7/dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>librerias/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<?=$this->css?>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>css/layout.css"/>
+		<link rel="stylesheet" href="<?=$this->pathMedia?>css/style.css"/>
+		<?
+			$user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+			if( preg_match('/MSIE/i', $user_agent) )
+			{
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Jquery/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/html5shiv-master/dist/html5shiv.min.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Respond-master/dest/respond.min.js"></script>
+		<? 
+			}
+			else 
+			{
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Jquery/jquery-3.4.1.min.js"></script>
+		<? 
+			}
+		?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Bootstrap/Bootstrap3.3.7/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			var path = "<?=Config::$configuration->get('server_path')?>/";
+		</script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/functions.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/session.js"></script>
+	</head>
+	<body>
+		<header id="header-layout">
+			<nav class="navbar navbar-inverse navbar-blog navbar-fixed-top navbar-layout" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<div id="nav-header-logo-layout">
+							<center>
+								<a href="javascript:void(null)" class="a-no-decoration">
+									<img src="<?=$this->imgLogo?>" id="logo-layout">
+									<!-- <br>
+									<strong id="font-layout"><?=$this->logo?></strong> -->
+									 <!-- <span id="eslogan-layout"><?=$this->slogan?></span>  -->
+								</a>
+							</center>
+						</div>
+					</div>
+					<div id="menu-navbar" class="navbar-collapse collapse">
+						<div id="title-module">
+							<a <?=$this->href?> id="title-modulo-layout" title="<?=$this->hrefTitle?>" class="a-no-decoration"><?=$this->titleHead?></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li id="return-home">
+								<a href="<?= Config::$configuration->get('server_path') .'/index.php/home/' ?>">Menu Principal</a>
+							</li>
+							<li id="reloj-layout"></li>
+							<? 
+								if(Session::$_session_stat === true)
+								{
+							?>
+							<li id="session-layout" class="dropdown"> </li>
+							<?
+								}
+							?>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<div id="static-mensaje"></div>
+		<div class="container-fluid" id="body-layout">
+			<?php include($this->body); ?>
+		</div>
+		<div id="notificacion-mensaje"></div>
+		<div id="modal-loader" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modal-loader" data-backdrop="static" 
+			data-keyboard="false">
+			<div class="modal-dialog modal-sm" role="document">
+				<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+				<span class="sr-only"> Loading... </span>
+			</div>
+		</div>
+		<footer id="div-footer">
+			<center>
+				<!-- <p id="info-carac" class="text-danger">Esta información tiene carácter confidencial por lo que no debe ser copiada, distribuida, divulgada o revelada sin la 
+					autorización previa y por escrito de "TELMEX". En caso de incumplimiento a cualquiera de las disposiciones antes descritas, "TELMEX" 
+					tendra derecho de ejercer las acciones, reclamaciones, quejas, denuncias y demás acciones judiciales o administrativas que considere 
+					procedentes, sin perjuicio de exigir el resarcimiento de daños y perjuicios.
+				</p> -->
+			</center>
+		</footer>
+	</body>
+	<?=$this->js?>
+</html>

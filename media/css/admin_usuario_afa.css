@@ -1,0 +1,16 @@
+#list-option-multi-dd {
+	display: none;
+	background-color: white;
+	position: absolute;
+	z-index: 1100;
+}
+
+.option-multi-dd:hover {
+	cursor: pointer;
+	background-color: #41b7e6;
+	color: #ffffff;
+}
+
+#dd:hover {
+	cursor: pointer;
+}

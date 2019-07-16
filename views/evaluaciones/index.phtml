@@ -1,0 +1,283 @@
+
+<div class="row" id="row-table-evaluaciones">
+
+	<div class="col-sm-12">
+		<table class="table table-striped" id="table-evaluaciones">
+			<thead class="text-capitalize">
+				<tr class="text-12">
+					<th>Operación</th>
+					<!-- <th>ID</th> -->
+					<th>Número Solicitud</th>
+					<th>Referencia Solicitante</th>
+					<th>Nombre Evaluación</th>
+					<th>siglas cliente</th>
+					<th>siglas laboratorio</th>
+					<th>proveedor</th>
+					<th>subgerente</th>
+					<th>ingeniero</th>
+					<th>nuevo</th>
+					<th>tecnología equipo</th>
+					<th>proyecto asociado</th>
+					<th>mercado</th>
+					<th>tipo solicitud</th>
+					<th>referencia liberación</th>
+					<th>estado</th>
+					<th>prioridad</th>
+					<th>resultado</th>
+					<th>tiempo transcurrido (Días)</th>
+					<th>periodo</th>
+					<th>Dilación</th>
+					<th>Solicitud</th>
+					<th>Compromiso</th>
+					<th>Liberacion</th>
+					<th>Cancelacion</th>
+					<!-- <th>periodo espec</th> -->
+				</tr>
+			</thead>
+			<tbody class="text-12">
+				
+			</tbody>
+			<tfoot class="text-capitalize">
+	            <tr>
+	                <th>Operación</th>
+					<!-- <th>ID</th> -->
+					<th>Número Solicitud</th>
+					<th>Referencia Solicitante</th>
+					<th>Nombre Evaluación</th>
+					<th>siglas cliente</th>
+					<th>siglas laboratorio</th>
+					<th>proveedor</th>
+					<th>subgerente</th>
+					<th>ingeniero</th>
+					<th>nuevo</th>
+					<th>tecnología equipo</th>
+					<th>proyecto asociado</th>
+					<th>mercado</th>
+					<th>tipo solicitud</th>
+					<th>referencia liberación</th>
+					<th>estado</th>
+					<th>prioridad</th>
+					<th>resultado</th>
+					<th>tiempo transcurrido (Días)</th>
+					<th>periodo</th>
+					<th>Dilación</th>
+					<th>Solicitud</th>
+					<th>Compromiso</th>
+					<th>Liberacion</th>
+					<th>Cancelacion</th>
+					<!-- <th>periodo espec</th> -->
+	            </tr>
+	        </tfoot>
+		</table>
+	</div>
+
+	<!-- Modal Editar-->
+	<div class="col-sm-12">
+		<div class="modal fade" id="modal-evaluacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-head-title"></h4>
+					</div>
+					<?php $anio = date('Y'); ?>
+					<div class="modal-body">
+						<div class="row">
+							<form id="evaluacion">
+								<input type="hidden" id="ix" name="ix">
+								<input type="hidden" id="id" name="id">
+								<input type="hidden" id="proceso" name="proceso">
+								<div class="col-sm-12">
+									<div class="form-group col-sm-12 col-md-3">
+									    <label for="el">Número Ele</label>
+									    <input type="text" class="form-control input-sm inp_nue_edit" name="el" id="el" placeholder="Ele-XXX/<?= $anio ?>">
+									</div>
+									<div class="form-group col-sm-12 col-md-3">
+										<label for="cl">Ref. Solicitante</label>
+										<input type="text" class="form-control input-sm inp_nue_edit" name="cl" id="cl" placeholder="X-XXXX/<?= $anio ?>">
+									</div>
+									<div class="form-group col-sm-12 col-md-6">
+										<label for="al">Dirigido a</label>
+										<select name="al" id="al" class="form-control input-sm inp_nue_edit"></select>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group col-sm-12">
+										<label for="no">Nombre Evaluación</label>
+										<textarea name="no" id="no" class="form-control input-sm inp_nue_edit" cols="30" rows="4"></textarea>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="ac">Siglas Cliente</label>
+										<select name="ac" id="ac" class="form-control input-sm inp_nue_edit"></select>
+									</div>
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="pv">Proveedor</label>
+										<select name="pv" id="pv" class="form-control input-sm"></select>
+									</div>
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="ts">Tipo de Solicitud</label>
+										<select name="ts" id="ts" class="form-control input-sm"></select>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="pr">Prioridad</label>
+										<select name="pr" id="pr" class="form-control input-sm"></select>
+									</div>
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="fo">Fecha Compromiso</label>
+										<input type="text" class="form-control input-sm fecha" name="fo" id="fo" placeholder="aaaa-mm-dd">
+									</div>
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="fs">Fecha Solicitud</label>
+										<input type="text" class="form-control input-sm fecha inp_nue_edit" name="fs" id="fs" value="<?= date('Y-m-d') ?>" placeholder="aaaa-mm-dd">
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="nu">Nuevo</label>
+										<select class="form-control input-sm" name="nu" id="nu"></select>
+									</div>
+									<div class="form-group col-sm-12 col-md-4">
+										<label for="te">Tecnología / Equipo</label>
+										<select class="form-control input-sm" name="te" id="te"></select>
+									</div>
+								</div>
+
+							</form>
+
+							<!-- ESTE FORMULARIO SE MUESTRA SI LA OPERACION ES ACEPTAR  -->
+							<div class="col-sm-12 div-ope text-center mt-15 bg-success" id="div-aceptar">
+								<h5>Ingrese los datos para aceptar la evaluación</h5>
+								<form class="form" id="form-aceptar">
+									<div class="col-sm-12">
+										<div class="form-group col-sm-12 col-md-4">
+											<label for="sg">Subgerente Asignado</label>
+											<select name="sg" id="sg" class="form-control input-sm"></select>
+										</div>
+										<div class="form-group col-sm-12 col-md-4">
+											<label for="ig">Ingeniero Asignado</label>
+											<select class="form-control input-sm" name="ig" id="ig"></select>
+										</div>
+										<!-- <div class="form-group col-sm-12 col-md-4">
+											<label for="te">Tecnología / Equipo</label>
+											<select class="form-control input-sm" name="te" id="te"></select>
+										</div> -->
+									</div>
+									<div class="col-sm-12">
+										<!-- <div class="form-group col-sm-12 col-md-3">
+											<label for="nu">Nuevo</label>
+											<select class="form-control input-sm" name="nu" id="nu"></select>
+										</div> -->
+										<div class="form-group col-sm-12 col-md-4">
+											<label for="pa">Proyecto Asociado</label>
+											<select class="form-control input-sm" name="pa" id="pa"></select>
+										</div>
+										<div class="form-group col-sm-12 col-md-3">
+											<label for="me">Mercado</label>
+											<select class="form-control input-sm" name="me" id="me"></select>
+										</div>
+										<div class="form-group col-sm-12 col-md-2">
+											<label for="meta">Meta</label>
+											<select class="form-control input-sm" name="meta" id="meta"></select>
+											<input type="text" class="form-control" id="ft" name="ft" readonly style="display: none;" >
+										</div>
+									</div>
+									
+									<button type="button" class="btn btn-primary" id="btn-aceptar-eval">Aceptar Evaluación</button>
+								</form>
+							</div>
+							
+							<!-- ESTE FORMULARIO SE MUESTRA SI LA OPERACION ES RECHAZAR -->
+							<div class="col-sm-12 div-ope text-center mt-15 bg-danger" id="div-rechazar">
+								<form class="form-inline" id="form-rechazar">
+									<div class="form-group">
+										<label for="fecha_rechazo" name="fecha_rechazo">Fecha Rechazo: </label>
+										<input type="text" class="form-control" id="fecha_rechazo" name="fecha_rechazo" value="<?= date('Y-m-d') ?>" readonly >
+									</div>
+									<div class="form-group">
+										<label for="motivo_rechazo">Motivo: </label>
+										<textarea class="form-control" cols="50" rows="2" name="motivo_rechazo" id="motivo_rechazo"> </textarea>
+									</div>
+									<button type="button" class="btn btn-primary" id="btn-rechazar-eval">Rechazar Evaluación</button>
+								</form>
+							</div>
+
+							<!-- ESTE FORMULARIO SE MUESTRA SI LA OPERACION ES REENVIAR -->
+							<div class="col-sm-12 div-ope text-center mt-15 bg-info" id="div-reenviar">
+								<form class="form-inline" id="form-reenviar">
+									<button type="button" class="btn btn-primary" id="btn-reenviar-eval">Reenviar Evaluación</button>
+								</form>
+							</div>
+
+
+							<!-- ESTE FORMULARIO SE MUESTRA SI LA OPERACION ES CANCELAR  -->
+							<div class="col-sm-12 div-ope text-center mt-15 bg-warning" id="div-cancelar">
+								<form class="form-inline" id="form-cancelar">
+									<div class="form-group">
+									    <label for="fecha_cancelacion">Fecha Cancelación:</label>
+									    <select class="form-control input-sm" name="fecha_cancelacion" id="fecha_cancelacion"></select>
+									</div>
+									<div class="form-group">
+									    <label for="ref_cancelacion">Referencia:</label>
+									    <input type="text" class="form-control input-sm" name="ref_cancelacion" id="ref_cancelacion">
+									</div>
+									<div class="form-group">
+									    <label for="motivo_cancelacion">Motivo: </label>
+										<textarea class="form-control" cols="50" rows="2" name="motivo_cancelacion" id="motivo_cancelacion"> </textarea>
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-primary" id="btn-cancelar-eval">Cancelar Evaluación</button>
+									</div>
+									
+								</form>
+							</div>
+
+							<!-- ESTE FORMULARIO SE MUESTRA SI LA OPERACION ES LIBERAR  -->
+							<div class="col-sm-12 div-ope text-center mt-15 bg-primary" id="div-liberar">
+								<form class="form-inline" id="form-liberar">
+									<div class="form-group">
+									    <label for="resultado_lib">Resultado:</label>
+									    <select class="form-control input-sm" name="resultado_lib" id="resultado_lib"></select>
+									</div>
+									<div class="form-group">
+									    <label for="fecha_liberacion">Fecha Liberación:</label>
+									    <select class="form-control input-sm" name="fecha_liberacion" id="fecha_liberacion"></select>
+									</div>
+									<div class="form-group">
+									    <label for="ref_liberacion">Referencia: </label>
+									    <input type="text" class="form-control" name="ref_liberacion" id="ref_liberacion">
+									</div>
+									<div class="form-group">
+										<button type="button" class="btn btn-default" id="btn-liberar-eval">Liberar Evaluación</button>
+									</div>
+									
+								</form>
+							</div>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btn-guardar-eval">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="modal-loader" style="margin-top: 300px;" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modal-loader" data-backdrop="static" 
+		data-keyboard="false">
+		<div class="modal-dialog modal-sm" role="document">
+			<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+			<!-- <div class="progress">
+			  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+			    <span class="sr-only">Un momento...</span>
+			  </div>
+			</div> -->
+			<span class="sr-only"> Cargando Datos... </span>
+		</div>
+	</div>
+</div>

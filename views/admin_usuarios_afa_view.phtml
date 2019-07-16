@@ -1,0 +1,327 @@
+<div>
+	<a href="<?=Config::$configuration->get('server_path')?>/index.php/adminafa/">
+		<i class="fa fa-angle-double-left"></i> Volver
+	</a>
+	<div class="row">
+		<div class="col-md-10"></div>
+		<div class="col-md-2">
+			<button class="btn btn-primary" id="btn-add-new-usr"><i class="fa fa-plus"></i> Nuevo Usuario</button>
+		</div>
+	</div>
+	<h5>Usuarios Registrados</h5>
+	<br>
+	<div class="table-responsive">
+		<table id="table-users-afa" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>ACCION</th>
+					<th>DD</th>
+					<th>LOGIN</th>
+					<th>USUARIO</th>
+					<th>AREA</th>
+					<th>IP</th>
+					<th>EXPEDIENTE</th>
+					<th>EMPRESA</th>
+					<th>TELEFONO</th>
+					<th>VALIDA_IP</th>
+					<th>RESERVA</th>
+					<th>FECHA_ALTA</th>
+					<th>FECHA_PWD</th>
+					<th>ESTILO</th>
+					<th>REPORTES</th>
+					<th>DETALLES</th>
+					<th>PERFIL</th>
+					<th>STATUS</th>
+					<th>ULTIMO INICIO DE SESION</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>ACCION</th>
+					<th>DD</th>
+					<th>LOGIN</th>
+					<th>USUARIO</th>
+					<th>AREA</th>
+					<th>IP</th>
+					<th>EXPEDIENTE</th>
+					<th>EMPRESA</th>
+					<th>TELEFONO</th>
+					<th>VALIDA_IP</th>
+					<th>RESERVA</th>
+					<th>FECHA_ALTA</th>
+					<th>FECHA_PWD</th>
+					<th>ESTILO</th>
+					<th>REPORTES</th>
+					<th>DETALLES</th>
+					<th>PERFIL</th>
+					<th>STATUS</th>
+					<th>ULTIMO INICIO DE SESION</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+<div class="modal fade modal-scroll" id="modal-form-usr" tabindex="-1" role="dialog" aria-labelledby="modal-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-label"></h4>
+			</div>
+			<div class="modal-body">
+				<form id="form-user-afa" class="form-horizontal">
+					<div class="form-group">
+						<label for="dd" class="col-sm-2 control-label">dd</label>
+						<div class="col-sm-10">
+							<div class="dropdown multi-select">
+								<input type="text" class="form-control dropdown-toggle" id="dd" name="dd" data-toggle="dropdown" placeholder="Division">
+								<i class="fa fa-caret-down multi-drop-down-view"></i>
+								<ul class="dropdown-menu">
+									<li class="option-multi-dd" value="T">Todas</li>
+									<li class="option-multi-dd" value="Q">Centro</li>
+									<li class="option-multi-dd" value="P">Golfo</li>
+									<li class="option-multi-dd" value="L">LD</li>
+									<li class="option-multi-dd" value="M">Metro</li>
+									<li class="option-multi-dd" value="Y">Noreste</li>
+									<li class="option-multi-dd" value="H">Noroeste</li>
+									<li class="option-multi-dd" value="C">Norte</li>
+									<li class="option-multi-dd" value="G">Occidente</li>
+									<li class="option-multi-dd" value="Q825E">Q825 Ericsson</li>
+									<li class="option-multi-dd" value="Q825H">Q825 Huawei</li>
+									<li class="option-multi-dd" value="Z">Sureste</li>
+									<li class="option-multi-dd" value="N">Telnor</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="area" class="col-sm-2 control-label">area</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="area" name="area" placeholder="area">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ip" class="col-sm-2 control-label">ip</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="ip" name="ip" placeholder="ip">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="login" class="col-sm-2 control-label">login</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="login" name="login" placeholder="login">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="usuario" class="col-sm-2 control-label">usuario</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="usuario" name="usuario" placeholder="usuario">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="expediente" class="col-sm-2 control-label">expediente</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="expediente" name="expediente" placeholder="expediente">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="empresa" class="col-sm-2 control-label">empresa</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="empresa" name="empresa">
+								<option value="">Selecciona una opción</option>
+								<option value="TELMEX">TELMEX</option>
+								<option value="COMERTEL">COMERTEL</option>
+								<option value="OMSASI">OMSASI</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="telefono" class="col-sm-2 control-label">telefono</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="telefono" name="telefono" placeholder="telefono">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="valida_ip" class="col-sm-2 control-label">valida_ip</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="valida_ip" name="valida_ip">
+								<option value="">Selecciona una opción</option>
+								<option value="0">No valida</option>
+								<option value="1">Valida</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="reserva" class="col-sm-2 control-label">reserva</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="reserva" name="reserva" placeholder="reserva">
+						</div>
+					</div>
+					<!--<div class="form-group">
+						<label for="fecha_alta" class="col-sm-2 control-label">fecha_alta</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="fecha_alta" name="fecha_alta" placeholder="fecha_alta">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="fecha_pwd" class="col-sm-2 control-label">fecha_pwd</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="fecha_pwd" name="fecha_pwd" placeholder="fecha_pwd">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="estilo" class="col-sm-2 control-label">estilo</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="estilo" name="estilo" placeholder="estilo">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="reportes" class="col-sm-2 control-label">reportes</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="reportes" name="reportes" placeholder="reportes">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="detalles" class="col-sm-2 control-label">detalles</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="detalles" name="detalles" placeholder="detalles">
+						</div>
+					</div>-->
+					<div class="form-group">
+						<label for="perfil" class="col-sm-2 control-label">perfil</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="perfil" name="perfil">
+								<option value="">Selecciona una opción</option>
+								<option value="admin">Administrador</option>
+								<option value="supervisor">Supervisor</option>
+								<option value="consulta">Consulta</option>
+								<option value="llp">llp</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">status</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="status" name="status">
+								<option value="">Seleccione una opción</option>
+								<option value="Activo">Activo</option>
+								<option value="Bloqueado">Bloqueado</option>
+								<option value="Inactivo">Inactivo</option>
+							</select>
+						</div>
+					</div>
+					<!--<div class="form-group">
+						<label for="intentos" class="col-sm-2 control-label">intentos</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="intentos" name="intentos">
+								<option value="5">5</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1</option>
+							</select>
+						</div>
+					</div>-->
+					<div>
+						<input type="hidden" name="action" id="action">
+						<input type="hidden" name="id" id="id">
+					</div>
+					<div id="rows-passwd">
+						<hr>
+						<div class="form-group">
+							<label for="contrasena" class="col-sm-2 control-label">Contraseña</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control input-passwd" id="contrasena" name="contrasena" placeholder="Contraseña">
+							</div>
+							<div class="col-sm-2">
+							<button type="button" class="btn btn-default create-passwd" title="Crear contraseña">
+								<i class="fa fa-key" aria-hidden="true"></i>
+							</button>
+						</div>
+						</div>
+						<div class="form-group">
+							<label for="passwd_confirm" class="col-sm-2 control-label">Repite Contraseña</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control input-passwd" id="passwd_confirm" name="passwd_confirm" placeholder="Repite Contraseña">
+							</div>
+							<div class="col-sm-2">
+								<button type="button" class="btn btn-default view-passwd" title="Mostar contraseña">
+									<i class="fa fa-eye" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-success" id="btn-send-form-usr-afa">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal-confirm-delete-user" class="modal fade bs-example-modal-sm" tabindex="-2" role="dialog" aria-labelledby="confirm-delete-user"
+	data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Elimina Usuario</h4>
+			</div>
+			<div class="modal-body text-center">
+				<p>¿Deseas eliminar el usuario <b id="name-usr"></b>?</p>
+				<p>Esto es irreversible.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" id="confirm-delete-user">Si</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal-form-change-pass" tabindex="-1" role="dialog" aria-labelledby="modal-label">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modal-label">Cambiar contraseña de usuario <b id="login_pwd_change"></b></h4>
+			</div>
+			<div class="modal-body">
+				<form id="form-change-passwd" class="form-horizontal">
+					<div class="form-group">
+						<label for="contrasena_pwd" class="col-sm-3 control-label">Contraseña</label>
+						<div class="col-sm-7">
+							<input type="password" class="form-control input-passwd" id="contrasena_pwd" name="contrasena" placeholder="Contraseña">
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-default create-passwd" title="Crear contraseña">
+								<i class="fa fa-key" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="passwd_confirm" class="col-sm-3 control-label">Repite Contraseña</label>
+						<div class="col-sm-7">
+							<input type="password" class="form-control input-passwd" id="passwd_confirm_pwd" name="passwd_confirm" placeholder="Repite Contraseña">
+						</div>
+						<div class="col-sm-2">
+							<button type="button" class="btn btn-default view-passwd" title="Mostar contraseña">
+								<i class="fa fa-eye" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="hidden" id="id_usr_afa_pass" name="id">
+						<input type="hidden" id="login_pwd" name="login">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-success" id="btn-send-form-change-passwd">Enviar</button>
+			</div>
+		</div>
+	</div>
+</div>

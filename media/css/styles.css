@@ -1,0 +1,13 @@
+#modal-loader {
+	text-align: center;
+	margin-top: 88px;
+}
+
+#modal-loader > div > i {
+	color: #06b7d4;
+}
+
+#div-form-login {
+	margin: 50px;
+	padding: 15px 235px 15px 235px;
+}

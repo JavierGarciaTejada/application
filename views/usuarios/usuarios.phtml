@@ -1,0 +1,101 @@
+<div class="row" id="row-table-usuarios">
+
+	<div class="col-md-6 col-md-offset-3 col-sm-12">
+		<table class="table table-striped" id="table-usuarios">
+			<thead class="text-capitalize">
+				<tr class="text-12">
+					<th>Operación</th>
+					<th>ID</th>
+					<th>Siglas</th>
+					<th>Nombre(s)</th>
+					<th>Apellido Paterno</th>
+					<th>Apellido Materno</th>
+					<th>Correo</th>
+					<th>Puesto</th>
+				</tr>
+			</thead>
+			<tbody class="text-12">
+				
+			</tbody>
+			<tfoot>
+	            <tr>
+					<th>Operación</th>
+					<th>ID</th>
+					<th>Siglas</th>
+					<th>Nombre(s)</th>
+					<th>Apellido Paterno</th>
+					<th>Apellido Materno</th>
+					<th>Correo</th>
+					<th>Puesto</th>
+	            </tr>
+	        </tfoot>
+		</table>
+	</div>
+
+	<!-- Modal Editar-->
+	<div class="col-sm-12">
+		<div class="modal fade" id="modal-usuarios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-head-title"></h4>
+					</div>
+					<?php $anio = date('Y'); ?>
+					<div class="modal-body">
+						<div class="row">
+							<form id="form-usuarios">
+								<input type="hidden" id="ix" name="ix">
+								<input type="hidden" id="id" name="id">
+								<div class="form-group col-sm-12 col-md-12">
+									<label for="tipo_user">Tipo de Usuario</label>
+									<select name="tipo_user" id="tipo_user" class="form-control input-sm">
+										<option value="">Seleccionar</option>
+										<option value="1">Laboratorio</option>
+										<option value="0">Cliente</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-12 col-md-12">
+								    <label for="no">Nombre(s)</label>
+								    <input type="text" class="form-control input-sm inp-nuevo-editar" name="no" id="no" disabled="true">
+								</div>
+								<div class="form-group col-sm-12 col-md-6">
+								    <label for="ap">Apellido Paterno</label>
+								    <input type="text" class="form-control input-sm inp-nuevo-editar" name="ap" id="ap" disabled="true">
+								</div>
+								<div class="form-group col-sm-12 col-md-6">
+								    <label for="am">Apellido Materno</label>
+								    <input type="text" class="form-control input-sm inp-nuevo-editar" name="am" id="am" disabled="true">
+								</div>
+
+								<div class="form-group col-sm-12 col-md-6">
+									<label for="cl">Siglas</label>
+									<select name="cl" id="cl" class="form-control input-sm inp-nuevo-editar" disabled="true"></select>
+								</div>
+								<div class="form-group col-sm-12 col-md-6">
+									<label for="ni">Correo</label>
+									<input type="text" class="form-control input-sm inp-nuevo-editar" name="ni" id="ni" disabled="true">
+								</div>
+								<div class="form-group col-sm-12 col-md-6">
+									<label for="pu">Puesto</label>
+									<select name="pu" id="pu" class="form-control input-sm inp-nuevo-editar" disabled="true"></select>
+								</div>
+								<div class="form-group col-sm-12 col-md-6">
+									<label for="lr">Perfil</label>
+									<select name="lr" id="lr" class="form-control input-sm inp-nuevo-editar" disabled="true"></select>
+								</div>
+
+							</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btn-guardar-user">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

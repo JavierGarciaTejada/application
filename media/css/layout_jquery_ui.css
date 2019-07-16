@@ -1,0 +1,254 @@
+html {
+	background: #f9dcdc;
+	font-family: sans-serif;
+}
+
+body {
+	margin-left: 0px;
+	margin-right: 0px;
+	line-height: 1.42857143;
+}
+
+div#div-head {
+	background: #d84040;
+	background: linear-gradient(top, #ffc6c6 0%, #a90000 100%);
+	background: -moz-linear-gradient(top, #ffc6c6 0%, #a90000 100%);
+	background: -webkit-linear-gradient(top, #ffc6c6 0%, #a90000 100%);
+	height: 50px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+	z-index: 1030;
+	margin-bottom: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+div#div-body {
+	background-color: #fff;
+	padding: 95px 15px 55px 15px;
+}
+
+div#div-header-container div {
+	/*width: 100%;*/
+	display:inline-block;
+	/*display: table;*/
+	/*display: table-cell;
+        vertical-align: middle;
+        /*text-align: center;*/
+}
+
+/*div#div-header-container #div-log, div#div-header-container #div-title, div#div-header-container #div-control-layout {
+	/*float:center;*/
+	/*display: inline-block;*/
+	/*display: table-cell;
+	vertical-align: middle;*/
+	/*background:yellow;
+}*/
+
+#div-log {
+	padding-right: 15px;
+}
+
+#div-control-layout {
+	float: right!important;
+	margin-right: -15px;
+}
+
+#div-log-content, #div-log-content a {
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+}
+
+#logo-layout {
+	width: 52px;
+	height: 28.688px;
+	vertical-align: middle;
+	border: 0;
+}
+
+#font-layout-log {
+	font-size: 15pt;
+}
+
+#eslogan-layout-log {
+	font-size: 10pt;
+}
+
+#title-modulo-layout {
+	text-decoration: none;
+	font-size: 22px;
+	color: #ffe000;
+	letter-spacing: 1px;
+	font-weight: 300;
+	float: left;
+	margin-left: 25px;
+	margin-top: 10px;
+}
+
+#reloj-layout {
+	position: relative;
+	display: block;
+	padding: 15px 15px;
+	color: #fff;
+	font-size: 14px;
+}
+
+#div-control-layout div {
+	float: left !important;
+}
+
+#menu-dropdown-user {
+	background-color: #fff;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	width: 99%;
+}
+
+#menu-dropdown-user > ul {
+	list-style: none;
+	padding: 5px 11px 5px 11px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+#menu-dropdown-user > ul > li > a {
+	text-decoration: none;
+	color: #000;
+}
+
+#menu-dropdown-user > ul > li:hover {
+	background-color: #ff6a6a;
+}
+
+a#dropdown-menu-user-name {
+	padding: 15px;
+	border: none !important;
+	background-color: transparent;
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
+	height: 20px;
+}
+
+a#dropdown-menu-user-name > span.ui-icon-triangle-1-s {
+	position: relative;
+}
+
+a#dropdown-menu-user-name:hover {
+	text-decoration: none;
+	background-color: #ce2424;
+}
+
+div#user-name-session > a.open {
+	background-color: #ff6a6a;
+}
+
+div#div-footer {
+	font-size: 14px;
+	padding-bottom: 30px;
+	padding-top: 30px;
+	padding-left: 55px;
+	padding-right: 55px;
+	border-top-style: solid;
+	border-width: 1px;
+	border-color: #e48888;
+}
+
+#info-footer {
+	text-align: center;
+	font-style: italic;
+	color: #a94442;
+}
+
+.alertify-danger {
+	box-shadow: -16px 16px 10px -5px rgba(153,153,153,1);
+	margin-top: 10px;
+	display: block;
+	padding: 15px;
+	text-align: center;
+	background-color: #d9534f;
+	font-size: 16px;
+	border-radius: 7px;
+}
+
+.alertify-success {
+	box-shadow: -16px 16px 10px -5px rgba(153,153,153,1);
+	margin-top: 10px;
+	display: block;
+	padding: 15px;
+	text-align: center;
+	background-color: #5cb85c;
+	font-size: 16px;
+	border-radius: 7px;
+}
+
+.alertify-warning {
+	box-shadow: -16px 16px 10px -5px rgba(153,153,153,1);
+	margin-top: 10px;
+	display: block;
+	padding: 15px;
+	text-align: center;
+	background-color: #f0ad4e;
+	font-size: 16px;
+	border-radius: 7px;
+}
+
+.alertify-info {
+	box-shadow: -16px 16px 10px -5px rgba(153,153,153,1);
+	margin-top: 10px;
+	display: block;
+	padding: 15px;
+	text-align: center;
+	background-color: #5bc0de;
+	font-size: 16px;
+	border-radius: 7px;
+}
+
+#notificacion-mensaje {
+	position: fixed;
+	display: block;
+	color: white;
+	text-align: center;
+	margin: 15px;
+	z-index: 1050;
+	width: 300px;
+	right: 10px;
+	bottom: 15px;
+}
+
+#div-loader-modal {
+	z-index: 1031;
+	display: none;
+	background-color: rgba(70, 70, 70, 0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#content-body-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+#content-body-modal > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#content-body-modal > div > img {
+	width: 95px;
+	height: 95px;
+}

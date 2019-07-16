@@ -1,0 +1,12 @@
+#row-table-evaluaciones{
+	margin-top: -40px;
+}
+
+div.div-ope{
+	padding: 10px 10px;
+	display: none;
+}
+
+#table-evaluaciones .odd {
+   background-color: #DAF4FC;
+}

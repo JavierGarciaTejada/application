@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><?=$this->title?></title>
+		<link rel="shortcut icon" type="image/ico" href="<?=$this->pathMedia?>images/favicon.ico">
+		<link rel="stylesheet" href="<?=$this->pathMedia?>librerias/jquery-ui-themes-1.12.1/themes/base/jquery-ui.min.css">
+		<link rel="stylesheet" href="<?=$this->pathMedia?>css/layout_jquery_ui.css">
+		<?=$this->css?>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Jquery/jquery-1.12.0.min.js" 
+			integrity="sha256-Xxq2X+KtazgaGuA2cWR1v3jJsuMJUozyIXDB3e793L8=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			var path = "<?=Config::$configuration->get('server_path')?>/";
+		</script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/functions.js"></script>
+		<script type="text/javascript" src="<?=$this->pathMedia?>js/session.js"></script>
+		<?=$this->js?>
+	</head>
+	<body>
+		<div id="div-head">
+			<div id="div-header-container">
+				<div id="div-log">
+					<div id="div-log-content">
+						<a href="/infinitum/" class="a-no-decoration">
+							<img src="<?=$this->imgLogo?>" id="logo-layout">
+							<b id="font-layout-log"><?=$this->logo?></b>
+							<br>
+							<span id="eslogan-layout-log"><?=$this->slogan?></span>
+						</a>
+					</div>
+				</div>
+				<div id="div-title">
+					<div id="div-title-content">
+						<a <?=$this->href?> id="title-modulo-layout" title="<?=$this->hrefTitle?>"><?=$this->titleHead?></a>
+					</div>
+				</div>
+				<div id="div-control-layout">
+					<div id="reloj-layout"></div>
+					<? if(Session::$_session === true) { ?>
+					<div id="user-name-session">
+						<a href="javascript:void(null);" id="dropdown-menu-user-name">
+							<span class="ui-icon ui-icon-person">.</span>
+							<span>&nbsp; <?=Session::$nombre?> </span>
+							<span class="ui-icon ui-icon-triangle-1-s">.</span>
+						</a>
+						<div id="menu-dropdown-user" style="display: none;">
+							<ul>
+								<li><a href="javascript:void(null);"><span class="ui-icon ui-icon-script">.</span>&nbsp; dd: <b><?=Session::$dirDiv?></b></a></li>
+								<li><a href="javascript:void(null);"><span class="ui-icon ui-icon-contact">.</span>&nbsp; Perfil: <b><?=Session::$nomPerfil?></b></a></li>
+								<hr>
+								<li><a href="javascript:void(null);" id="close-session"><span class="ui-icon ui-icon-power">.</span>&nbsp; Cerrar sesión</a></li>
+							</ul>
+						</div>
+					</div>
+					<? } ?>
+				</div>
+			</div>
+		</div>
+		<div id="div-body">
+			<? include($this->body); ?>
+		</div>
+		<div id="div-footer">
+			<div>
+				<p id="info-footer">Esta información tiene carácter confidencial por lo que no debe ser copiada, distribuida, divulgada o revelada sin
+					la autorización previa y por escrito de "TELMEX". En caso de incumplimiento a cualquiera de las disposiciones antes descritas, "TELMEX" 
+					tendra derecho de ejercer las acciones, reclamaciones, quejas, denuncias y demás acciones judiciales o administrativas que considere 
+					procedentes, sin perjuicio de exigir el resarcimiento de daños y perjuicios.
+				</p>
+			</div>
+		</div>
+		<div id="notificacion-mensaje"></div>
+		<div class="" id="div-loader-modal">
+			<div id="content-body-modal">
+				<div>
+					<img src="<?=Config::$configuration->get('media')?>images/loader.gif">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
