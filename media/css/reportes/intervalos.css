@@ -13,10 +13,18 @@
 
 .item{
 	font-weight: bolder;
-	font-size: 14px;
+	font-size: 12px;
 }
 
-.action:hover{
+.action:hover, .action-total:hover{
 	background-color: #fbc912 !important;
     cursor: pointer;
 }
+
+.tableFixHead          { overflow-y: auto; height: 600px; }
+.tableFixHead thead th { position: sticky; top: 0; }
+
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }

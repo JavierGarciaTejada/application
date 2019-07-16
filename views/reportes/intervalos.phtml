@@ -1,13 +1,17 @@
 <div class="row" id="row-table-intervalos">
 
-	<div class="col-md-8 col-md-offset-2 col-sm-12" style="margin-bottom: 20px;">
+	<div class="col-md-8 col-md-offset-2 col-sm-12 tableFixHead" style="margin-bottom: 20px;">
 		<table class="table table-bordered" id="table-intervalos">
 			<thead class="text-capitalize">
 				<tr class="text-12">
 					<th>Tipo de Evaluación</th>
 					<th>Clasificación</th>
-					<th colspan="3">Tiempos</th>
-					<th>Fuera de Tiempo</th>
+					<!-- <th colspan="3">Tiempos</th>
+					<th>Fuera de Tiempo</th> -->
+					<th class="bg-success1"></th>
+					<th class="bg-warning1"></th>
+					<th class="bg-danger1"></th>
+					<th class="bg-danger2">Fuera de tiempo</th>
 					<th>Totales</th>
 				</tr>
 			</thead>
@@ -19,33 +23,33 @@
 				<tr>
 					<td rowspan='4'>Módem, ONT, AP</td>
 					<td rowspan="2">Nuevo</td>
-					<td class="item bg-success1">'1-15</td>
-					<td class="item bg-warning1">'16-30</td>
-					<td class="item bg-danger1">'31-45</td>
-					<td class="item bg-danger2">' > 45</td>
+					<td class="item">'1-15</td>
+					<td class="item">'16-30</td>
+					<td class="item">'31-45</td>
+					<td class="item">' > 45</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="equipos-nue-1-15"></td>
-					<td class="item action" id="equipos-nue-16-30"></td>
-					<td class="item action" id="equipos-nue-31-45"></td>
-					<td class="item action" id="equipos-nue-45"></td>
-					<td class="item action" id="equipos-nue-total"></td>
+				<tr data-title="Equipos Nuevo 1-45">
+					<td class="item action" data-max="45" id="equipos-nue-1-15"></td>
+					<td class="item action" data-max="45" id="equipos-nue-16-30"></td>
+					<td class="item action" data-max="45" id="equipos-nue-31-45"></td>
+					<td class="item action" data-max="45" id="equipos-nue-45"></td>
+					<td class="item action" data-max="45" id="equipos-nue-total"></td>
 				</tr>
 				<tr>
 					<td rowspan="2">Software de mantenimiento</td>
-					<td class="item bg-success1">'1-10</td>
-					<td class="item bg-warning1">'11-20</td>
-					<td class="item bg-danger1">'21-30</td>
-					<td class="item bg-danger2">' > 30</td>
+					<td class="item">'1-10</td>
+					<td class="item">'11-20</td>
+					<td class="item">'21-30</td>
+					<td class="item">' > 30</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="equipos-act-1-10"></td>
-					<td class="item action" id="equipos-act-11-20"></td>
-					<td class="item action" id="equipos-act-21-30"></td>
-					<td class="item action" id="equipos-act-30"></td>
-					<td class="item action" id="equipos-act-total"></td>
+				<tr data-title="Equipos Software 1-30">
+					<td class="item action" data-max="30" id="equipos-act-1-10"></td>
+					<td class="item action" data-max="30" id="equipos-act-11-20"></td>
+					<td class="item action" data-max="30" id="equipos-act-21-30"></td>
+					<td class="item action" data-max="30" id="equipos-act-30"></td>
+					<td class="item action" data-max="30" id="equipos-act-total"></td>
 				</tr>
 				<!-- EQUIPOS -->
 
@@ -54,35 +58,35 @@
 				<tr>
 					<td rowspan='4'>Materiales</td>
 					<td rowspan="2">CIDEC</td>
-					<td class="item bg-success1">'1-20</td>
-					<td class="item bg-warning1">'21-40</td>
-					<td class="item bg-danger1">'41-60</td>
-					<td class="item bg-danger2">'>60</td>
+					<td class="item">'1-20</td>
+					<td class="item">'21-40</td>
+					<td class="item">'41-60</td>
+					<td class="item">'>60</td>
 					<td></td>
 				</tr>
 
-				<tr>
-					<td class="item action" id="materiales-cidec-1-20"></td>
-					<td class="item action" id="materiales-cidec-21-40"></td>
-					<td class="item action" id="materiales-cidec-41-60"></td>
-					<td class="item action" id="materiales-cidec-60"></td>
-					<td class="item action" id="materiales-cidec-total"></td>
+				<tr data-title="Materiales CIDEC 1-60">
+					<td class="item action" data-max="60" id="materiales-cidec-1-20"></td>
+					<td class="item action" data-max="60" id="materiales-cidec-21-40"></td>
+					<td class="item action" data-max="60" id="materiales-cidec-41-60"></td>
+					<td class="item action" data-max="60" id="materiales-cidec-60"></td>
+					<td class="item action" data-max="60" id="materiales-cidec-total"></td>
 				</tr>
 
 				<tr>
 					<td rowspan="2">Local</td>
-					<td class="item bg-success1">'1-5</td>
-					<td class="item bg-warning1">'6-10</td>
-					<td class="item bg-danger1">'11-15</td>
-					<td class="item bg-danger2">'>15</td>
+					<td class="item">'1-5</td>
+					<td class="item">'6-10</td>
+					<td class="item">'11-15</td>
+					<td class="item">'>15</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="materiales-local-1-5"></td>
-					<td class="item action" id="materiales-local-6-10"></td>
-					<td class="item action" id="materiales-local-11-15"></td>
-					<td class="item action" id="materiales-local-15"></td>
-					<td class="item action" id="materiales-local-total"></td>
+				<tr data-title="Materiales local 1-15">
+					<td class="item action" data-max="15" id="materiales-local-1-5"></td>
+					<td class="item action" data-max="15" id="materiales-local-6-10"></td>
+					<td class="item action" data-max="15" id="materiales-local-11-15"></td>
+					<td class="item action" data-max="15" id="materiales-local-15"></td>
+					<td class="item action" data-max="15" id="materiales-local-total"></td>
 				</tr>
 				<!-- MATERIALES -->
 
@@ -92,19 +96,19 @@
 				<tr>
 					<td rowspan='2'>Documentos y FOAs</td>
 					<td rowspan="2">TODAS</td>
-					<td class="item bg-success1">'1-5</td>
-					<td class="item bg-warning1">'6-10</td>
-					<td class="item bg-danger1">'11-15</td>
-					<td class="item bg-danger2">'>15</td>
+					<td class="item">'1-5</td>
+					<td class="item">'6-10</td>
+					<td class="item">'11-15</td>
+					<td class="item">'>15</td>
 					<td></td>
 				</tr>
 
-				<tr>
-					<td class="item action" id="docs-1-5"></td>
-					<td class="item action" id="docs-6-10"></td>
-					<td class="item action" id="docs-11-15"></td>
-					<td class="item action" id="docs-15"></td>
-					<td class="item action" id="docs-total"></td>
+				<tr data-title="Documentos 1-15">
+					<td class="item action" data-max="15" id="docs-1-5"></td>
+					<td class="item action" data-max="15" id="docs-6-10"></td>
+					<td class="item action" data-max="15" id="docs-11-15"></td>
+					<td class="item action" data-max="15" id="docs-15"></td>
+					<td class="item action" data-max="15" id="docs-total"></td>
 				</tr>
 
 				<!-- DOCUMENTOS FOAS -->
@@ -114,18 +118,18 @@
 				<tr>
 					<td rowspan="2">Funcionalidad y Pruebas de Concepto</td>
 					<td rowspan="2">TODAS</td>
-					<td class="item bg-success1">'1-10</td>
-					<td class="item bg-warning1">'11-20</td>
-					<td class="item bg-danger1">'21-30</td>
-					<td class="item bg-danger2">' > 30</td>
+					<td class="item">'1-10</td>
+					<td class="item">'11-20</td>
+					<td class="item">'21-30</td>
+					<td class="item">' > 30</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="func-1-10"></td>
-					<td class="item action" id="func-11-20"></td>
-					<td class="item action" id="func-21-30"></td>
-					<td class="item action" id="func-30"></td>
-					<td class="item action" id="func-total"></td>
+				<tr data-title="Funcionalidad y Pruebas de Concepto 1-30">
+					<td class="item action" data-max="30" id="func-1-10"></td>
+					<td class="item action" data-max="30" id="func-11-20"></td>
+					<td class="item action" data-max="30" id="func-21-30"></td>
+					<td class="item action" data-max="30" id="func-30"></td>
+					<td class="item action" data-max="30" id="func-total"></td>
 				</tr>
 
 				<!-- FUNCIONALIDAD -->
@@ -136,35 +140,35 @@
 				<tr>
 					<td rowspan='4'>Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software</td>
 					<td rowspan="2">Nuevo</td>
-					<td class="item bg-success1">'1-20</td>
-					<td class="item bg-warning1">'21-40</td>
-					<td class="item bg-danger1">'41-60</td>
-					<td class="item bg-danger2">'>60</td>
+					<td class="item">'1-20</td>
+					<td class="item">'21-40</td>
+					<td class="item">'41-60</td>
+					<td class="item">'>60</td>
 					<td></td>
 				</tr>
 
-				<tr>
-					<td class="item action" id="caract-nue-1-20"></td>
-					<td class="item action" id="caract-nue-21-40"></td>
-					<td class="item action" id="caract-nue-41-60"></td>
-					<td class="item action" id="caract-nue-60"></td>
-					<td class="item action" id="caract-nue-total"></td>
+				<tr data-title="Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software NUEVOS 1-60">
+					<td class="item action" data-max="60" id="caract-nue-1-20"></td>
+					<td class="item action" data-max="60" id="caract-nue-21-40"></td>
+					<td class="item action" data-max="60" id="caract-nue-41-60"></td>
+					<td class="item action" data-max="60" id="caract-nue-60"></td>
+					<td class="item action" data-max="60" id="caract-nue-total"></td>
 				</tr>
 
 				<tr>
 					<td rowspan="2">Actualizaciones</td>
-					<td class="item bg-success1">'1-10</td>
-					<td class="item bg-warning1">'11-20</td>
-					<td class="item bg-danger1">'21-30</td>
-					<td class="item bg-danger2">' > 30</td>
+					<td class="item">'1-10</td>
+					<td class="item">'11-20</td>
+					<td class="item">'21-30</td>
+					<td class="item">' > 30</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="caract-act-1-10"></td>
-					<td class="item action" id="caract-act-11-20"></td>
-					<td class="item action" id="caract-act-21-30"></td>
-					<td class="item action" id="caract-act-30"></td>
-					<td class="item action" id="caract-act-total"></td>
+				<tr data-title="Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software ACTUALIZACIONES 1-60">
+					<td class="item action" data-max="30" id="caract-act-1-10"></td>
+					<td class="item action" data-max="30" id="caract-act-11-20"></td>
+					<td class="item action" data-max="30" id="caract-act-21-30"></td>
+					<td class="item action" data-max="30" id="caract-act-30"></td>
+					<td class="item action" data-max="30" id="caract-act-total"></td>
 				</tr>
 				<!-- CARACTERIZACIONES -->
 
@@ -175,45 +179,45 @@
 				<tr>
 					<td rowspan='4'>Especificaciones</td>
 					<td rowspan="2">Nuevo</td>
-					<td class="item bg-success1">'1-20</td>
-					<td class="item bg-warning1">'21-40</td>
-					<td class="item bg-danger1">'41-60</td>
-					<td class="item bg-danger2">'>60</td>
+					<td class="item">'1-30</td>
+					<td class="item">'31-60</td>
+					<td class="item">'61-90</td>
+					<td class="item">'>90</td>
 					<td></td>
 				</tr>
 
-				<tr>
-					<td class="item action" id="espec-nue-1-30"></td>
-					<td class="item action" id="espec-nue-31-60"></td>
-					<td class="item action" id="espec-nue-61-90"></td>
-					<td class="item action" id="espec-nue-90"></td>
-					<td class="item action" id="espec-nue-total"></td>
+				<tr data-title="Especificaciones nuevas 1-90">
+					<td class="item action" data-max="90" id="espec-nue-1-30"></td>
+					<td class="item action" data-max="90" id="espec-nue-31-60"></td>
+					<td class="item action" data-max="90" id="espec-nue-61-90"></td>
+					<td class="item action" data-max="90" id="espec-nue-90"></td>
+					<td class="item action" data-max="90" id="espec-nue-total"></td>
 				</tr>
 
 				<tr>
 					<td rowspan="2">Actualizaciones</td>
-					<td class="item bg-success1">'1-10</td>
-					<td class="item bg-warning1">'11-20</td>
-					<td class="item bg-danger1">'21-30</td>
-					<td class="item bg-danger2">' > 30</td>
+					<td class="item">'1-10</td>
+					<td class="item">'11-20</td>
+					<td class="item">'21-30</td>
+					<td class="item">' > 30</td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="item action" id="espec-act-1-10"></td>
-					<td class="item action" id="espec-act-11-20"></td>
-					<td class="item action" id="espec-act-21-30"></td>
-					<td class="item action" id="espec-act-30"></td>
-					<td class="item action" id="espec-act-total"></td>
+				<tr data-title="Especificaciones actualización 1-30">
+					<td class="item action" data-max="30" id="espec-act-1-10"></td>
+					<td class="item action" data-max="30" id="espec-act-11-20"></td>
+					<td class="item action" data-max="30" id="espec-act-21-30"></td>
+					<td class="item action" data-max="30" id="espec-act-30"></td>
+					<td class="item action" data-max="30" id="espec-act-total"></td>
 				</tr>
 				<!-- ESPECIFICACIONES -->
 
 
-				<tr>
+				<tr data-title="Total por periodo">
 					<td colspan="2">Total Evaluaciones en PROCESO</td>
-					<td class="item" id="total-0"></td>
-					<td class="item" id="total-1"></td>
-					<td class="item" id="total-2"></td>
-					<td class="item" id="total-3"></td>
+					<td class="item action-total" id="total-1"></td>
+					<td class="item action-total" id="total-2"></td>
+					<td class="item action-total" id="total-3"></td>
+					<td class="item action-total" id="total-4"></td>
 					<td class="item" id="proceso-total"></td>
 				</tr>
 
@@ -250,14 +254,16 @@
 							<table class="table table-bordered" id="table-intervalos-detalle">
 								<thead>
 									<tr>
+										<td>No.</td>
 										<td>Ele</td>
 										<td>Descripción</td>
 										<td>Gerencia</td>
 										<td>Fecha de solicitud</td>
-										<td>Dias transcurridos</td>
+										<td>Días transcurridos</td>
+										<td>Vence</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody class="text-12">
 									
 								</tbody>
 							</table>
