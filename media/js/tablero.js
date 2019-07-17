@@ -5,7 +5,9 @@ $(function(){
         url: path + "index.php/tablero/",
         data: null,
         filtroGerencia: "",
-        idsPeriodos: null
+        idsPeriodos: null,
+        predicion: null,
+        urlIntervalos: path + "index.php/reportes/"
     }
 
     var setSolicitudesNuevas = function(){
@@ -29,6 +31,7 @@ $(function(){
             indicadorTiempos('indicador-tiempos3', data.periodos[2]);
             indicadorTiempos('indicador-tiempos4', data.periodos[3]);
             generaTablaPrediccion(filtros);
+            generaTablaPredEspec(filtros);
         });
 
     }
@@ -90,7 +93,6 @@ $(function(){
         var dataGet = { filtros: filtros };
 
         getJson(e.url + "dataTablaPrediccion", dataGet, function(data){
-            console.log(data);
 
             e.idsPeriodos = data.ids;
             var texto = { 
@@ -103,25 +105,47 @@ $(function(){
             
             enProceso = data['cant']['1_15'][0] + data['cant']['16_30'][0] + data['cant']['31_60'][0] + data['cant']['61_90'][0];
 
-            $.each(data.cant, function(i, v){
+            // $.each(data.cant, function(i, v){
 
-                var classLink = ( parseInt(v[0]) > 0 ) ? 'tr-link' : '';
+            //     var classLink = ( parseInt(v[0]) > 0 ) ? 'tr-link' : '';
 
-                var tr = $("<tr>");
-                tr.append( $("<td>").css( {'background-color': texto[i][1]} ) );
-                tr.append( $("<td>").html(texto[i][0]) );
-                tr.append( $("<td>").addClass('item-table-prediccion '+classLink ).attr({'data-per': i, 'data-title': "Detalle evaluaciones de "+texto[i][0]+" días. "+$("#text-filtro").text() }).html(v[0]) );
-                tr.append( $("<td>").html(v[1]) );
-                tr.append( $("<td>").html(v[2]) );
-                tr.append( $("<td>").html(v[3]) );
-                tr.append( $("<td>").html(v[4]) );
-                tr.append( $("<td>").html(v[5]) );
-                items.push( tr[0].outerHTML );
-            })
+            //     var tr = $("<tr>");
+            //     tr.append( $("<td>").css( {'background-color': texto[i][1]} ) );
+            //     tr.append( $("<td>").html(texto[i][0]) );
+            //     tr.append( $("<td>").addClass('item-table-prediccion '+classLink ).attr({'data-per': i, 'data-title': "Detalle evaluaciones de "+texto[i][0]+" días. "+$("#text-filtro").text() }).html(v[0]) );
+            //     tr.append( $("<td>").html(v[1]) );
+            //     tr.append( $("<td>").html(v[2]) );
+            //     tr.append( $("<td>").html(v[3]) );
+            //     tr.append( $("<td>").html(v[4]) );
+            //     tr.append( $("<td>").html(v[5]) );
+            //     items.push( tr[0].outerHTML );
+            // })
 
             $("#en_proceso").html(enProceso);
-            $("#tbl-prediccion tbody").html(items.join(''));
+            // $("#tbl-prediccion tbody").html(items.join(''));
             // $("#tbl-prediccion").DataTable({destroy: true, searching: false, paging: false, info: false});
+
+        })
+
+    }
+
+
+    var generaTablaPredEspec = function(){
+
+        var gerencia = e.filtroGerencia == "" ? "" : ['al', '=', e.filtroGerencia, 'string'];
+        var filtros = {
+            proceso: ['a.et', '=', '619056264933549', 'string'],
+            especial: ['a.especial', '=', 0],
+            gerencia: gerencia
+        };
+        var dataGet = { filtros: filtros };
+        getJson(e.urlIntervalos + "Intervalos", dataGet, function(data){
+
+            e.predicion = data;
+            $("#total-1").text(data.totales[0]);
+            $("#total-2").text(data.totales[1]);
+            $("#total-3").text(data.totales[2]);
+            $("#total-4").text(data.totales[3]);
 
         })
 
@@ -400,6 +424,58 @@ $(function(){
         generaGraficas();
         generaGerencias();
     })
+
+
+    $(".td-link").click(function(){
+
+        var id = $(this).attr('id');
+        ids = e.predicion.ids[id];
+
+        var title = $(this).attr('data-title');
+
+        var i = [];
+        var assing = [];
+        $.each(ids, function(ind, v){
+            i.push(v[0]);
+            assing[''+v[0]] = v[1];
+        })
+
+        var dataGet = { ids: i }; 
+        getJson(e.urlIntervalos + "IntervalosDetalle", dataGet, function(res){
+
+            $("#modal-head-title").text( title );
+ 
+            var items = [];
+            var count = 1;
+            $.each(res.data, function(i, v){
+                var tr = $("<tr>");
+                tr.append( $("<td>").html(count) );
+                tr.append( $("<td>").html(v.el).addClass('bg-success') );
+                tr.append( $("<td>").html(v.no) );
+                tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.fs).addClass('bg-info') );
+                tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
+                var diasVence = assing[v.id];
+                var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
+                if( diasParaVencer > 0  ){
+                    var text = diasParaVencer + " para vencer";
+                    var bg = '';
+                }else{
+                    var text = "vencido por " + Math.abs(diasParaVencer);
+                    var bg = 'bg-danger1';
+                }
+                // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
+                tr.append( $("<td>").html(text).addClass(bg) );
+                items.push(tr[0].outerHTML);
+                count++;
+            })
+
+            $("#table-listado-detalle tbody").html( items.join('') );
+            $("#modal-listado").modal('show');
+
+        })
+
+    });
 
 
 

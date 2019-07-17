@@ -6,9 +6,13 @@ $(function(){
     }
 
 
-    var generaTablaIntervalos = function(filtros = ""){
+    var generaTablaIntervalos = function(){
 
-        var dataGet = { filtros: filtros }; 
+        var filtros = {
+            proceso: ['a.et', '=', '619056264933549', 'string'],
+            especial: ['a.especial', '=', 0]
+        };
+        var dataGet = { filtros: filtros };
         getJson(e.url + "Intervalos", dataGet, function(data){
 
             e.ident = data.ids;

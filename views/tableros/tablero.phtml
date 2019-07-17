@@ -71,7 +71,37 @@
 						<th id="sol_nuevas"></th>
 					</tr>
 				</table>
+
 				<div class="table-responsive">
+					<table class="table table-hover table-bordered table-condensed text-12" id="tbl-prediccion-espec">
+						<thead class="bg-primary">
+							<tr class="text-center">
+								<th>Vencidas</th>
+								<th>Próximas a vencer</th>
+								<th>Warning</th>
+								<th>En tiempo</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<th class="bg-danger2"></th>
+								<th class="bg-danger1"></th>
+								<th class="bg-warning1"></th>
+								<th class="bg-success1"></th>	
+							</tr>
+							<tr>
+								<th class="td-link" data-title="Evaluaciones vencidas" id="total-4"></th>
+								<th class="td-link" data-title="Próximas a vencer" id="total-3"></th>
+								<th class="td-link" data-title="Warning" id="total-2"></th>
+								<th class="td-link" data-title="En tiempo" id="total-1"></th>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+
+				<!-- <div class="table-responsive">
 					<table class="table table-hover table-bordered table-condensed text-12" id="tbl-prediccion">
 						<thead class="bg-primary">
 							<tr>
@@ -89,7 +119,7 @@
 							
 						</tbody>
 					</table>
-				</div>
+				</div> -->
 			</div>
 
 		</div>
@@ -153,6 +183,48 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 					<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Modal Listado Evaluaciones-->
+	<div class="col-sm-12">
+		<div class="modal fade" id="modal-listado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-head-title"></h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							
+							<table class="table table-bordered" id="table-listado-detalle">
+								<thead>
+									<tr>
+										<td>No.</td>
+										<td>Ele</td>
+										<td>Descripción</td>
+										<td>Gerencia</td>
+										<td>Fecha de solicitud</td>
+										<td>Días transcurridos</td>
+										<td>Vence</td>
+									</tr>
+								</thead>
+								<tbody class="text-12">
+									
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+						<!-- <button type="button" class="btn btn-primary" id="btn-guardar-eval">Guardar</button> -->
+					</div>
 				</div>
 			</div>
 		</div>

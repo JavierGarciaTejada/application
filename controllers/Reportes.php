@@ -64,7 +64,10 @@ class Reportes
 
 	public function Intervalos(){
 
-		$where = " et = 619056264933549 AND especial = 0";
+		$data = Funciones::getDataGet();
+		$where = Funciones::generaFiltroSql($data['filtros']);
+
+		// $where = " et = 619056264933549 AND especial = 0";
 		$nuevas = EvaluacionesDAO::EvaluacionesEtapaCount('619056264933547');
 		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($where);
 		$evaluaciones = FuncionesEvaluacion::asignacionFechas($evaluaciones);

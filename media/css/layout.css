@@ -243,3 +243,16 @@ a#title-modulo-layout:focus, a#title-modulo-layout:hover {
 .mt-15{
 	margin-top: 15px;
 }
+
+.bg-success1{
+	background-color: #49ff00;
+}
+.bg-warning1{
+	background-color: #fffc00;
+}
+.bg-danger1{
+	background-color: #ee0000;
+}
+.bg-danger2{
+	background-color: #c70000;
+}

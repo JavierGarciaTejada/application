@@ -22,3 +22,8 @@ body{
 	background-color: #fbc912 !important;
 	cursor: pointer;
 }
+
+.td-link:hover{
+	background-color: #fbc912 !important;
+	cursor: pointer;
+}
