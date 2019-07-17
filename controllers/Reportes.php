@@ -64,7 +64,7 @@ class Reportes
 
 	public function Intervalos(){
 
-		$where = " et = 619056264933549 ";
+		$where = " et = 619056264933549 AND especial = 0";
 		$nuevas = EvaluacionesDAO::EvaluacionesEtapaCount('619056264933547');
 		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($where);
 		$evaluaciones = FuncionesEvaluacion::asignacionFechas($evaluaciones);
@@ -107,9 +107,6 @@ class Reportes
 		foreach ($array as $key => $value) {
 			$this->suma[$key] += (int)$array[$key];
 		}
-		// for($i = 0; $i < count($array); $i++){
-		// 	$this->suma[$i] += $array[$i];
-		// }
 	}
 
 
