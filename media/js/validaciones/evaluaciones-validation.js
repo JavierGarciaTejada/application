@@ -83,7 +83,7 @@ $(function(){
             te: {
                 validators: {
                     notEmpty: {
-                        message: 'Debe asignar un Técnico'
+                        message: 'Debe asignar Tecnología/Equipo'
                     }
                 }
             }
