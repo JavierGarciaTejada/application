@@ -194,7 +194,7 @@ $(function(){
 						botones.push('<button class="btn btn-sm btn-info reenviar-eval" id='+ data.id +' title="Reenviar Evaluación"><i class="fa fa-share" aria-hidden="true"></i></button>');
 					}
 					else if( data.id_etapa == '3' ){//EN PROCESO
-						botones.push('<button class="btn btn-sm btn-default edit-eval" id='+ data.id +' title="Editar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
+						botones.push('<button class="btn btn-sm btn-default edit-eval" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
 						botones.push('<button class="btn btn-sm btn-success liberar-eval" id='+ data.id +' title="Liberar Evaluación"><i class="fa fa-check" aria-hidden="true"></i></button>');
 						botones.push('<button class="btn btn-sm btn-warning cancelar-eval" id='+ data.id +' title="Cancelar Evaluación"><i class="fa fa-times" aria-hidden="true"></i></button>');
 					}
