@@ -24,7 +24,7 @@ class Funciones
         $mail->isSMTP(); //Set mailer to use SMTP                                      
         //$mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
         $mail->Host = '10.192.10.9';
-        $mail->SMTPAuth = true; // Enable SMTP authentication
+        $mail->SMTPAuth = false; // Enable SMTP authentication
         //$mail->Username = 'saaeapi@gmail.com';
         $mail->Username = 'SAAE@telmexomsasi.com';
         //$mail->Password = 'Sa@3_2019';
