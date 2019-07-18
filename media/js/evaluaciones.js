@@ -15,7 +15,7 @@ $(function(){
 
 	var puesto = $("#puesto").val();
 	var role = $("#role").val();
-	var autorizacionCambios = ( puesto == "Gerente" || puesto == "Suberente" || role == "Administrador") ? true : false;
+	var autorizacionCambios = ( puesto == "Gerente" || puesto == "Subgerente" || role == "Administrador") ? true : false;
 
 	var diasLiberacion = [ moment().format("YYYY-MM-DD") ];
 	for(var i = 1; i <= 5; i++){
