@@ -10,13 +10,13 @@ $(function(){
                     }
                 }
             },
-            cl: {
-                validators: {
-                    notEmpty: {
-                        message: 'Ingrese la referencia solicitante'
-                    }
-                }
-            },
+            // cl: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: 'Ingrese la referencia solicitante'
+            //         }
+            //     }
+            // },
             al: {
                 validators: {
                     notEmpty: {
