@@ -27,11 +27,11 @@ class Perfil
 		$ixCli 	= Session::getSession("gcl");
 
 		$filtros = array();
+		$anterior = date('Y', strtotime('-1 year'));
+		$actual = date('Y');
 		if( ! empty($anio) )
-			array_push($filtros, " a.fs like '$anio%' ");
+			array_push($filtros, " YEAR(a.fs) IN ($anterior, $actual) ");
 
-		// if( ! empty($estatus) )
-		// 	array_push($filtros, " a.et = $estatus ");
 
 		//ADMINISTRADOR NO TIENE FILTROS, VE TODO
 		if( $role === "Administrador" ) return implode(' AND ', $filtros);
@@ -42,9 +42,13 @@ class Perfil
 		}else{
 			//SUBDIRECTOR LABORATORIO NO TIENE FILTROS, VE TODO
 			if( $puesto === "Subdirector" )
-				return $filtros;
-			else 
-				array_push($filtros, " a.al = (SELECT ix FROM ad_alb WHERE cl = '$siglas') ");
+				return implode(' AND ', $filtros);
+			else{
+				if( $ix == "919056264925290" ) //BRENDA LLEVA DOS GERENCIAS
+					array_push($filtros, " a.al IN (SELECT ix FROM ad_alb WHERE cl IN ('$siglas', 'Leg') ) ");
+				else
+					array_push($filtros, " a.al = (SELECT ix FROM ad_alb WHERE cl = '$siglas') ");
+			} 
 		}
 
 		$filtro = implode(' AND ', $filtros);

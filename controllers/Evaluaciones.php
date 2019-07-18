@@ -151,7 +151,7 @@ class Evaluaciones
 	}
 
 	public function getUsuariosGerencia(){
-		$filtro = Perfil::FiltroUsuarioGerencia();
+		$filtro = "";// Perfil::FiltroUsuarioGerencia();
 		$all = UsuariosDAO::All($filtro);
 
 		$usuarios = array();
