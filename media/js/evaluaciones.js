@@ -75,8 +75,9 @@ $(function(){
 
 	var setIngenieros = function(){
 		e.prioridad = getJson(e.url + "getUsuariosGerencia", null, function(a){
+			var todos = a.Subgerente.concat(a.Ingeniero);
 			setValuesSelect('sg', a.Subgerente, 'ix', 'nombre', '');
-			setValuesSelect('ig', a.Ingeniero, 'ix', 'nombre', '');
+			setValuesSelect('ig', todos, 'ix', 'nombre', '');
 		});
 	}
 
