@@ -13,6 +13,9 @@ $(function(){
 	$("#fecha_solicitud").val( moment().format("YYYY-MM-DD") );
 	$(".fecha").datepicker({ dateFormat: 'yy-mm-dd' });
 
+	var puesto = $("#puesto").val();
+	var role = $("#role").val();
+	var autorizacionCambios = ( puesto == "Gerente" || puesto == "Suberente" || role == "Administrador") ? true : false;
 
 	var diasLiberacion = [ moment().format("YYYY-MM-DD") ];
 	for(var i = 1; i <= 5; i++){
@@ -198,8 +201,9 @@ $(function(){
 						botones.push('<button class="btn btn-sm btn-success liberar-eval" id='+ data.id +' title="Liberar Evaluación"><i class="fa fa-check" aria-hidden="true"></i></button>');
 						botones.push('<button class="btn btn-sm btn-warning cancelar-eval" id='+ data.id +' title="Cancelar Evaluación"><i class="fa fa-times" aria-hidden="true"></i></button>');
 					}
-					
-					$( td ).html( '<div style="width: 110px;">' + botones.join(' ') + '</div>' );
+
+					if(autorizacionCambios)
+						$( td ).html( '<div style="width: 110px;">' + botones.join(' ') + '</div>' );
 				}
 			},
 			//{ "data" : "id"},

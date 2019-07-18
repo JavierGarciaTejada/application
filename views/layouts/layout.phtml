@@ -80,6 +80,10 @@
 			</nav>
 		</header>
 		<div id="static-mensaje"></div>
+
+		<input type="hidden" id='puesto' value='<?= Session::getSession("puesto") ?>'>
+		<input type="hidden" id='role' value='<?= Session::getSession("role") ?>'>
+
 		<div class="container-fluid" id="body-layout">
 			<?php include($this->body); ?>
 		</div>
