@@ -107,6 +107,26 @@ class FuncionesEvaluacion
       
   }
 
+  public static function IntervaloEspeciales($evaluaciones){
+
+    $especial = array();
+    $especial['especiales-1-5'] = 0;
+
+    self::$general['especiales-1-5'] = array();
+    foreach ($evaluaciones['data'] as $key => $item) {
+      if( $item['especial'] == '1' ){
+        if( !in_array($item['id'], self::$ids) ){
+          self::$ids[] = $item['id'];
+          self::$general['especiales-1-5'][] = $item['id'];
+          $especial['especiales-1-5'] += 1;
+        }
+      }
+    }
+
+    return $especial;
+
+  }
+
 
   public static function IntervaloDocumentosFoas($evaluaciones){
 

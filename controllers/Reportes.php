@@ -73,6 +73,9 @@ class Reportes
 		$evaluaciones = FuncionesEvaluacion::asignacionFechas($evaluaciones);
 
 		$intervalos = array();
+		$intervalos['especial'] = FuncionesEvaluacion::IntervaloEspeciales($evaluaciones);
+		$this->sumaPorPeriodo($intervalos['especial']);
+
 		$intervalos['docs'] = FuncionesEvaluacion::IntervaloDocumentosFoas($evaluaciones);
 		$this->sumaPorPeriodo($intervalos['docs']);
 

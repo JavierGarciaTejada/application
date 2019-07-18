@@ -9,8 +9,8 @@ $(function(){
     var generaTablaIntervalos = function(){
 
         var filtros = {
-            proceso: ['a.et', '=', '619056264933549', 'string'],
-            especial: ['a.especial', '=', 0]
+            proceso: ['a.et', '=', '619056264933549', 'string']
+            // ,especial: ['a.especial', '=', 0]
         };
         var dataGet = { filtros: filtros };
         getJson(e.url + "Intervalos", dataGet, function(data){
@@ -23,6 +23,7 @@ $(function(){
         	rowsFuncionalidad( data.func );
         	rowsCaract( data.caract );
         	rowsEspecificaciones( data.espec );
+            rowsEspecial( data.especial );
 
             $.each(data.totales, function(i, v){
                 $("#total-"+(i+1)).text(v);
@@ -148,6 +149,11 @@ $(function(){
 
     }
 
+    var rowsEspecial = function(especial){
+        $("#especiales-1-5").text(especial['especiales-1-5']);
+        $("#especiales-total").text(especial['especiales-1-5']);
+    }
+
 
     generaTablaIntervalos();
     // $("#table-intervalos").DataTable();
@@ -184,14 +190,21 @@ $(function(){
                 tr.append( $("<td>").html(v.s_lab) );
                 tr.append( $("<td>").html(v.fs).addClass('bg-info') );
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
-                var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
-                if( diasParaVencer > 0  ){
-                    var text = diasParaVencer + " para vencer";
+
+                if( diasVence == "especial" ){
+                    var text = "N/A";
                     var bg = '';
                 }else{
-                    var text = "vencido por " + Math.abs(diasParaVencer);
-                    var bg = 'bg-danger1';
+                    var diasParaVencer =  parseInt(diasVence) - parseInt(v.dias_t);
+                    if( diasParaVencer > 0  ){
+                        var text = diasParaVencer + " para vencer";
+                        var bg = '';
+                    }else{
+                        var text = "vencido por " + Math.abs(diasParaVencer);
+                        var bg = 'bg-danger1';
+                    }
                 }
+                
                 // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
                 tr.append( $("<td>").html(text).addClass(bg) );
                 items.push(tr[0].outerHTML);
@@ -212,6 +225,69 @@ $(function(){
 
         
     })
+
+
+    $(".action-especial").click(function(){
+
+
+
+        // var id = $(this).attr('id');
+        // var item = id.split('-');
+        // var ids = null;
+        // var title = $(this).parents('tr').attr('data-title');
+        // var diasVence = $(this).attr('data-max');
+
+        
+        // ids = e.ident[id];
+
+        // if( ids.length <= 0 )
+        //     return false;
+
+        // var dataGet = { ids: ids }; 
+        // getJson(e.url + "IntervalosDetalle", dataGet, function(res){
+        //     console.log(id);
+        //     $("#modal-head-title").text( title )
+        //     $("#modal-intervalos").modal('show');
+
+            
+        //     var items = [];
+        //     var count = 1;
+        //     $.each(res.data, function(i, v){
+        //         var tr = $("<tr>");
+        //         tr.append( $("<td>").html(count) );
+        //         tr.append( $("<td>").html(v.el).addClass('bg-success') );
+        //         tr.append( $("<td>").html(v.no) );
+        //         tr.append( $("<td>").html(v.s_lab) );
+        //         tr.append( $("<td>").html(v.fs).addClass('bg-info') );
+        //         tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
+        //         var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
+        //         if( diasParaVencer > 0  ){
+        //             var text = diasParaVencer + " para vencer";
+        //             var bg = '';
+        //         }else{
+        //             var text = "vencido por " + Math.abs(diasParaVencer);
+        //             var bg = 'bg-danger1';
+        //         }
+        //         // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
+        //         tr.append( $("<td>").html(text).addClass(bg) );
+        //         items.push(tr[0].outerHTML);
+
+        //         count++;
+        //     })
+
+        //     $("#table-intervalos-detalle tbody").html( items.join('') );
+        //     // $("#table-intervalos-detalle").DataTable({
+        //     //     destroy: true,
+        //     //     "language" : lenguageTable,
+        //     //     "scrollX" : true,
+        //     //     "scrollY" : '62vh',
+        //     //     "scrollCollapse" : true,
+        //     //     "orderCellsTop": true,
+        //     // })
+        // })
+
+        
+    });
 
 
 
