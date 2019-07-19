@@ -106,8 +106,9 @@ class TableroDAO
 	}
 
 
-	public static function EvaluacionesNuevas(){
-		$sql = "SELECT count(id) nuevas FROM so_sol WHERE MONTH(fs) = MONTH(CURRENT_DATE()) AND YEAR(fs) = YEAR(CURRENT_DATE())";
+	public static function EvaluacionesNuevas($filtro = ""){
+		$filtro = ( empty($filtro) ) ? "" : " AND ".$filtro;
+		$sql = "SELECT count(id) nuevas FROM so_sol WHERE MONTH(fs) = MONTH(CURRENT_DATE()) AND YEAR(fs) = YEAR(CURRENT_DATE()) $filtro ";
 		$filas['data'] = self::executeQuery($sql);
 		$filas['sql'] = $sql;
 		return $filas;

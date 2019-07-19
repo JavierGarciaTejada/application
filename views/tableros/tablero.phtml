@@ -1,3 +1,11 @@
+
+<?php 
+setlocale(LC_ALL, 'es_ES');
+$meses = array('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre');
+$monthNum  = date('n') - 1;
+$monthName = $meses[$monthNum];
+
+?>
 <div id="container-tablero">
 	<div class="col-sm-12 col-md-4 graf-content" >
 		<div class="row border" >
@@ -67,7 +75,7 @@
 						<th id="en_proceso"></th>
 					</tr>
 					<tr class="bg-primary">
-						<td>Solicitudes Nuevas</td>
+						<td class="text-capitalize">Solicitudes Nuevas <strong> <?= $monthName ?> </strong> </td>
 						<th id="sol_nuevas"></th>
 					</tr>
 				</table>

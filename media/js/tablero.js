@@ -11,12 +11,19 @@ $(function(){
     }
 
     var setSolicitudesNuevas = function(){
-        getJson(e.url + "solicitudesNuevas", null, function(data){
+        var gerencia = e.filtroGerencia == "" ? "" : ['al', '=', e.filtroGerencia, 'string'];
+        var filtros = {
+            gerencia: gerencia
+        };
+        var dataGet = { filtros: filtros };
+
+        getJson(e.url + "solicitudesNuevas", dataGet, function(data){
+            console.log(data);
             $("#sol_nuevas").text( data['data'][0]['nuevas'] );
         });
     }
 
-    setSolicitudesNuevas();
+    // setSolicitudesNuevas();
 
     var generaGraficas = function(filtros = ""){
 
@@ -32,6 +39,7 @@ $(function(){
             indicadorTiempos('indicador-tiempos4', data.periodos[3]);
             generaTablaPrediccion(filtros);
             generaTablaPredEspec(filtros);
+            setSolicitudesNuevas();
         });
 
     }

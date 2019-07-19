@@ -297,7 +297,10 @@ class Tablero
 	}
 
 	public function solicitudesNuevas(){
-		$nuevas = TableroDAO::EvaluacionesNuevas();
+		$data = Funciones::getDataGet();
+		$filtros = Funciones::generaFiltroSql($data['filtros']);
+
+		$nuevas = TableroDAO::EvaluacionesNuevas( $filtros );
 		Funciones::imprimeJson($nuevas);
 	}
 
