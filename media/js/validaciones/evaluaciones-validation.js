@@ -72,20 +72,6 @@ $(function(){
                         message: 'Ingrese fecha de solicitud'
                     }
                 }
-            },
-            nu: {
-                validators: {
-                    notEmpty: {
-                        message: 'Debe asignar Nuevo'
-                    }
-                }
-            },
-            te: {
-                validators: {
-                    notEmpty: {
-                        message: 'Debe asignar Tecnología/Equipo'
-                    }
-                }
             }
         }
     });
@@ -133,6 +119,20 @@ $(function(){
                 validators: {
                     notEmpty: {
                         message: 'Debe asignar meta'
+                    }
+                }
+            },
+            nu: {
+                validators: {
+                    notEmpty: {
+                        message: 'Debe asignar Nuevo'
+                    }
+                }
+            },
+            te: {
+                validators: {
+                    notEmpty: {
+                        message: 'Debe asignar Tecnología/Equipo'
                     }
                 }
             }
