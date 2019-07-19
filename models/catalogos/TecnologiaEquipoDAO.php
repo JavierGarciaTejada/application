@@ -23,7 +23,7 @@ class TecnologiaEquipoDAO
 
 	public static function All(){
 
-		$sql = "SELECT id, ix, no, cl FROM ad_teq ORDER BY no";
+		$sql = "SELECT id, ix, no, cl FROM ad_teq WHERE sx = 0 ORDER BY no";
 		$filas['data'] = self::executeQuery($sql);
 		$filas['sql'] = $sql;
 		return $filas;
