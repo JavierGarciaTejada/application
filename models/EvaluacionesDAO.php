@@ -321,7 +321,7 @@ class EvaluacionesDAO
 
 		try{
 
-			$sql = "UPDATE so_sol SET pv = :pv, ts = :ts, pr = :pr, fo = :fo, sg = :sg, ig = :ig, te = :te, nu = :nu, pa = :pa, me = :me, ft = :ft, et = :et, fa = :fa WHERE id = :id";
+			$sql = "UPDATE so_sol SET pv = :pv, ts = :ts, pr = :pr, fo = :fo, sg = :sg, ig = :ig, te = :te, nu = :nu, pa = :pa, me = :me, et = :et, fa = :fa, ft = :ft, dl = :dl WHERE id = :id";
 			Conexion::$connect = new Conexion();
 
 			Conexion::$query = $sql;
@@ -337,7 +337,8 @@ class EvaluacionesDAO
 			Conexion::$prepare->bindParam(':nu', $data['nu']);
 			Conexion::$prepare->bindParam(':pa', $data['pa']);
 			Conexion::$prepare->bindParam(':me', $data['me']);
-			Conexion::$prepare->bindParam(':ft', $data['meta']);
+			Conexion::$prepare->bindParam(':ft', $data['ft']);
+			Conexion::$prepare->bindParam(':dl', $data['dl']);
 			Conexion::$prepare->bindParam(':et', $data['et']);
 			Conexion::$prepare->bindParam(':fa', $data['fa']);
 			Conexion::$prepare->bindParam(':id', $data['id']);

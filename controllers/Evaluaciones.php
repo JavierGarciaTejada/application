@@ -191,8 +191,8 @@ class Evaluaciones
 		$data['re'] = "419056265844515";
 		$data['sg'] = "919056264925405";
 		$data['ig'] = "919056264925405";
-		// $data['nu'] = "219056265840690";
-		// $data['te'] = "319056265848526";
+		$data['nu'] = "219056265840690";
+		$data['te'] = "319056265848526";
 		$data['pa'] = "219056265865197";
 		$data['me'] = "831264706543206";
 
@@ -226,12 +226,71 @@ class Evaluaciones
 	public function aceptarEvaluacion(){
 
 		$data = Funciones::getDataPost();
-		//DATOS POR DEFECTO AL ACEPTAR EVALUACION
+		//DATOS POR DEFECTO AL ACEPTAR EVALUACIO
 		$data['et'] = "619056264933549";
 		$data['fa'] = date('Y-m-d H:m:i');
+		$diasLimite = $this->asignaTiempoLiberacion($data);
+		$data['dl'] = $diasLimite;
+		//$data['ft'] = date('Y-m-d', strtotime( date('Y-m-d')."+ $diasLimite days"  ) );
+		$data['ft'] = date('Y-m-d', strtotime( $data['fs']."+ $diasLimite days"  ) );
 		$update = EvaluacionesDAO::AceptarEvaluacion($data);
-		Funciones::imprimeJson($update);
 
+		$response = array('estatus' => $update, 'mensaje' => 'Fecha estimada de liberación: '.$data['ft'] );
+		Funciones::imprimeJson($response);
+
+	}
+
+	public function asignaTiempoLiberacion($data){
+
+		$modemOntAp = array('319056265848491', '319056265848509', '319056265848510');
+
+		$tipoSolicitud = $data['ts'];
+		$diasLimite = 0;
+
+		switch ($tipoSolicitud) {
+			//documento
+			case '719056262954145': $diasLimite = 15; break;
+			//foas
+			case '719056262954162': $diasLimite = 15; break;
+			//prueba de concepto
+			case '719056262954161': $diasLimite = 30; break;
+			//especificaciones
+			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
+			//Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software
+			case '719056262954153': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954154': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954155': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954157': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954158': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954159': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			//especificaciones
+			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
+			
+			default:
+				//materiales
+				if( $data['me'] == '831264706543203' ){
+					$diasLimite = $this->ProyectoNuevo($data, "219056265840694", 15, 60); break;
+				}
+				else if( in_array($data['te'], $modemOntAp) ){ //equipos
+					$diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); break;
+				}
+		}
+
+		//SE CONSIDERAN LOS DIAS HABILES SOLAMENTE
+		// if( $diasLimite > 0 )
+		// 	$diasLimite = $diasLimite + (($diasLimite / 5) * 2);
+
+		return $diasLimite;
+
+	}
+
+	public function ProyectoNuevo($data, $nu, $limiteSI, $limiteNO){
+
+		$limite = $limiteNO;
+		if( $data['nu'] == $nu )
+			$limite = $limiteSI;
+
+		return $limite;
 	}
 
 	public function rechazarEvaluacion(){

@@ -445,19 +445,20 @@ $(function(){
 				ts: $("#ts").val(), 
 				pr: $("#pr").val(), 
 				fo: $("#fo").val(),
+				fs: $("#fs").val(),
 				sg: $("#sg").val(),
 				ig: $("#ig").val(),
 				te: $("#te").val(),
 				nu: $("#nu").val(),
 				pa: $("#pa").val(),
-				me: $("#me").val(),
-				meta: $("#meta").val()
+				me: $("#me").val()
+				// ,meta: $("#meta").val()
         	}
 			
 			setPost(e.url + "aceptarEvaluacion", data, function(response){
-				//console.log(response);
-				if( response === true ){
-					mensaje = "Se aceptó la evaluación.";
+				console.log(response);
+				if( response.estatus === true ){
+					mensaje = "Se aceptó la evaluación. " + response.mensaje;
 					clase = "alertify-success";
 					$("#modal-evaluacion").modal('hide');
 					tableEvaluaciones.ajax.reload(function(){ $( '#modal-loader' ).modal( 'hide' ); });
