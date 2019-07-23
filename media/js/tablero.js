@@ -461,6 +461,7 @@ $(function(){
                 tr.append( $("<td>").html(v.el).addClass('bg-success') );
                 tr.append( $("<td>").html(v.no) );
                 tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.subgerente) );
                 tr.append( $("<td>").html(v.fs).addClass('bg-info') );
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
                 var diasVence = assing[v.id];
