@@ -156,8 +156,6 @@ $(function(){
 
 
     generaTablaIntervalos();
-    // $("#table-intervalos").DataTable();
-
 
     $(".action").click(function(){
 
@@ -188,6 +186,7 @@ $(function(){
                 tr.append( $("<td>").html(v.el).addClass('bg-success') );
                 tr.append( $("<td>").html(v.no) );
                 tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.subgerente) );
                 tr.append( $("<td>").html(v.fs).addClass('bg-info') );
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
 
@@ -213,82 +212,11 @@ $(function(){
             })
 
             $("#table-intervalos-detalle tbody").html( items.join('') );
-            // $("#table-intervalos-detalle").DataTable({
-            //     destroy: true,
-            //     "language" : lenguageTable,
-            //     "scrollX" : true,
-            //     "scrollY" : '62vh',
-            //     "scrollCollapse" : true,
-            //     "orderCellsTop": true,
-            // })
+
         })
 
         
     })
-
-
-    $(".action-especial").click(function(){
-
-
-
-        // var id = $(this).attr('id');
-        // var item = id.split('-');
-        // var ids = null;
-        // var title = $(this).parents('tr').attr('data-title');
-        // var diasVence = $(this).attr('data-max');
-
-        
-        // ids = e.ident[id];
-
-        // if( ids.length <= 0 )
-        //     return false;
-
-        // var dataGet = { ids: ids }; 
-        // getJson(e.url + "IntervalosDetalle", dataGet, function(res){
-        //     console.log(id);
-        //     $("#modal-head-title").text( title )
-        //     $("#modal-intervalos").modal('show');
-
-            
-        //     var items = [];
-        //     var count = 1;
-        //     $.each(res.data, function(i, v){
-        //         var tr = $("<tr>");
-        //         tr.append( $("<td>").html(count) );
-        //         tr.append( $("<td>").html(v.el).addClass('bg-success') );
-        //         tr.append( $("<td>").html(v.no) );
-        //         tr.append( $("<td>").html(v.s_lab) );
-        //         tr.append( $("<td>").html(v.fs).addClass('bg-info') );
-        //         tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
-        //         var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
-        //         if( diasParaVencer > 0  ){
-        //             var text = diasParaVencer + " para vencer";
-        //             var bg = '';
-        //         }else{
-        //             var text = "vencido por " + Math.abs(diasParaVencer);
-        //             var bg = 'bg-danger1';
-        //         }
-        //         // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
-        //         tr.append( $("<td>").html(text).addClass(bg) );
-        //         items.push(tr[0].outerHTML);
-
-        //         count++;
-        //     })
-
-        //     $("#table-intervalos-detalle tbody").html( items.join('') );
-        //     // $("#table-intervalos-detalle").DataTable({
-        //     //     destroy: true,
-        //     //     "language" : lenguageTable,
-        //     //     "scrollX" : true,
-        //     //     "scrollY" : '62vh',
-        //     //     "scrollCollapse" : true,
-        //     //     "orderCellsTop": true,
-        //     // })
-        // })
-
-        
-    });
-
 
 
     $(".action-total").click(function(){
@@ -319,6 +247,7 @@ $(function(){
                 tr.append( $("<td>").html(v.el).addClass('bg-success') );
                 tr.append( $("<td>").html(v.no) );
                 tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.subgerente) );
                 tr.append( $("<td>").html(v.fs).addClass('bg-info') );
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
                 var diasVence = assing[v.id];
@@ -337,14 +266,6 @@ $(function(){
             })
 
             $("#table-intervalos-detalle tbody").html( items.join('') );
-            // $("#table-intervalos-detalle").DataTable({
-            //     destroy: true,
-            //     "language" : lenguageTable,
-            //     "scrollX" : true,
-            //     "scrollY" : '62vh',
-            //     "scrollCollapse" : true,
-            //     "orderCellsTop": true,
-            // })
         })
         
     })
