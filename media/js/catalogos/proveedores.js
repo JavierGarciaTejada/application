@@ -56,4 +56,76 @@ $(function(){
     } );
     $("button.dt-button").addClass('btn btn-primary btn-sm');
 
+
+    $("#table-proveedores").on('click', '.editar-prov', function(){
+
+        var dataRow = tableProveedores.row( $(this).parents('tr') ).data();
+        var title = "Modificar Proveedor";
+        $("#form-proveedores")[0].reset();
+        $.each(dataRow, function(i, v){
+            $("#form-proveedores #"+i).val(v);
+        })
+        openModalTitle('#modal-proveedores', '#modal-head-title', title); //DESPLIEGA EL MODAL
+
+    })
+
+    $("#btn-guardar-prov").click(function(){
+
+        var id = $("#id").val();
+        var proveedor = $("#no").val();
+
+        if( proveedor == "" ){
+            alert('Ingrese nombre de proveedor');
+            return false;
+        }
+
+        var serial = $("#form-proveedores").serialize();
+        if( id == "" ){
+            $("#btn-guardar-prov").attr({disabled: true});
+            registraProveedor(serial);
+        }
+        else{
+            $("#btn-guardar-prov").attr({disabled: true});
+            modificaProveedor(serial);
+        }
+
+    })
+
+    var registraProveedor = function(serial){
+        setPost(e.url + "store", serial, function(response){
+            //console.log(response);
+            if( response === true ){
+                mensaje = "Se registró el proveedor.";
+                clase = "alertify-success";
+                $("#modal-proveedores").modal('hide');
+                tableProveedores.ajax.reload( function(){ $( '#modal-loader' ).modal( 'hide' ); } );
+            }else{
+                mensaje = "Ocurrio un error al registrar.";
+                clase = "alertify-danger";
+            }
+
+            alertMessage(mensaje, clase);
+            $("#btn-guardar-prov").attr({disabled: false});
+        });
+    }
+
+
+    var modificaProveedor = function(serial){
+        setPost(e.url + "update", serial, function(response){
+            //console.log(response);
+            if( response === true ){
+                mensaje = "Se actualizaron los datos.";
+                clase = "alertify-success";
+                $("#modal-proveedores").modal('hide');
+                tableProveedores.ajax.reload( function(){ $( '#modal-loader' ).modal( 'hide' ); } );
+            }else{
+                mensaje = "Ocurrio un error al actualizar.";
+                clase = "alertify-danger";
+            }
+
+            alertMessage(mensaje, clase);
+            $("#btn-guardar-prov").attr({disabled: false});
+        });
+    }
+
 })

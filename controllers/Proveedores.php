@@ -64,6 +64,20 @@ class Proveedores
 		Funciones::imprimeJson($proveedores);
 	}
 
+	public function store(){
+		$data = Funciones::getDataPost();
+		$data['ix'] = GeneradorIx::xAKN('DKN');
+		$data['fx'] = date('Y-m-d h:i:s');
+		$insert = ProveedoresDAO::Save($data);
+		Funciones::imprimeJson($insert);
+	}
+
+	public function update(){
+		$data = Funciones::getDataPost();
+		$update = ProveedoresDAO::SaveModify($data);
+		Funciones::imprimeJson($update);
+	}
+
 
 
 }
