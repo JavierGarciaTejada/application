@@ -30,6 +30,9 @@ $(function(){
 
 	$("#table-record").on('click', '.link-item', function(){
 
+        $(".link-item").removeClass('active-item');
+        $(this).addClass('active-item');
+
 		var ig = $(this).attr('id');
         var filtros = { ingeniero: ['a.ig', '=', ig, 'string'] };
         var dataGet = { filtros: filtros };

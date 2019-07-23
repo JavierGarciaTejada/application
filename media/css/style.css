@@ -86,3 +86,6 @@ div.multi-select ul {
 .text-12{
 	font-size: 12px !important;
 }
+.active-item{
+	background-color: #fde034;
+}
