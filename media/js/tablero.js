@@ -466,7 +466,7 @@ $(function(){
                 var diasVence = assing[v.id];
                 var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
                 if( diasParaVencer > 0  ){
-                    var text = diasParaVencer + " para vencer";
+                    var text = diasParaVencer;
                     var bg = '';
                 }else{
                     var text = "vencido por " + Math.abs(diasParaVencer);
