@@ -276,19 +276,19 @@ class Tablero
 		$data = array();
 		$final = array();
 		$final['total'] = count($evaluaciones['data']);
-		// $final['titulo'] = "Proveedores";
+		$final['titulo'] = "Proveedores";
 
 		foreach ($evaluaciones['data'] as $key => $value) {
 			$data['proveedor'][$value['proveedor']]++;
 			$data['solicitud'][$value['solicitud']]++;
-			$data['prioridad'][$value['prioridad']]++;
+			// $data['prioridad'][$value['prioridad']]++;
 			$data['mercado'][$value['mercado']]++;
 		}
 
 		foreach ($data as $k => $v) {
 			foreach ($v as $key => $value) {
 				$p = ($value * 100) == 0 ? 0 : ($value * 100) / $final['total'];
-				$item = array( 'name' => ucfirst(strtolower($key)), 'y' => $p, 'cant' => $value);
+				$item = array( 'name' => ucfirst(mb_strtolower($key,'UTF-8')), 'y' => $p, 'cant' => $value );
 				$final[$k]['values'][] = $item;
 			}
 		}

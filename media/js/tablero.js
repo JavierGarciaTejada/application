@@ -18,7 +18,6 @@ $(function(){
         var dataGet = { filtros: filtros };
 
         getJson(e.url + "solicitudesNuevas", dataGet, function(data){
-            console.log(data);
             $("#sol_nuevas").text( data['data'][0]['nuevas'] );
         });
     }
@@ -500,6 +499,7 @@ $(function(){
         var dataGet = { filtros: filtros };
 
         getJson(e.url + "presentacionGeneral", dataGet, function(data){
+
             $("#modal-detalle #modal-detalle-title").text(title);
             $("#modal-detalle").modal('show');
 
@@ -511,7 +511,7 @@ $(function(){
 
             data['solicitud']['titulo'] = "Tipo de solicitud";
             indicador3dPie('evaluaciones-tipo-solicitud', data.solicitud);
-            // indicador3dCilinder('evaluaciones-tipo-solicitud', data.solicitud);
+
         });
 
     })
