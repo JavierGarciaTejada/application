@@ -151,7 +151,7 @@ $(function(){
         },
         excluded: [':disabled'],
         fields: {
-            motivo_rechazo: {
+            mr: {
                 validators: {
                     notEmpty: {
                         message: 'Ingrese el motivo de rechazo'
@@ -216,7 +216,7 @@ $(function(){
                     }
                 }
             },
-            motivo_cancelacion: {
+            mc: {
                 validators: {
                     notEmpty: {
                         message: 'Registre motivo'
