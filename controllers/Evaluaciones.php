@@ -12,6 +12,7 @@ require_once Config::$configuration->get('modelsFolder') . 'catalogos/ProyectoAs
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/MercadoDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/ProveedoresDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/TipoSolicitudDAO.php';
+require_once Config::$configuration->get('modelsFolder') . 'catalogos/RechazoCancelacionDAO.php';
 
 class Evaluaciones
 {
@@ -174,6 +175,13 @@ class Evaluaciones
 	public function getMercado(){
 		$mercado = MercadoDAO::All();
 		Funciones::imprimeJson($mercado);
+	}
+
+	public function getMotivoRechazo(){
+		$data = Funciones::getDataGet();
+		$filtros = Funciones::generaFiltroSql($data['filtros']);
+		$rechazo = RechazoCancelacionDAO::All($filtros);
+		Funciones::imprimeJson($rechazo);
 	}
 
 

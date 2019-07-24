@@ -16,6 +16,7 @@ $(function(){
 	var puesto = $("#puesto").val();
 	var role = $("#role").val();
 	var autorizacionCambios = ( puesto == "Gerente" || puesto == "Subgerente" || role == "Administrador") ? true : false;
+	var autorizacionNueva = ( role == "Administrador" ) ? true : false;
 
 	var diasLiberacion = [ moment().format("YYYY-MM-DD") ];
 	for(var i = 1; i <= 5; i++){
@@ -108,6 +109,28 @@ $(function(){
 		setValuesSelect('meta', meta, 'value', 'text', '');
 	}
 
+	var setMotivoRechazo = function(){
+		var filtros = {
+            rechazo: ['cl', '=', 1, 'string']
+        };
+        var dataGet = { filtros: filtros };
+
+		e.rechazo = getJson(e.url + "getMotivoRechazo", dataGet, function(a){
+			setValuesSelect('mr', a.data, 'id', 'no', '');
+		});
+	}
+
+	var setMotivoCancelacion = function(){
+		var filtros = {
+            rechazo: ['cl', '=', 2, 'string']
+        };
+        var dataGet = { filtros: filtros };
+
+		e.rechazo = getJson(e.url + "getMotivoRechazo", dataGet, function(a){
+			setValuesSelect('mc', a.data, 'id', 'no', '');
+		});
+	}
+
 	setAreasLab();
 	setSiglasCli();
 	setProveedores();
@@ -121,6 +144,8 @@ $(function(){
 	setMercado();
 	setMeta();
 	setDiasLiberacion();
+	setMotivoRechazo();
+	setMotivoCancelacion();
 
 	$('#table-evaluaciones thead tr').clone(true).appendTo( '#table-evaluaciones thead' );
     $('#table-evaluaciones thead tr:eq(1) th').each( function (i) {
@@ -136,6 +161,30 @@ $(function(){
             }
         } );
     } );
+
+
+    var buttonsEval = [
+        'excel'
+    ];
+    if( autorizacionNueva ){
+    	var nuevo = {
+            text: 'Nueva Solicitud',
+            action: function ( dt ) {
+
+        		var title = "Nueva Solicitud de Evaluación";
+            	$("#evaluacion").data('bootstrapValidator').resetForm();
+            	$("#evaluacion")[0].reset(); //LIMPIA EL FORMULARIO DE REGISTRO
+            	$("#ix, #id").val("");
+            	$("#evaluacion .inp_nue_edit").attr({disabled: false}); //HABILITA LOS INPUTS SI ES QUE ESTAN DESABILITADOS
+            	$("#btn-guardar-eval").show();//HABILITA BOTON PARA GUARDAR
+            	$(".div-ope").hide();//OCULTA LOS FORMULARIOS DE OPRACIONES
+            	openModalTitle('#modal-evaluacion', '#modal-head-title', title); //DESPLIEGA EL MODAL
+
+            }
+        };
+
+        buttonsEval.push(nuevo);
+    }
  	
 	var tableEvaluaciones = $( '#table-evaluaciones' ).DataTable( 
 	{
@@ -162,23 +211,7 @@ $(function(){
 		},
 		lengthChange: false,
 		dom: 'Bfrtip',
-        buttons: [
-            'excel',
-            {
-                text: 'Nueva Solicitud',
-                action: function ( dt ) {
-                	var title = "Nueva Solicitud de Evaluación";
-                	$("#evaluacion").data('bootstrapValidator').resetForm();
-                	$("#evaluacion")[0].reset(); //LIMPIA EL FORMULARIO DE REGISTRO
-                	$("#ix, #id").val("");
-                	$("#evaluacion .inp_nue_edit").attr({disabled: false}); //HABILITA LOS INPUTS SI ES QUE ESTAN DESABILITADOS
-                	$("#btn-guardar-eval").show();//HABILITA BOTON PARA GUARDAR
-                	$(".div-ope").hide();//OCULTA LOS FORMULARIOS DE OPRACIONES
-                	openModalTitle('#modal-evaluacion', '#modal-head-title', title); //DESPLIEGA EL MODAL
-                }
-            }
-
-        ],
+        buttons: buttonsEval,
 		"columns" : [
 			{
 				"targets" : 0,
@@ -494,7 +527,7 @@ $(function(){
         	var data = {
         		id: $("#id").val(), 
         		ix: $("#ix").val(), 
-        		mr: $("#motivo_rechazo").val(), 
+        		mr: $("#mr").val(), 
 				fr: $("#fecha_rechazo").val()
         	}
 			
@@ -532,7 +565,7 @@ $(function(){
         setPost(e.url + "reenviarEvaluacion", serial, function(response){
 			//console.log(response);
 			if( response === true ){
-				mensaje = "Se reenvio la evaluación estatus: En Proceso.";
+				mensaje = "Se reenvio la evaluación estatus: Nueva Solicitud.";
 				clase = "alertify-success";
 				$("#modal-evaluacion").modal('hide');
 				tableEvaluaciones.ajax.reload(function(){ $( '#modal-loader' ).modal( 'hide' ); });
@@ -609,7 +642,7 @@ $(function(){
     		ix: $("#ix").val(), 
 			fl: $("#fecha_cancelacion").val(), 
 			fc: $("#fecha_cancelacion").val(), 
-			mc: $("#motivo_cancelacion").val(),
+			mc: $("#mc").val(),
 			rl: $("#ref_cancelacion").val()
     	}
 

@@ -195,11 +195,12 @@
 								<form class="form-inline" id="form-rechazar">
 									<div class="form-group">
 										<label for="fecha_rechazo" name="fecha_rechazo">Fecha Rechazo: </label>
-										<input type="text" class="form-control" id="fecha_rechazo" name="fecha_rechazo" value="<?= date('Y-m-d') ?>" readonly >
+										<input type="text" class="form-control input-sm" id="fecha_rechazo" name="fecha_rechazo" value="<?= date('Y-m-d') ?>" readonly >
 									</div>
 									<div class="form-group">
 										<label for="motivo_rechazo">Motivo: </label>
-										<textarea class="form-control" cols="50" rows="2" name="motivo_rechazo" id="motivo_rechazo"> </textarea>
+										<select class="form-control input-sm" name="mr" id="mr"></select>
+										<!-- <textarea class="form-control" cols="50" rows="2" name="motivo_rechazo" id="motivo_rechazo"> </textarea> -->
 									</div>
 									<button type="button" class="btn btn-primary" id="btn-rechazar-eval">Rechazar Evaluación</button>
 								</form>
@@ -226,7 +227,8 @@
 									</div>
 									<div class="form-group">
 									    <label for="motivo_cancelacion">Motivo: </label>
-										<textarea class="form-control" cols="50" rows="2" name="motivo_cancelacion" id="motivo_cancelacion"> </textarea>
+									    <select class="form-control input-sm" name="mc" id="mc"></select>
+										<!-- <textarea class="form-control" cols="50" rows="2" name="motivo_cancelacion" id="motivo_cancelacion"> </textarea> -->
 									</div>
 									<div class="form-group">
 										<button type="button" class="btn btn-primary" id="btn-cancelar-eval">Cancelar Evaluación</button>
