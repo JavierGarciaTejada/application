@@ -142,7 +142,6 @@ $(function(){
         var gerencia = e.filtroGerencia == "" ? "" : ['al', '=', e.filtroGerencia, 'string'];
         var filtros = {
             proceso: ['a.et', '=', '619056264933549', 'string'],
-            especial: ['a.especial', '=', 0],
             gerencia: gerencia
         };
         var dataGet = { filtros: filtros };
