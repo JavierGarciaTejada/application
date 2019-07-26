@@ -29,8 +29,7 @@ class Perfil
 		$filtros = array();
 		$anterior = date('Y', strtotime('-1 year'));
 		$actual = date('Y');
-		if( ! empty($anio) )
-			array_push($filtros, " YEAR(a.fs) IN ($anterior, $actual) ");
+		array_push($filtros, " YEAR(a.fs) IN ($anterior, $actual) ");
 
 
 		//ADMINISTRADOR NO TIENE FILTROS, VE TODO

@@ -267,13 +267,25 @@ $(function(){
 			{ "data" : "prioridad"},
 			{ "data" : "resultado"},
 			{ "data" : "dif"},
-			{ "data" : "periodo"},
+			{ "data" : "dl"},
 			{ 
 				"data" : null,
 				"createdCell" : function( td, data ) {
-					$( td ).html(
-						data.dilacion_desc+'<br>'+data.dilacion
-					)
+					var text = "";
+					data.color_vence = '';
+					if( parseInt(data.dl) > 0 && data.etapa != "Liberada" && parseInt(data.especial) != 1 ){
+
+						var diasParaVencer =  parseInt(data.dl) - parseInt(data.dias_t);
+						if( diasParaVencer > 0  ){
+							text = diasParaVencer + " para vencer";
+						}else{
+							text = "vencido por " + Math.abs(diasParaVencer);
+							data.color_vence = "#f42222";
+						}
+
+					}
+					
+					$( td ).html("<p>"+text+"</p>")
 				}
 			},
 			{ "data" : "f_sol"},
@@ -295,8 +307,8 @@ $(function(){
 			$('td:eq(15)', row).css('background-color', data.color_etapa );
 			$('td:eq(16)', row).css('background-color', data.color_prioridad );
 			$('td:eq(17)', row).css('background-color', data.color_resultado );
-			$('td:eq(19)', row).css('background-color', data.color_periodo );
-			$('td:eq(20)', row).css('background-color', data.color_dilacion );
+			$('td:eq(19)', row).css('background-color', '#f2e880');
+			$('td:eq(20)', row).css('background-color', data.color_vence );
 		}
 	} );
 	tableEvaluaciones.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
