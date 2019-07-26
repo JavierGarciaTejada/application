@@ -112,8 +112,29 @@ class Evaluaciones
 		$filtro = Perfil::FiltroListadoEvaluaciones($anio);
 		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($filtro);
 		$evaluaciones = FuncionesEvaluacion::asignacionFechas($evaluaciones);
+		// $evaluaciones = $this->asignacionTiempos($evaluaciones);
 		// $evaluaciones = FuncionesEvaluacion::peridoEspecificacion($evaluaciones);
 		Funciones::imprimeJson($evaluaciones);
+	}
+
+	public function asignacionTiempos($evaluaciones){
+
+		$anio = "2019";
+		$filtro = Perfil::FiltroListadoEvaluaciones($anio);
+		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($filtro);
+
+		foreach ($evaluaciones['data'] as $key => $value) {
+			
+			if( strpos($value['fs'], '2019') !== false && ( $value['etapa'] == "En Proceso" || $value['etapa'] == "Nueva Solicitud" ) ){
+				$dl = $this->asignaTiempoLiberacion($value);
+				$ft = date('Y-m-d', strtotime( $value['fs']."+ $dl days"  ) );
+				if( $dl > 0 )
+					echo "UPDATE so_sol SET ft = '$ft', dl = $dl WHERE id = ".$value['id']."; #".$value['el']."<br>";
+			}
+			
+		}
+		// return $evaluaciones;
+		// Funciones::imprimeJson($evaluaciones);
 	}
 
 	public function getAreasLab(){
@@ -254,6 +275,7 @@ class Evaluaciones
 
 		$tipoSolicitud = $data['ts'];
 		$diasLimite = 0;
+		$equipo = false;
 
 		switch ($tipoSolicitud) {
 			//documento
@@ -265,12 +287,30 @@ class Evaluaciones
 			//especificaciones
 			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
 			//Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software
-			case '719056262954153': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
-			case '719056262954154': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
-			case '719056262954155': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
-			case '719056262954157': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
-			case '719056262954158': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
-			case '719056262954159': if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); break;
+			case '719056262954153': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
+			case '719056262954154': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
+			case '719056262954155': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
+			case '719056262954157': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
+			case '719056262954158': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
+			case '719056262954159': 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				else $equipo = true;
+				break;
 			//especificaciones
 			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
 			
@@ -279,9 +319,10 @@ class Evaluaciones
 				if( $data['me'] == '831264706543203' ){
 					$diasLimite = $this->ProyectoNuevo($data, "219056265840694", 15, 60); break;
 				}
-				else if( in_array($data['te'], $modemOntAp) ){ //equipos
-					$diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); break;
-				}
+		}
+
+		if( $equipo ){ //equipos
+			$diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30);
 		}
 
 		//SE CONSIDERAN LOS DIAS HABILES SOLAMENTE
