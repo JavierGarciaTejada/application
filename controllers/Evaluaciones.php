@@ -91,17 +91,17 @@ class Evaluaciones
 						<td  align='center'>".$value['tipo_solicitud']."</td>
 						<td  align='center' style='background-color:".$value['color_prioridad'].";'>".$value['prioridad']."</td>
 						<td  align='center'>".$value['fs']." </td>
-						<td  align='center'>".$value['fo']."</td>
 					</tr>";
 		}
 
 		
 		$values['BODY'] = $tbody;
-	    $plantilla = Funciones::getPlantillaEmail('plantilla_correo_evaluacion.html', $values);
+	    $plantilla = Funciones::getPlantillaEmail('plantilla_registro.html', $values);
 
 		$subject = " Nuevo registro de solicitud de evaluación - ".$el;
 		$body = $plantilla;
 		$nameMail = "Sistema Automático de Administración de Evaluaciones";
+		// $al = "119056262939067"; //PRUEBA PARA ENVIAR CORREO
 		$directorio = FuncionesEvaluacion::RemitenteGerencia($al); // array('javigar31@gmail.com', 'fgtejada@telmex.com');
 		$mail = Funciones::sendMailEvaluciones($subject, $body, $nameMail, $directorio['to'], $directorio['cp'], $directorio['bc']);
 		Funciones::imprimeJson($mail);

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sistema SAAE</title>
+    <link rel="stylesheet" href="http://13.134.108.131:81/application/media/librerias/Bootstrap/Bootstrap3.3.7/dist/css/bootstrap.min.css"/>
+    <style>
+        #table-body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #table-body th, #table-body td{
+            border: #39ace7 1px solid;
+            font-size: 10px;
+            text-align: center;
+            padding: 10px;
+        }
+        #table-body th{
+           background-color: #9bd4e4;
+           font-family: Calibri;
+           font-size: 12px;
+        }
+
+        #lista{
+            font-family: Calibri;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <center><img src="http://13.134.108.131:81/application/media/images/Registro.png" height="240" alt=""></center>  
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <center>
+                    <table class="table table-bordered" id="table-body">
+                        <thead>
+                            <tr>
+                                <th>Ele</th>
+                                <th>Ref Solicitante</th>
+                                <th>Descripci&oacute;n</th>
+                                <th>Dirigido a</th>
+                                <th>Siglas Cliente</th>
+                                <th>Proveedor</th>
+                                <th>Tipo Solicitud</th>
+                                <th>Prioridad</th>
+                                <th>Fecha Solicitud</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {BODY}
+                        </tbody>
+                        
+                    </table>
+                </center>  
+            </div>
+        </div>
+
+        <div class="row" id="lista">
+            
+            <font face='Calibri' ><i>Favor de registrar los siguientes datos en sistema: <br /></font></i>
+            <ul>
+                <li>Subgerente</li>
+                <li>Ingeniero</li>
+                <li>Nuevo</li>
+                <li>T&eacute;cnologia/Equipo</li>
+                <li>Proyecto Asociado</li>
+                <li>Mercado</li>
+            </ul>
+            <font face='Calibri' ><i>Acceso: <a href='http://13.134.108.131:81/application/'>http://13.134.108.131:81/application</a><br /></font></i>
+            
+            <font face='Calibri' ><i>POR FAVOR NO RESPONDA ESTE MENSAJE. <br /></font></i>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>
