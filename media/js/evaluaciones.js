@@ -384,7 +384,7 @@ $(function(){
 	});
 
 	//ENVIO CORREO NOTIFICACION
-	var notificacionCorreo = function(ele){
+	var notificacionCorreo = function(){
 		var filtros = {
             ident: ['a.el', '=', $("#el").val(), 'string']
         };
@@ -394,13 +394,27 @@ $(function(){
 		});
 	}
 
+	//VALIDACION DE FECHAS
+	var validacionFechas = function(){
+		var compromiso = new Date( $("#fo").val() );
+		var solicitud = new Date( $("#fs").val() );
+
+		var c = ( solicitud < compromiso ) ? true : false;
+		return c;
+	}
+
 	//SI ES UN NUEVO REGISTRO
 	var registrarEvaluacion = function(){
+
+		if( ! validacionFechas() ){
+			alert("La fecha compromiso debe ser mayor a la de solicitud");
+			return false;
+		}
 
 		var validator = $('#evaluacion').data('bootstrapValidator');
         validator.validate();
         if (!validator.isValid())
-        	return false;
+			return false;
 
 		var serial = $("form#evaluacion").serialize();
 		serial += "&gr=" + $( "#al option:selected" ).attr('data-ref');
