@@ -281,7 +281,7 @@ class Tablero
 		foreach ($evaluaciones['data'] as $key => $value) {
 			$data['proveedor'][$value['proveedor']]++;
 			$data['solicitud'][$value['solicitud']]++;
-			// $data['prioridad'][$value['prioridad']]++;
+			$data['cliente'][$value['s_cliente']]++;
 			$data['mercado'][$value['mercado']]++;
 		}
 

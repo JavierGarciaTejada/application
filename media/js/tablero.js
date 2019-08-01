@@ -511,6 +511,9 @@ $(function(){
             data['solicitud']['titulo'] = "Tipo de solicitud";
             indicador3dPie('evaluaciones-tipo-solicitud', data.solicitud);
 
+            data['cliente']['titulo'] = "Cliente Solicitante";
+            indicador3dPie('evaluaciones-cliente', data.cliente);
+
         });
 
     })
