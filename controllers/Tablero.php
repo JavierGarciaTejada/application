@@ -305,4 +305,12 @@ class Tablero
 	}
 
 
+	public function getListado(){
+		$data = Funciones::getDataGet();
+		$filtros = Funciones::generaFiltroSql($data['filtros']);
+		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($filtros);
+		Funciones::imprimeJson($evaluaciones);
+	}
+
+
 }

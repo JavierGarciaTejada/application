@@ -503,20 +503,68 @@ $(function(){
             $("#modal-detalle").modal('show');
 
             data['proveedor']['titulo'] = "Proveedores";
-            indicador3dPie('evaluaciones-provedor', data.proveedor);
+            indicador3dPie('evaluaciones-provedor', data.proveedor, function(event){
+                var name = event.point.name;
+                var t = title + " Proveedor: " + name;
+                filtros.listado = ['e.no', 'LIKE', name, 'string'];
+                listaPresentacionGeneral("getListado", filtros, t);
+            });
 
             data['mercado']['titulo'] = "Mercado";
-            indicador3dPie('evaluaciones-mercado', data.mercado);
+            indicador3dPie('evaluaciones-mercado', data.mercado, function(event){
+                var name = event.point.name;
+                var t = title + " Mercado: " + name;
+                filtros.listado = ['m.no', 'LIKE', name, 'string'];
+                listaPresentacionGeneral("getListado", filtros, t);
+            });
 
             data['solicitud']['titulo'] = "Tipo de solicitud";
-            indicador3dPie('evaluaciones-tipo-solicitud', data.solicitud);
+            indicador3dPie('evaluaciones-tipo-solicitud', data.solicitud, function(event){
+                var name = event.point.name;
+                var t = title + " Tipo de solicitud: " + name;
+                filtros.listado = ['g.no', 'LIKE', name, 'string'];
+                listaPresentacionGeneral("getListado", filtros, t);
+            });
 
             data['cliente']['titulo'] = "Cliente Solicitante";
-            indicador3dPie('evaluaciones-cliente', data.cliente);
+            indicador3dPie('evaluaciones-cliente', data.cliente, function(event){
+                var name = event.point.name;
+                var t = title + " Cliente: " + name;
+                filtros.listado = ['b.cl', 'LIKE', name, 'string'];
+                listaPresentacionGeneral("getListado", filtros, t);
+            });
 
         });
 
     })
+
+
+    var listaPresentacionGeneral = function(urlJson, filtros, title){
+        var dataGet = { filtros: filtros };
+        getJson(e.url + urlJson, dataGet, function(data){ 
+            console.log(data);
+
+            $("#modalib-head-title").text( title );
+ 
+            var items = [];
+            var count = 1;
+            $.each(data.data, function(i, v){
+                var tr = $("<tr>");
+                tr.append( $("<td>").html(count) );
+                tr.append( $("<td>").html(v.el).addClass('bg-success') );
+                tr.append( $("<td>").html(v.no) );
+                tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.fs).addClass('bg-info') );
+                tr.append( $("<td>").html(v.fl).addClass('bg-warning') );
+                items.push(tr[0].outerHTML);
+                count++;
+            })
+
+            $("#table-listadolib-detalle tbody").html( items.join('') );
+            $("#modal-listadolib").modal('show');
+
+        });
+    }
 
 
     $("#tbl-prediccion").on('click', '.item-table-prediccion', function(){
