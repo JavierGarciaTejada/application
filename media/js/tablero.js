@@ -626,7 +626,7 @@ $(function(){
             indicador3dPie('evaluaciones-cliente', data.cliente, function(event){
                 var name = event.point.name;
                 var t = title + " Cliente: " + name;
-                filtros.listado = ['b.cl', 'LIKE', name, 'string'];
+                filtros.listado = ['b.no', 'LIKE', name, 'string'];
                 listaPresentacionGeneral("getListado", filtros, t);
             });
 
