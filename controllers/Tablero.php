@@ -74,7 +74,8 @@ class Tablero
 
 		$data = array();
 		$data['liberadas'] = $this->liberadasMes($filtros);
-		$data['periodos'] = $this->periodo($filtros);
+		// $data['periodos'] = $this->periodo($filtros);
+		$data['periodos'] = $this->periodoNorma($filtros);
 		$data['acumulado'] = $this->acumulado($filtros);
 
 		Funciones::imprimeJson($data);
@@ -195,6 +196,34 @@ class Tablero
 
 	}
 
+	public function periodoNorma($filtros = ""){
+
+		$periodos = array();
+
+		$periodo1 = TableroDAO::EvaluacionesPeriodoNorma(0, 5, 10, 15, $filtros);
+		$r = array( array(0, 5), array(5, 10), array(10, 15) );
+		$periodos[] = $this->getProcentaje('evaluaciones de 0 a 15', array('de 0 a 5 días', 'de 6 a 10 días', 'de 11 a 15 días'), $periodo1['data'][0], $r );
+
+		$periodo2 = TableroDAO::EvaluacionesPeriodoNorma(0, 10, 20, 30, $filtros);
+		$r = array( array(0, 10), array(10, 20), array(20, 30) );
+		$periodos[] = $this->getProcentaje('evaluaciones de 0 a 30', array('de 0 a 10 días', 'de 11 a 20 días', 'de 21 a 30 días'), $periodo2['data'][0], $r );
+
+		$periodo3 = TableroDAO::EvaluacionesPeriodoNorma(0, 15, 30, 45, $filtros);
+		$r = array( array(0, 15), array(15, 30), array(30, 45) );
+		$periodos[] = $this->getProcentaje('evaluaciones de 0 a 45', array('de 0 a 15 días', 'de 16 a 30 días', 'de 31 a 45 días'), $periodo3['data'][0], $r );
+
+		$periodo4 = TableroDAO::EvaluacionesPeriodoNorma(0, 20, 40, 60, $filtros);
+		$r = array( array(0, 20), array(20, 40), array(40, 60) );
+		$periodos[] = $this->getProcentaje('evaluaciones de 0 a 60', array('de 0 a 20 días', 'de 21 a 40 días', 'de 41 a 60 días'), $periodo4['data'][0], $r );
+
+		$periodo5 = TableroDAO::EvaluacionesPeriodoNorma(0, 30, 60, 90, $filtros);
+		$r = array( array(0, 30), array(30, 60), array(60, 90) );
+		$periodos[] = $this->getProcentaje('evaluaciones de 0 a 90', array('de 0 a 30 días', 'de 31 a 60 días', 'de 61 a 90 días'), $periodo5['data'][0], $r );
+
+		return $periodos;
+
+	}
+
 	public function periodoUnico(){
 
 		$data = Funciones::getDataGet();
@@ -207,13 +236,13 @@ class Tablero
 
 	}
 
-	public function getProcentaje($titulo, $nombres, $data){
+	public function getProcentaje($titulo, $nombres, $data, $rangos){
 		$titulo = "<strong>".$data['total']."</strong> ".$titulo;
-		$v = array('titulo' => $titulo, 'values' => array(), 'total' => intval($data['total']) );
+		$v = array('titulo' => $titulo, 'values' => array(), 'total' => intval($data['total']), 'maximo' => $data['mx'] );
 		for ($i=0; $i < count($nombres); $i++) { 
 			$text = ( (int)$data['p'.($i+1)] > 1 ) ? 'evaluaciones' : 'evaluación';
 			$p = ($data['p'.($i+1)] * 100) == 0 ? 0 : ($data['p'.($i+1)] * 100) / $data['total'];
-			$item = array( $data['p'.($i+1)]." ". $text." ".$nombres[$i], $p , $data['p'.($i+1)] );
+			$item = array( 'name' => $data['p'.($i+1)]." ". $text." ".$nombres[$i], "y" => $p , 'p' => $data['p'.($i+1)], 'desde' => $rangos[$i] );
 			array_push($v['values'], $item);
 		}
 

@@ -75,6 +75,21 @@ class TableroDAO
 
 	}
 
+	public static function EvaluacionesPeriodoNorma($mayor_a, $p1, $p2, $p3, $filtro = ""){
+
+		$filtro = ( empty($filtro) ) ? "" : " AND ".$filtro;
+		$sql = "SELECT *, $p1 mn, $p2 md, $p3 mx  FROM (
+			( SELECT COUNT(id) 'total' FROM so_sol a WHERE a.dl = $p3 AND a.et = 619056264933549 $filtro ) total,
+			( SELECT COUNT(id) 'p1' FROM so_sol a WHERE ( DATEDIFF(NOW(),fs) > $mayor_a AND DATEDIFF(NOW(),fs) <= $p1 ) AND a.dl = $p3 AND a.et = 619056264933549 $filtro ) p1,
+			( SELECT COUNT(id) 'p2' FROM so_sol a WHERE ( DATEDIFF(NOW(),fs) > $p1 AND DATEDIFF(NOW(),fs) <= $p2 ) AND a.dl = $p3 AND a.et = 619056264933549 $filtro ) p2,
+			( SELECT COUNT(id) 'p3' FROM so_sol a WHERE ( DATEDIFF(NOW(),fs) > $p2 AND DATEDIFF(NOW(),fs) <= $p3 ) AND a.dl = $p3 AND a.et = 619056264933549 $filtro ) p3
+			)";
+		$filas['data'] = self::executeQuery($sql);
+		$filas['sql'] = $sql;
+		return $filas;
+
+	}
+
 	public static function EvaluacionesPeriodoUnico($mayor_a, $menor_a, $filtro = ""){
 
 		$filtro = ( empty($filtro) ) ? "" : " AND ".$filtro;

@@ -27,19 +27,109 @@ $(function(){
     var generaGraficas = function(filtros = ""){
 
         var dataGet = { filtros: filtros }; 
+
+        //para el listdado cuando den clic
+        var gerencia = e.filtroGerencia == "" ? "" : ['al', '=', e.filtroGerencia, 'string'];
+        var fl = {
+            proceso: ['a.et', '=', '619056264933549', 'string'],
+            gerencia: gerencia
+        };
+
         getJson(e.url + "dataTablero", dataGet, function(data){
             e.data = data;
             liberadasPorMes('Evaluaciones Liberadas', 'evaluaciones-liberadas', data.liberadas, function (event) { generaTablaBasic(this.name, e.filtroGerencia); });
             generaTablaBasic('2019', e.filtroGerencia);
             liberadasPorMes('Acumulado de Evaluaciones Liberadas','evaluaciones-acumulado', data.acumulado);
-            indicadorTiempos('indicador-tiempos', data.periodos[0]);
-            indicadorTiempos('indicador-tiempos2', data.periodos[1]);
-            indicadorTiempos('indicador-tiempos3', data.periodos[2]);
-            indicadorTiempos('indicador-tiempos4', data.periodos[3]);
+
+            indicadorTiempos('indicador-tiempos', data.periodos[0], function (event) {
+                var t = event.point.name;
+                fl.listado = ['a.dl', '=', data.periodos[0].maximo, ''];
+                fl.rango1 = ['DATEDIFF(NOW(),fs)', '>', event.point.desde[0], ''];
+                fl.rango2 = ['DATEDIFF(NOW(),fs)', '<=', event.point.desde[1], ''];
+                var dataGet = { filtros: fl };
+                generaListadoPerido(dataGet, t, 15);
+            });
+
+            indicadorTiempos('indicador-tiempos2', data.periodos[1], function (event) {
+                console.log(event);
+                var t = event.point.name;
+                fl.listado = ['a.dl', '=', data.periodos[1].maximo, ''];
+                fl.rango1 = ['DATEDIFF(NOW(),fs)', '>', event.point.desde[0], ''];
+                fl.rango2 = ['DATEDIFF(NOW(),fs)', '<=', event.point.desde[1], ''];
+                var dataGet = { filtros: fl };
+                generaListadoPerido(dataGet, t, 30);
+            });
+
+            indicadorTiempos('indicador-tiempos3', data.periodos[2], function (event) {
+                var t = event.point.name;
+                fl.listado = ['a.dl', '=', data.periodos[2].maximo, ''];
+                fl.rango1 = ['DATEDIFF(NOW(),fs)', '>', event.point.desde[0], ''];
+                fl.rango2 = ['DATEDIFF(NOW(),fs)', '<=', event.point.desde[1], ''];
+                var dataGet = { filtros: fl };
+                generaListadoPerido(dataGet, t, 45);
+            });
+
+            indicadorTiempos('indicador-tiempos4', data.periodos[3], function (event) {
+                var t = event.point.name;
+                fl.listado = ['a.dl', '=', data.periodos[3].maximo, ''];
+                fl.rango1 = ['DATEDIFF(NOW(),fs)', '>', event.point.desde[0], ''];
+                fl.rango2 = ['DATEDIFF(NOW(),fs)', '<=', event.point.desde[1], ''];
+                var dataGet = { filtros: fl };
+                generaListadoPerido(dataGet, t, 60);
+            });
+
+            indicadorTiempos('indicador-tiempos5', data.periodos[4], function (event) {
+                var t = event.point.name;
+                fl.listado = ['a.dl', '=', data.periodos[4].maximo, ''];
+                fl.rango1 = ['DATEDIFF(NOW(),fs)', '>', event.point.desde[0], ''];
+                fl.rango2 = ['DATEDIFF(NOW(),fs)', '<=', event.point.desde[1], ''];
+                var dataGet = { filtros: fl };
+                generaListadoPerido(dataGet, t, 90);
+            });
+
             generaTablaPrediccion(filtros);
             generaTablaPredEspec(filtros);
             setSolicitudesNuevas();
         });
+
+    }
+
+    var generaListadoPerido = function(dataGet, t, diasVence){
+
+        getJson(e.url + "getListado", dataGet, function(data){ 
+
+            $("#modal-head-title").text( t );
+
+            var items = [];
+            var count = 1;
+            $.each(data.data, function(i, v){
+                var tr = $("<tr>");
+                tr.append( $("<td>").html(count) );
+                tr.append( $("<td>").html(v.el).addClass('bg-success') );
+                tr.append( $("<td>").html(v.no) );
+                tr.append( $("<td>").html(v.s_lab) );
+                tr.append( $("<td>").html(v.subgerente) );
+                tr.append( $("<td>").html(v.fs).addClass('bg-info') );
+                tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
+                // var diasVence = 15;
+                var diasParaVencer = parseInt(diasVence) - parseInt(v.dias_t);
+                if( diasParaVencer > 0  ){
+                    var text = diasParaVencer;
+                    var bg = '';
+                }else{
+                    var text = "vencido por " + Math.abs(diasParaVencer);
+                    var bg = 'bg-danger1';
+                }
+                // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
+                tr.append( $("<td>").html(text).addClass(bg) );
+                items.push(tr[0].outerHTML);
+                count++;
+            })
+
+            $("#table-listado-detalle tbody").html( items.join('') );
+            $("#modal-listado").modal('show');
+
+        })
 
     }
 
@@ -204,7 +294,7 @@ $(function(){
 
     }
 
-    var indicadorTiempos = function(id, data){
+    var indicadorTiempos = function(id, data, callback = null){
 
         Highcharts.chart(id, {
             chart: {
@@ -242,6 +332,12 @@ $(function(){
                     endAngle: 90,
                     center: ['50%', '75%'],
                     size: '110%'
+                },
+                series: {
+                    cursor: 'pointer',
+                    events: {
+                        click: callback
+                    }
                 }
             },
             series: [{
