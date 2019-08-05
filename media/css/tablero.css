@@ -27,3 +27,8 @@ body{
 	background-color: #fbc912 !important;
 	cursor: pointer;
 }
+
+#en_proceso:hover{
+	background-color: #fbc912 !important;
+	cursor: pointer;
+}
