@@ -115,7 +115,7 @@ $(function(){
             console.log(data.data);
 
             var items = [];
-            var count = 1;
+            var count = data.data.length;
             $.each(data.data, function(i, v){
                 var tr = $("<tr>");
                 tr.append( $("<td>").html(count) );
@@ -137,7 +137,7 @@ $(function(){
                 // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
                 tr.append( $("<td>").html(text).addClass(bg) );
                 items.unshift(tr[0].outerHTML);
-                count++;
+                count--;
             })
 
             $("#table-listado-detalle tbody").html( items.join('') );
