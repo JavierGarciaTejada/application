@@ -113,10 +113,10 @@ $(function(){
 
             $("#modal-head-title").text( t );
 
-            console.log(data.data);
+            console.log(data);
 
             var items = [];
-            var count = data.data.length;
+            var count = 1;
             $.each(data.data, function(i, v){
                 var tr = $("<tr>");
                 tr.append( $("<td>").html(count) );
@@ -128,7 +128,7 @@ $(function(){
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
                 // var diasVence = 15;
                 var diasParaVencer = parseInt(v.dl) - parseInt(v.dias_t);
-                if( diasParaVencer > 0  ){
+                if( diasParaVencer >= 0  ){
                     var text = diasParaVencer;
                     var bg = '';
                 }else{
@@ -137,8 +137,8 @@ $(function(){
                 }
                 // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
                 tr.append( $("<td>").html(text).addClass(bg) );
-                items.unshift(tr[0].outerHTML);
-                count--;
+                items.push(tr[0].outerHTML);
+                count++;
             })
 
             $("#table-listado-detalle tbody").html( items.join('') );

@@ -104,11 +104,12 @@ class EvaluacionesDAO
 		}
 	}
 	
-	public static function EvaluacionesPerfil($filtro = "")
+	public static function EvaluacionesPerfil($filtro = "", $order = "")
 	{
 
 		$hoy = date('Y-m-d');
 		$where = empty($filtro) ? "" : "WHERE $filtro";
+		$orderby = empty($order) ? "ORDER BY a.id DESC" : $order;
 
 		$sql = "SELECT 
 		a.*,
@@ -152,7 +153,7 @@ class EvaluacionesDAO
 		INNER JOIN ad_nue j ON a.nu = j.ix 
 		INNER JOIN ad_teq k ON a.te = k.ix 
 		INNER JOIN ad_pra l ON a.pa = l.ix 
-		INNER JOIN ad_mer m ON a.me = m.ix $where ORDER BY a.id DESC";
+		INNER JOIN ad_mer m ON a.me = m.ix $where $orderby";
 
 		$filas['data'] = self::executeQuery($sql); //Conexion::$result->fetchAll(PDO::FETCH_ASSOC);
 		$filas['sql'] = $sql;
