@@ -77,6 +77,7 @@ class Tablero
 		// $data['periodos'] = $this->periodo($filtros);
 		$data['periodos'] = $this->periodoNorma($filtros);
 		$data['acumulado'] = $this->acumulado($filtros);
+		$data['promedios'] = $this->promedioAcumuladoTiempos($filtros);
 
 		Funciones::imprimeJson($data);
 	}
@@ -275,6 +276,37 @@ class Tablero
 		}
 
 		return $acumulado;
+
+	}
+
+	public function promedioAcumuladoTiempos($filtros = ""){
+
+		$evaluaciones = TableroDAO::EvaluacionesLiberadasPromedio();
+		$promediosGraf = array();
+		$promedioAcumulado = array();
+		if ($evaluaciones['data'] != null){		
+			foreach ($evaluaciones['data'] as $periodoProm => $valorProm) {
+				$promediosGraf[$valorProm['anio_mes_lib']]['to'] = (int)$valorProm['promedio'];
+			}
+		}
+		
+		
+		$a = array();
+		foreach ($promediosGraf as $periodo => $perval) {
+			$mes = (int)substr($periodo,-2);
+			$ano = substr($periodo,0,4);
+			$valorPromedio = ( ($mes-1) == 0 ) ? $perval['to'] : ($valorPromedio + $perval['to']) / 2;
+			$a[ $ano ][] = $valorPromedio;
+		}
+		
+		$i = 0;
+		foreach ($a as $keya => $valuea) {
+			$promedioAcumulado[$i]['name'] = $keya;
+			$promedioAcumulado[$i]['data'] = $valuea;
+			$i++;
+		}
+
+		return $promedioAcumulado;
 
 	}
 

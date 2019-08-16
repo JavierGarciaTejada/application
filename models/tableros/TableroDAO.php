@@ -129,5 +129,15 @@ class TableroDAO
 		return $filas;
 	}
 
+	public static function EvaluacionesLiberadasPromedio($filtro = ""){
+		$filtro = ( empty($filtro) ) ? "" : " AND ".$filtro;
+		$sql = "SELECT REPLACE( SUBSTR( fs, 1, 7 ), '-', '' ) anio_mes_sol, REPLACE(SUBSTR( fl, 1, 7 ), '-', '' ) anio_mes_lib, DATEDIFF( fl, fs ) dias_liberacion, AVG(DATEDIFF( fl, fs )) promedio 
+		FROM so_sol WHERE fl != '0000-00-00 00:00:00' $filtro
+		GROUP BY SUBSTR( fl, 1, 7 ) ORDER BY fl ";
+		$filas['data'] = self::executeQuery($sql);
+		$filas['sql'] = $sql;
+		return $filas;
+	}
+
 	
 }

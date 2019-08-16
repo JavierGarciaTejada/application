@@ -40,6 +40,7 @@ $(function(){
             liberadasPorMes('Evaluaciones Liberadas', 'evaluaciones-liberadas', data.liberadas, function (event) { generaTablaBasic(this.name, e.filtroGerencia); });
             generaTablaBasic('2019', e.filtroGerencia);
             liberadasPorMes('Acumulado de Evaluaciones Liberadas','evaluaciones-acumulado', data.acumulado);
+            // liberadasPorMes('Promedio tiempos liberación (Días)','evaluaciones-acumulado-promedio', data.promedios);
 
             indicadorTiempos('indicador-tiempos', data.periodos[0], function (event) {
                 var t = event.point.name;
