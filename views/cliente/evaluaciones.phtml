@@ -5,6 +5,7 @@
 		<table class="table table-striped" id="table-evaluaciones">
 			<thead class="text-capitalize">
 				<tr class="text-12">
+					<th></th>
 					<th>Número Solicitud</th>
 					<th>Referencia Solicitante</th>
 					<th>Nombre Evaluación</th>
@@ -36,6 +37,7 @@
 			</tbody>
 			<tfoot>
 	            <tr>
+					<th></th>
 					<th>Número Solicitud</th>
 					<th>Referencia Solicitante</th>
 					<th>Nombre Evaluación</th>
@@ -113,10 +115,10 @@
 									<label for="pr">Prioridad</label>
 									<select name="pr" id="pr" class="form-control input-sm"></select>
 								</div>
-								<div class="form-group col-sm-12 col-md-4">
+								<!-- <div class="form-group col-sm-12 col-md-4">
 									<label for="fo">Fecha Compromiso</label>
 									<input type="text" class="form-control input-sm fecha" name="fo" id="fo" placeholder="aaaa-mm-dd">
-								</div>
+								</div> -->
 								<div class="form-group col-sm-12 col-md-4">
 									<label for="fs">Fecha Solicitud</label>
 									<input type="text" class="form-control input-sm fecha inp_nue_edit" name="fs" id="fs" value="<?= date('Y-m-d') ?>" placeholder="aaaa-mm-dd">
@@ -243,6 +245,54 @@
 			</div>
 		</div>
 	</div>
+
+
+
+	<!-- MODAL CARGAR ANEXOS -->
+	<div class="modal fade" id="modal-anexo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Cargar Anexos</h4>
+			</div>
+			<div class="modal-body">
+
+			<div class="row">
+				<div class='col-sm-12'><h5>Archivos Cargados</h5></div>
+				<ul id="anexos_listado">
+					
+				</ul>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<form enctype="multipart/form-data" class="formulario" id="form-archivos">
+						<input type="hidden" name="id_eval" id="id_eval">
+						<div id="div-file" class="col-md-12 col-sm-12">
+							<div class="form-group">
+								<label for="file-evaluacion">Seleccione Documento</label>
+								<input type="file" name="archivo" id="file-evaluacion" required data-msg="Adjunte un archivo">
+								<p class="help-block">(.pdf, .xlsx, .docx )</p>
+							</div>
+							
+							<!--div para visualizar mensajes-->
+							<div class="messages"></div>
+							<input type="button" class="btn btn-danger" value="Cargar Documento" id="btn-file" /><br />
+						</div>
+					</form>
+				</div>
+			</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+			</div>
+		</div>
+	</div>
+	</div>
+	
 
 
 </div>

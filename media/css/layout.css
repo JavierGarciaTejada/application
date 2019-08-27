@@ -256,3 +256,8 @@ a#title-modulo-layout:focus, a#title-modulo-layout:hover {
 .bg-danger2{
 	background-color: #c70000;
 }
+.btn-anexo{
+	background-color: #FE944A;
+	border-color: #FC9852;
+	color: #fff;
+}

@@ -390,5 +390,59 @@ class Evaluaciones
 
 	}
 
+	public function cargaAnexosEvaluacion(){
+
+		$result = array();
+		$result['estatus'] = false;
+		$result['nombreGenerado'] = null;
+		$result['mensaje'] = "El archivo no pudo ser almacenado";
+
+		//comprobamos que sea una petición ajax
+		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
+		{
+
+			$file = $_FILES['archivo']['name'];
+			$exp = explode(".", $file);
+
+			//genera un nombre de archivo para evitar caracteres especiales
+			$nombreEvaluacion = "evaluacion_". date('Ymd_his') .".". end($exp);
+			$result['nombreGenerado'] = $nombreEvaluacion;
+			$result['nombre'] = $file;
+			$ruta = Config::$configuration->get('anexos_path') ."evaluaciones/" . $nombreEvaluacion;
+
+			//comprobamos si el archivo ha subido
+			if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta))
+			{
+				sleep(1);
+				$result['estatus'] = true;
+				$result['extension'] = end($exp);
+				$result['mensaje'] = "Archivo subido correctamente";
+			}
+
+		}else{
+			throw new Exception("Error Processing Request", 1);
+		}
+
+		Funciones::imprimeJson($result);
+
+	}
+
+	public function getAnexos(){
+
+		$data = Funciones::getDataGet();
+		$anexos = EvaluacionesDAO::Anexos($data);
+		Funciones::imprimeJson($anexos);
+
+	}
+
+	public function registaAnexo(){
+
+		$data = Funciones::getDataPost();
+		$data['fx'] = date('Y-m-d h:i:s');
+		$insert = EvaluacionesDAO::RegistrarAnexo($data);
+		Funciones::imprimeJson($insert);
+
+	}
+
 
 }

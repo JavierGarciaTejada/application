@@ -3,8 +3,9 @@
 Config::$configuration = Config::singleton();
 
 Config::$configuration->set('file_config_db', PROJECTPATH .'/libs/config/db_configuration.ini');
-Config::$configuration->set('controllersFolder', PROJECTPATH .'/controllers/');
+Config::$configuration->set('anexos_path', PROJECTPATH .'/anexos/');
 
+Config::$configuration->set('controllersFolder', PROJECTPATH .'/controllers/');
 Config::$configuration->set('modelsFolder', PROJECTPATH .'/models/');
 Config::$configuration->set('viewsFolder', PROJECTPATH .'/views/');
 Config::$configuration->set('filesFolder', PROJECTPATH . '/media/files/');

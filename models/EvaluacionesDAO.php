@@ -472,5 +472,50 @@ class EvaluacionesDAO
 	}
 
 
+	public static function Anexos($data){
+
+		try{
+
+			$sql = "SELECT * FROM si_doc WHERE rx = :id";
+			Conexion::$connect = new Conexion();
+			Conexion::$query = $sql;
+			Conexion::$prepare = Conexion::$connect->prepare(Conexion::$query);
+			Conexion::$prepare->bindParam(':id', $data['id']);
+
+			Conexion::$prepare->execute();
+			return Conexion::$prepare->fetchAll(PDO::FETCH_ASSOC);
+
+		}catch( Exception $e ){
+			die("Error al obtener anexos de evaluación. Error! : ". $e->getMessage());
+		}
+
+	}
+
+
+	public static function RegistrarAnexo($data){
+
+		try{
+
+			$sql = "INSERT INTO si_doc (fx, rx, no, no_generado, tp) VALUES (:fx, :rx, :no, :no_generado, :tp) ";
+			Conexion::$connect = new Conexion();
+
+			Conexion::$query = $sql;
+			Conexion::$prepare = Conexion::$connect->prepare(Conexion::$query);
+			Conexion::$prepare->bindParam(':fx', $data['fx']);
+			Conexion::$prepare->bindParam(':rx', $data['rx']);
+			Conexion::$prepare->bindParam(':no', $data['no']);
+			Conexion::$prepare->bindParam(':no_generado', $data['no_generado']);
+			Conexion::$prepare->bindParam(':tp', $data['tp']);
+
+			$result = Conexion::$prepare->execute();
+			return $result;
+
+		}catch( Exception $e ){
+			die("Error al registrar anexo. Error! : ". $e->getMessage());
+		}
+
+	}
+
+
 	
 }
