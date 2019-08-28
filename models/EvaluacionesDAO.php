@@ -282,7 +282,8 @@ class EvaluacionesDAO
 
 		try{
 
-			$sql = "UPDATE so_sol SET al = :al, no = :no, ac = :ac, pv = :pv, ts = :ts, pr = :pr, fs = :fs, ig = :ig, me = :me, nu = :nu, pa = :pa, sg = :sg, te = :te WHERE ix = :ix";
+			$sql = "UPDATE so_sol 
+			SET al = :al, no = :no, ac = :ac, pv = :pv, ts = :ts, pr = :pr, fs = :fs, ig = :ig, me = :me, nu = :nu, pa = :pa, sg = :sg, te = :te, dl = :dl, ft = :ft WHERE ix = :ix";
 
 			Conexion::$connect = new Conexion();
 			Conexion::$query = $sql;
@@ -304,6 +305,9 @@ class EvaluacionesDAO
 			Conexion::$prepare->bindParam(':te', $data['te']);
 			Conexion::$prepare->bindParam(':pa', $data['pa']);
 			Conexion::$prepare->bindParam(':me', $data['me']);
+
+			Conexion::$prepare->bindParam(':dl', $data['dl']);
+			Conexion::$prepare->bindParam(':ft', $data['ft']);
 
 			$result = Conexion::$prepare->execute();
 			self::BitacoraEvaluacion(array('mv' => 'modificacion_proceso', 'ix' => $data['ix']));

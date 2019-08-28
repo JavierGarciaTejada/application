@@ -246,6 +246,9 @@ class Evaluaciones
 		parse_str($data['lab'], $l);
 
 		$values = array_merge($e, $l);
+		$diasLimite = $this->asignaTiempoLiberacion($values);
+		$values['dl'] = $diasLimite;
+		$values['ft'] = date('Y-m-d', strtotime( $values['fs']."+ $diasLimite days"  ) );
 		
 		$update = EvaluacionesDAO::EditarEvaluacionProceso($values);
 		Funciones::imprimeJson($update);
