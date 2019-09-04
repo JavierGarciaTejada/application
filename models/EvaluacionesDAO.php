@@ -142,18 +142,18 @@ class EvaluacionesDAO
 		m.no mercado,
 		DATEDIFF(NOW(),fs) dias_t
 		FROM so_sol a 
-		INNER JOIN ad_gcl b ON a.ac = b.ix 
-		INNER JOIN ad_pri c ON a.pr = c.ix 
-		INNER JOIN ad_alb d ON a.al = d.ix 
-		INNER JOIN ad_pro e ON a.pv = e.ix 
-		INNER JOIN ad_eta f ON a.et = f.ix 
-		INNER JOIN ad_tps g ON a.ts = g.ix 
-		INNER JOIN ad_res h ON a.re = h.ix 
-		INNER JOIN si_usr i ON a.sg = i.ix 
-		INNER JOIN ad_nue j ON a.nu = j.ix 
-		INNER JOIN ad_teq k ON a.te = k.ix 
-		INNER JOIN ad_pra l ON a.pa = l.ix 
-		INNER JOIN ad_mer m ON a.me = m.ix $where $orderby";
+		LEFT JOIN ad_gcl b ON a.ac = b.ix 
+		LEFT JOIN ad_pri c ON a.pr = c.ix 
+		LEFT JOIN ad_alb d ON a.al = d.ix 
+		LEFT JOIN ad_pro e ON a.pv = e.ix 
+		LEFT JOIN ad_eta f ON a.et = f.ix 
+		LEFT JOIN ad_tps g ON a.ts = g.ix 
+		LEFT JOIN ad_res h ON a.re = h.ix 
+		LEFT JOIN si_usr i ON a.sg = i.ix 
+		LEFT JOIN ad_nue j ON a.nu = j.ix 
+		LEFT JOIN ad_teq k ON a.te = k.ix 
+		LEFT JOIN ad_pra l ON a.pa = l.ix 
+		LEFT JOIN ad_mer m ON a.me = m.ix $where $orderby";
 
 		$filas['data'] = self::executeQuery($sql); //Conexion::$result->fetchAll(PDO::FETCH_ASSOC);
 		$filas['sql'] = $sql;
