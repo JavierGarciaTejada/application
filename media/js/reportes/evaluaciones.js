@@ -92,7 +92,9 @@ $(function(){
             var nuevos = true;
             $.each(data.data, function(i, v){
 
-                var tr = $("<tr>");
+                var bg = ( parseInt(v.pd) === 1  ) ? "#d4fed3" : "#fff";
+
+                var tr = $("<tr>").attr({'bgcolor' : bg});
                 tr.append( $("<td>").html(v.indice) )
                 tr.append( $("<td>").html(v.proyecto_asociado) )
                 tr.append( $("<td>").html(v.mercado) )
@@ -100,8 +102,9 @@ $(function(){
                 tr.append( $("<td>").html(v.proveedor) )
                 tr.append( $("<td>").html(v.etapa) )
                 tr.append( $("<td>").html(v.f_com) )
-                tr.append( $("<td>").html("") )
+                tr.append( $("<td>").html(v.ob) )
                 tr.append( $("<td>").html(v.solicitante_sub) )
+                $("#table-general tbody").append(tr[0].outerHTML)
                 item.push( tr[0].outerHTML );
                 ind++;
                 
@@ -111,13 +114,21 @@ $(function(){
             var tableGeneral = $("#table-general").DataTable({
                 "processing" : true,
                 "language" : lenguageTable,
+                dom: 'Bfrtip',
+                // buttons: [
+                //     'copy', 'csv', 'excel', 'pdf', 'print'
+                // ]
                 buttons: [
-                    'excel'
+                    {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL'
+                    }
                 ]
                 // ,"paging": false
             });
-            tableGeneral.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
-            $("button.dt-button").addClass('btn btn-primary btn-sm');
+            // tableGeneral.buttons().container().appendTo( '#example_wrapper .col-sm-6:eq(0)' );
+            // $("button.dt-button").addClass('btn btn-primary btn-sm');
 
         });
 

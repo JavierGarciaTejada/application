@@ -7,6 +7,7 @@ require_once Config::$configuration->get('modelsFolder') . 'UsuariosDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/AreasLaboratorioDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/ResultadosDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/NuevosDAO.php';
+require_once Config::$configuration->get('modelsFolder') . 'catalogos/NuevosProductosDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/TecnologiaEquipoDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/ProyectoAsociadoDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/MercadoDAO.php';
@@ -170,6 +171,11 @@ class Evaluaciones
 	public function getNuevos(){
 		$nuevos = NuevosDAO::All();
 		Funciones::imprimeJson($nuevos);
+	}
+
+	public function getNuevosProductos(){
+		$nuevosProductos = NuevosProductosDAO::All();
+		Funciones::imprimeJson($nuevosProductos);
 	}
 
 	public function getUsuariosGerencia(){

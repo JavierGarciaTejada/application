@@ -74,6 +74,12 @@ $(function(){
 		});
 	}
 
+	var setNuevosProducto = function(){
+		e.prioridad = getJson(e.url + "getNuevosProductos", null, function(a){
+			setValuesSelect('pd', a.data, 'id', 'no', '');
+		});
+	}
+
 	var setIngenieros = function(){
 		e.prioridad = getJson(e.url + "getUsuariosGerencia", null, function(a){
 			var todos = a.Subgerente.concat(a.Ingeniero);
@@ -154,6 +160,7 @@ $(function(){
 	setPrioridad();
 	setResultados();
 	setNuevos();
+	setNuevosProducto();
 	setIngenieros();
 	setTecnologiaEquipo();
 	setProyectoAsociado();
@@ -352,7 +359,6 @@ $(function(){
 
 		$(formId)[0].reset();
     	var dataRow = tableEvaluaciones.row( row.parents('tr') ).data();
-    	console.log(dataRow);
     	$.each(dataRow, function(i, v){
     		$(formId +" #"+i).val(v);
     	})

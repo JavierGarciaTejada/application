@@ -76,7 +76,7 @@ class ReporteEvaluacion
 		$band = true;
 		foreach ($evaluaciones['data'] as $key => $value) {
 
-			// if( !empty($value['pd'] && $band )){
+			// if( empty($value['pd']) && $band === true ){
 			// 	$ind = 1;
 			// 	$band = false;
 			// }
