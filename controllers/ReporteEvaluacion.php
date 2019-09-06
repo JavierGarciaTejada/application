@@ -109,7 +109,7 @@ class ReporteEvaluacion
 
 			$desc = trim( $value['tec_equipo'] ) ." ". trim($value['proveedor']);
 			
-			if( ! empty($value['pd']) ){
+			if( (int)$value['pd'] == 1 ){
 				$nuevo++;
 				$resultado['table']['nuevo'][ $value['mercado'] ]['data'][] = $value;
 				$resultado['table']['nuevo'][$value['mercado']]['desc'][ $desc ][] = $value['el'];
