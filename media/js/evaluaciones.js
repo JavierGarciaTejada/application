@@ -254,10 +254,13 @@ $(function(){
 						botones.push('<button class="btn btn-sm btn-info reenviar-eval" id='+ data.id +' title="Reenviar Evaluación"><i class="fa fa-share" aria-hidden="true"></i></button>');
 					}
 					else if( data.id_etapa == '3' ){//EN PROCESO
-						botones.push('<button class="btn btn-sm btn-default edit-eval" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
+						botones.push('<button class="btn btn-sm btn-default edit-eval" data-ref="proceso" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
 						botones.push('<button class="btn btn-sm btn-success liberar-eval" id='+ data.id +' title="Liberar Evaluación"><i class="fa fa-check" aria-hidden="true"></i></button>');
 						botones.push('<button class="btn btn-sm btn-warning cancelar-eval" id='+ data.id +' title="Cancelar Evaluación"><i class="fa fa-times" aria-hidden="true"></i></button>');
 						// botones.push('<button class="btn btn-sm btn-anexo anexo-eval" id='+ data.id +' title="Cargar Anexos"><i class="fa fa-file" aria-hidden="true"></i></button>');
+					}
+					else if( data.id_etapa == '4' ){//EN PROCESO
+						// botones.push('<button class="btn btn-sm btn-default edit-eval" data-ref="liberada" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
 					}
 
 					if(autorizacionCambios)
@@ -380,9 +383,15 @@ $(function(){
 			disabledEdicionNuevo(false);
 			showHideOpe("aceptar");
 			$("#btn-aceptar-eval").hide();
-			// $("#ft").show();
 			setValoresFormulario( $(this), "#form-aceptar" );
 		}
+		// else if(dataRow.etapa == "Liberada"){
+		// 	// $("#proceso").val(1);
+		// 	disabledEdicionNuevo(false);
+		// 	showHideOpe("aceptar");
+		// 	$("#btn-aceptar-eval").hide();
+		// 	setValoresFormulario( $(this), "#form-aceptar" );
+		// }
 		$("#btn-guardar-eval").show();
 		openModalTitle('#modal-evaluacion', '#modal-head-title', "Modificar Evaluación");
 

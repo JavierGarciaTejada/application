@@ -53,19 +53,21 @@ $(function(){
             $.each(data.table, function(i, v){
 
                 var items = [];
+                var sumaSolicitante = 0;
                 $.each(v, function(ind, val){
-
+                    
                     $.each(val, function(inda, vala){
                         var tr = $("<tr>");
                         tr.append( $("<td>").html(i) );
                         tr.append( $("<td>").html(ind) );
                         tr.append( $("<td>").html(inda) );
-                        tr.append( $("<td>").html( val[inda].length ) )
+                        sumaSolicitante += val[inda].length;
+                        tr.append( $("<td>").html( val[inda].length ).addClass('text-center') )
                         $("#table-solicitante tbody").append( tr[0].outerHTML );
                     })
-                    // tr.append( $("<td>").html( v[ind]['data'].length ) )
                     
                 })
+                $("#table-solicitante tbody").append( "<tr class='text-center bg-warning'> <td colspan='3'></td> <td colspan=''> "+sumaSolicitante+"</td> </tr>" );
                 
                 
             })
@@ -104,6 +106,7 @@ $(function(){
                 tr.append( $("<td>").html(v.f_com) )
                 tr.append( $("<td>").html(v.ob) )
                 tr.append( $("<td>").html(v.solicitante_sub) )
+                tr.append( $("<td>").html(v.producto) )
                 $("#table-general tbody").append(tr[0].outerHTML)
                 item.push( tr[0].outerHTML );
                 ind++;

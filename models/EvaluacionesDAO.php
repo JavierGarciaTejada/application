@@ -140,7 +140,8 @@ class EvaluacionesDAO
 		k.no tec_equipo,
 		l.no proyecto_asociado,
 		m.no mercado,
-		DATEDIFF(NOW(),fs) dias_t
+		DATEDIFF(NOW(),fs) dias_t,
+		n.no producto 
 		FROM so_sol a 
 		LEFT JOIN ad_gcl b ON a.ac = b.ix 
 		LEFT JOIN ad_pri c ON a.pr = c.ix 
@@ -153,7 +154,8 @@ class EvaluacionesDAO
 		LEFT JOIN ad_nue j ON a.nu = j.ix 
 		LEFT JOIN ad_teq k ON a.te = k.ix 
 		LEFT JOIN ad_pra l ON a.pa = l.ix 
-		LEFT JOIN ad_mer m ON a.me = m.ix $where $orderby";
+		LEFT JOIN ad_mer m ON a.me = m.ix 
+		LEFT JOIN ad_prd n ON a.pd = n.id $where $orderby";
 
 		$filas['data'] = self::executeQuery($sql); //Conexion::$result->fetchAll(PDO::FETCH_ASSOC);
 		$filas['sql'] = $sql;

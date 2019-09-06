@@ -107,7 +107,7 @@ class ReporteEvaluacion
 			if( $value['mercado'] == "Materiales" && $value['solicitud'] == "Especificación" )
 				$value['mercado'] = "Especificación";
 
-			$desc = trim( $value['tec_equipo'] ) ." ". trim($value['proveedor']);
+			$desc = trim( $value['tec_equipo'] );// ." ". trim($value['proveedor']);
 			
 			if( (int)$value['pd'] == 1 ){
 				$nuevo++;
@@ -136,11 +136,16 @@ class ReporteEvaluacion
 
 		$resultado = array();
 		$resultado['total_general'] = count($evaluaciones['data']);
+		$resultado['solicitantes'] = array();
 
 		foreach ($evaluaciones['data'] as $key => $value) {
 
 			$siglas = substr($value['s_cliente'], 0, 2);
 			$resultado['table'][ $this->subdirecciones[$siglas] ][ $value['proyecto_asociado'] ][ $value['mercado'] ][] = $value['el'];
+			$resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['total'][] = $value['el'];
+			$row = $value['proyecto_asociado'] ."_". $value['mercado'];
+			if( !in_array($row, $resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['rowspan']) )
+				$resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['rowspan'][] = $row;
 
 		}
 
