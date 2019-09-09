@@ -243,6 +243,7 @@ class Evaluaciones
 		Funciones::imprimeJson($update);
 
 	}
+
 	public function editarEvaluacionProceso(){
 
 		$data = Funciones::getDataPost();
@@ -257,6 +258,24 @@ class Evaluaciones
 		$values['ft'] = date('Y-m-d', strtotime( $values['fs']."+ $diasLimite days"  ) );
 		
 		$update = EvaluacionesDAO::EditarEvaluacionProceso($values);
+		Funciones::imprimeJson($update);
+
+	}
+
+	public function editarEvaluacionLiberada(){
+
+		$data = Funciones::getDataPost();
+		$e = array();
+		$l = array();
+		parse_str($data['evaluacion'], $e);
+		parse_str($data['lab'], $l);
+
+		$values = array_merge($e, $l);
+		$diasLimite = $this->asignaTiempoLiberacion($values);
+		$values['dl'] = $diasLimite;
+		$values['ft'] = date('Y-m-d', strtotime( $values['fs']."+ $diasLimite days"  ) );
+		
+		$update = EvaluacionesDAO::EditarEvaluacionLiberada($values);
 		Funciones::imprimeJson($update);
 
 	}

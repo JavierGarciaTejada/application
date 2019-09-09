@@ -327,6 +327,37 @@ class EvaluacionesDAO
 	}
 
 
+	public static function EditarEvaluacionLiberada($data){
+
+		try{
+
+			$sql = "UPDATE so_sol SET pa = :pa, me = :me, ts = :ts, te = :te WHERE ix = :ix";
+
+			Conexion::$connect = new Conexion();
+			Conexion::$query = $sql;
+			Conexion::$prepare = Conexion::$connect->prepare(Conexion::$query);
+			
+
+			Conexion::$prepare->bindParam(':pa', $data['pa']);
+			Conexion::$prepare->bindParam(':me', $data['me']);
+			Conexion::$prepare->bindParam(':ts', $data['ts']);
+			Conexion::$prepare->bindParam(':te', $data['te']);
+
+			Conexion::$prepare->bindParam(':ix', $data['ix']);
+
+			$result = Conexion::$prepare->execute();
+			self::BitacoraEvaluacion(array('mv' => 'modificacion_liberada', 'ix' => $data['ix']));
+			Log::Save($result, 'MODIFICACION_LIBERADA', $sql, 'evaluaciones/', $data);
+			return $result;
+
+		}catch( Exception $e ){
+			Log::Save("error", 'MODIFICACION_LIBERADA', $e->getMessage(), 'evaluaciones/', $data);
+			die("Error al editar evaluación LIBERADA. Error! : ". $e->getMessage());
+		}
+
+	}
+
+
 	public static function AceptarEvaluacion($data){
 
 		try{

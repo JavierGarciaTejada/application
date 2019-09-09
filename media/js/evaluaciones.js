@@ -16,6 +16,7 @@ $(function(){
 	var puesto = $("#puesto").val();
 	var role = $("#role").val();
 	var autorizacionCambios = ( puesto == "Gerente" || puesto == "Subgerente" || role == "Autorizador" || role == "Administrador") ? true : false;
+	var autorizacionLiberacion = ( puesto == "Gerente" || role == "Administrador") ? true : false;
 	var autorizacionNueva = ( role == "Administrador" ) ? true : false;
 
 	var diasLiberacion = [ moment().format("YYYY-MM-DD") ];
@@ -259,8 +260,8 @@ $(function(){
 						botones.push('<button class="btn btn-sm btn-warning cancelar-eval" id='+ data.id +' title="Cancelar Evaluación"><i class="fa fa-times" aria-hidden="true"></i></button>');
 						// botones.push('<button class="btn btn-sm btn-anexo anexo-eval" id='+ data.id +' title="Cargar Anexos"><i class="fa fa-file" aria-hidden="true"></i></button>');
 					}
-					else if( data.id_etapa == '4' ){//EN PROCESO
-						// botones.push('<button class="btn btn-sm btn-default edit-eval" data-ref="liberada" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
+					else if( data.id_etapa == '4' && autorizacionLiberacion ){//EN PROCESO
+						botones.push('<button class="btn btn-sm btn-default edit-eval" data-ref="liberada" data-enabled="pa,me,ts,te,btn-guardar-eval,btn-close" id='+ data.id +' title="Modificar Evaluación"><i class="fa fa-pencil" aria-hidden="true"></i></button>');
 					}
 
 					if(autorizacionCambios)
@@ -350,6 +351,24 @@ $(function(){
 		$("#btn-guardar-eval").hide();
 	}
 
+	var enabledElementsForm = function(form, enabled, action){
+
+		$("#"+form+" :input").attr("readonly", action);
+		$("#"+form+" select").attr("readonly", action);
+
+		if(action == false)
+			return 0;
+
+		var autorizados = enabled.split(',');
+		if( autorizados.length <= 0)
+			return 0;
+
+		$.each(autorizados, function(i, v){
+			$("#"+form+" #"+v).attr("readonly", false);
+		})
+
+	}
+
 	//DESHABILITA INPUTS Y BOTON PARA EDITAR y NUEVA EVALUACION, PARA EL CASO DE ACEPTAR/CANCELAR/LIBERAR
 	var disabledEdicionNuevo = function(sts){
 		$("#evaluacion .inp_nue_edit").attr({disabled: sts});
@@ -384,14 +403,16 @@ $(function(){
 			showHideOpe("aceptar");
 			$("#btn-aceptar-eval").hide();
 			setValoresFormulario( $(this), "#form-aceptar" );
+			enabledElementsForm("modal-evaluacion", "", false );
 		}
-		// else if(dataRow.etapa == "Liberada"){
-		// 	// $("#proceso").val(1);
-		// 	disabledEdicionNuevo(false);
-		// 	showHideOpe("aceptar");
-		// 	$("#btn-aceptar-eval").hide();
-		// 	setValoresFormulario( $(this), "#form-aceptar" );
-		// }
+		else if(dataRow.etapa == "Liberada"){
+			$("#proceso").val(2);
+			disabledEdicionNuevo(false);
+			showHideOpe("aceptar");
+			$("#btn-aceptar-eval").hide();
+			setValoresFormulario( $(this), "#form-aceptar" );
+			enabledElementsForm("modal-evaluacion", $(this).attr('data-enabled'), true );
+		}
 		$("#btn-guardar-eval").show();
 		openModalTitle('#modal-evaluacion', '#modal-head-title', "Modificar Evaluación");
 
@@ -418,6 +439,8 @@ $(function(){
 		else{
 			if($("#proceso").val() == 1)
 				editarEvaluacionProceso();
+			else if( $("#proceso").val() == 2 )
+				editarEvaluacionLiberada();
 			else
 				editarEvaluacion();
 		}
@@ -505,6 +528,30 @@ $(function(){
 			lab: $("form#form-aceptar").serialize()
 		}
 		setPost(e.url + "editarEvaluacionProceso", data, function(response){
+			// console.log(response);
+			if( response === true ){
+				mensaje = "Se actualizo la evaluación.";
+				clase = "alertify-success";
+				$("#modal-evaluacion").modal('hide');
+				tableEvaluaciones.ajax.reload(function(){ $( '#modal-loader' ).modal( 'hide' ); });
+			}else{
+				mensaje = "Ocurrio un error al actualizar.";
+				clase = "alertify-danger";
+			}
+
+			alertMessage(mensaje, clase);
+		});
+
+	}
+
+
+	//EDITAR EVALUACION LIBERADA (SON MAS DATOS)
+	var editarEvaluacionLiberada = function(){
+		var data = {
+			evaluacion: $("form#evaluacion").serialize(),
+			lab: $("form#form-aceptar").serialize()
+		}
+		setPost(e.url + "editarEvaluacionLiberada", data, function(response){
 			// console.log(response);
 			if( response === true ){
 				mensaje = "Se actualizo la evaluación.";
