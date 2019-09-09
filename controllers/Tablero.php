@@ -316,7 +316,7 @@ class Tablero
 		$proceso = TableroDAO::EvaluacionesEnProceso();
 		$totalProceso = count($proceso['data']);
 
-		$gerencias = array('titulo' => 'Evaluaciones por gerencia');
+		$gerencias = array('titulo' => 'Evaluaciones en proceso por gerencia');
 
 		foreach ($evaluaciones['data'] as $key => $value) {
 			$gerencias['values'][$key]['name'] = $value['cl'];
