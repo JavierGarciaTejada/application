@@ -24,6 +24,7 @@ $(function(){
         	rowsCaract( data.caract );
         	rowsEspecificaciones( data.espec );
             rowsEspecial( data.especial );
+            rowsProducto( data.producto );
 
             $.each(data.totales, function(i, v){
                 $("#total-"+(i+1)).text(v);
@@ -152,6 +153,21 @@ $(function(){
     var rowsEspecial = function(especial){
         $("#especiales-1-5").text(especial['especiales-1-5']);
         $("#especiales-total").text(especial['especiales-1-5']);
+    }
+
+    var rowsProducto = function( nuevo ){
+
+        var total = 0;
+
+        $.each(nuevo, function(i, v){    
+            var id = "nuevo-" + i;
+
+            $("#" + id).text(v);
+            total += parseInt(v);
+        });
+
+        $("#nuevo-total").text( total );
+
     }
 
 

@@ -18,8 +18,8 @@ class FuncionesEvaluacion
             'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
         ),
         '119056262939067' => array(
-            // 'to' => array('ovgarcia@telmexomsasi.com'),
-            // 'cp' => array('fgtejada@telmex.com'),
+            // 'to' => array('fgtejada@telmex.com'),
+            // 'cp' => array(),
             // 'bc' => array()
             'to' => array('rdvences@telmexomsasi.com'),
             'cp' => array('jcmagana@serviciostmx.com', 'cablanco@telmexomsasi.com', 'ovgarcia@telmexomsasi.com', 'zvazquep@telmex.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
@@ -105,6 +105,58 @@ class FuncionesEvaluacion
 
     return $evaluaciones;
       
+  }
+
+  public static function IntervaloProductoNuevo($evaluaciones){
+
+    $nuevo = array();
+    $nuevo['1-10'] = 0;
+    $nuevo['11-20'] = 0;
+    $nuevo['21-30'] = 0;
+    $nuevo['30'] = 0;
+
+    self::$general['nuevo-1-10'] = array();
+    self::$general['nuevo-11-20'] = array();
+    self::$general['nuevo-21-30'] = array();
+    self::$general['nuevo-30'] = array();
+    self::$general['nuevo-total'] = array();
+
+    foreach ($evaluaciones['data'] as $key => $item) {
+
+      if( (int)$item['pd'] == 1 ){
+
+        if( !in_array($item['id'], self::$ids) ){
+
+          self::$ids[] = $item['id'];
+          self::$general['nuevo-total'][] = $item['id'];
+          if( (int)$item['dif'] <= 10 ){
+            $nuevo['1-10'] += 1;
+            self::$general['nuevo-1-10'][] = $item['id'];
+            self::$general['total-1'][] = array( $item['id'], 30);
+          }else if( (int)$item['dif'] <= 20 ){
+            $nuevo['11-20'] += 1;
+            self::$general['nuevo-11-20'][] = $item['id'];
+            self::$general['total-2'][] = array( $item['id'], 30);
+          }else if( (int)$item['dif'] <= 30 ){
+            $nuevo['21-30'] += 1;
+            self::$general['nuevo-21-30'][] = $item['id'];
+            self::$general['total-3'][] = array( $item['id'], 30);
+          }else if( (int)$item['dif'] > 30 ){
+            $nuevo['30'] += 1;
+            self::$general['nuevo-30'][] = $item['id'];
+            self::$general['total-4'][] = array( $item['id'], 30);
+          }
+
+        }
+
+        
+
+      }
+
+    }
+
+    return $nuevo;
+
   }
 
   public static function IntervaloEspeciales($evaluaciones){
