@@ -107,6 +107,8 @@ $(function(){
                 tr.append( $("<td>").html(v.ob) )
                 tr.append( $("<td>").html(v.solicitante_sub) )
                 tr.append( $("<td>").html(v.producto) )
+                tr.append( $("<td>").html(v.fs) )
+                tr.append( $("<td>").html(v.dias_t) )
                 $("#table-general tbody").append(tr[0].outerHTML)
                 item.push( tr[0].outerHTML );
                 ind++;
