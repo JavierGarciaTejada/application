@@ -132,19 +132,19 @@ class FuncionesEvaluacion
           if( (int)$item['dif'] <= 10 ){
             $nuevo['1-10'] += 1;
             self::$general['nuevo-1-10'][] = $item['id'];
-            self::$general['total-1'][] = array( $item['id'], 30);
+            // self::$general['total-1'][] = array( $item['id'], 30);
           }else if( (int)$item['dif'] <= 20 ){
             $nuevo['11-20'] += 1;
             self::$general['nuevo-11-20'][] = $item['id'];
-            self::$general['total-2'][] = array( $item['id'], 30);
+            // self::$general['total-2'][] = array( $item['id'], 30);
           }else if( (int)$item['dif'] <= 30 ){
             $nuevo['21-30'] += 1;
             self::$general['nuevo-21-30'][] = $item['id'];
-            self::$general['total-3'][] = array( $item['id'], 30);
+            // self::$general['total-3'][] = array( $item['id'], 30);
           }else if( (int)$item['dif'] > 30 ){
             $nuevo['30'] += 1;
             self::$general['nuevo-30'][] = $item['id'];
-            self::$general['total-4'][] = array( $item['id'], 30);
+            // self::$general['total-4'][] = array( $item['id'], 30);
           }
 
         }
