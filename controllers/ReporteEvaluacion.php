@@ -104,7 +104,8 @@ class ReporteEvaluacion
 
 		foreach ($evaluaciones['data'] as $key => $value) {
 
-			if( $value['mercado'] == "Materiales" && $value['solicitud'] == "Especificación" )
+			//$value['mercado'] == "Materiales" &&
+			if( $value['solicitud'] == "Especificación" )
 				$value['mercado'] = "Especificación";
 
 			$desc = trim( $value['tec_equipo'] );// ." ". trim($value['proveedor']);
