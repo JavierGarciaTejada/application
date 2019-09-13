@@ -318,6 +318,8 @@ $(function(){
 			},
 			{ "data" : "f_sol"},
 			{ "data" : "f_com"},
+			{ "data" : "producto"},
+			{ "data" : "ob"},
 			{ "data" : "f_lib"},
 			{ "data" : "f_can"}
 			// { "data" : "per_espec"}
