@@ -290,10 +290,10 @@ class FuncionesEvaluacion
   public static function IntervaloEspecificacion($evaluaciones){
 
     $espec = array();
-    $espec['nue']['1-30'] = 0;
-    $espec['nue']['31-60'] = 0;
-    $espec['nue']['61-90'] = 0;
-    $espec['nue']['90'] = 0;
+    $espec['nue']['1-15'] = 0;
+    $espec['nue']['16-30'] = 0;
+    $espec['nue']['31-45'] = 0;
+    $espec['nue']['45'] = 0;
 
     $espec['act']['1-10'] = 0;
     $espec['act']['11-20'] = 0;
@@ -301,10 +301,10 @@ class FuncionesEvaluacion
     $espec['act']['30'] = 0;
 
 
-    self::$general['espec-nue-1-30'] = array();
-    self::$general['espec-nue-31-60'] = array();
-    self::$general['espec-nue-61-90'] = array();
-    self::$general['espec-nue-90'] = array();
+    self::$general['espec-nue-1-15'] = array();
+    self::$general['espec-nue-16-30'] = array();
+    self::$general['espec-nue-31-45'] = array();
+    self::$general['espec-nue-45'] = array();
     self::$general['espec-nue-total'] = array();
 
     self::$general['espec-act-1-10'] = array();
@@ -325,22 +325,22 @@ class FuncionesEvaluacion
 
             self::$general['espec-nue-total'][] = $item['id'];
 
-            if( (int)$item['dif'] <= 30 ){
-              $espec['nue']['1-30'] += 1;
-               self::$general['espec-nue-1-30'][] = $item['id'];
-               self::$general['total-1'][] = array( $item['id'], 90);
-            }else if( (int)$item['dif'] <= 60 ){
-              $espec['nue']['31-60'] += 1;
-               self::$general['espec-nue-31-60'][] = $item['id'];
-               self::$general['total-2'][] = array( $item['id'], 90);
-            }else if( (int)$item['dif'] <= 90 ){
-              $espec['nue']['61-90'] += 1;
-               self::$general['espec-nue-61-90'][] = $item['id'];
-               self::$general['total-3'][] = array( $item['id'], 90);
-            }else if( (int)$item['dif'] > 90 ){
-              $espec['nue']['90'] += 1;
-               self::$general['espec-nue-90'][] = $item['id'];
-               self::$general['total-4'][] = array( $item['id'], 90);
+            if( (int)$item['dif'] <= 15 ){
+              $espec['nue']['1-15'] += 1;
+               self::$general['espec-nue-1-15'][] = $item['id'];
+               self::$general['total-1'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 30 ){
+              $espec['nue']['16-30'] += 1;
+               self::$general['espec-nue-16-30'][] = $item['id'];
+               self::$general['total-2'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 45 ){
+              $espec['nue']['31-45'] += 1;
+               self::$general['espec-nue-31-45'][] = $item['id'];
+               self::$general['total-3'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] > 45 ){
+              $espec['nue']['45'] += 1;
+               self::$general['espec-nue-45'][] = $item['id'];
+               self::$general['total-4'][] = array( $item['id'], 45);
             }
 
           }else{
@@ -385,20 +385,20 @@ class FuncionesEvaluacion
     $noAuth = array('319056265848491', '319056265848509', '319056265848510');
 
     $caract = array();
-    $caract['nue']['1-20'] = 0;
-    $caract['nue']['21-40'] = 0;
-    $caract['nue']['41-60'] = 0;
-    $caract['nue']['60'] = 0;
+    $caract['nue']['1-15'] = 0;
+    $caract['nue']['16-30'] = 0;
+    $caract['nue']['31-45'] = 0;
+    $caract['nue']['45'] = 0;
 
     $caract['act']['1-10'] = 0;
     $caract['act']['11-20'] = 0;
     $caract['act']['21-30'] = 0;
     $caract['act']['30'] = 0;
 
-    self::$general['caract-nue-1-20'] = array();
-    self::$general['caract-nue-21-40'] = array();
-    self::$general['caract-nue-41-60'] = array();
-    self::$general['caract-nue-60'] = array();
+    self::$general['caract-nue-1-15'] = array();
+    self::$general['caract-nue-16-30'] = array();
+    self::$general['caract-nue-31-45'] = array();
+    self::$general['caract-nue-45'] = array();
     self::$general['caract-nue-total'] = array();
 
     self::$general['caract-act-1-10'] = array();
@@ -417,22 +417,22 @@ class FuncionesEvaluacion
           if( $item['nu'] == '219056265840691' ){
             self::$general['caract-nue-total'][] = $item['id'];
 
-            if( (int)$item['dif'] <= 20 ){
-              $caract['nue']['1-20'] += 1;
-              self::$general['caract-nue-1-20'][] = $item['id'];
-              self::$general['total-1'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] <= 40 ){
-              $caract['nue']['21-40'] += 1;
-              self::$general['caract-nue-21-40'][] = $item['id'];
-              self::$general['total-2'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] <= 60 ){
-              $caract['nue']['41-60'] += 1;
-              self::$general['caract-nue-41-60'][] = $item['id'];
-              self::$general['total-3'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] > 60 ){
-              $caract['nue']['60'] += 1;
-              self::$general['caract-nue-60'][] = $item['id'];
-              self::$general['total-4'][] = array( $item['id'], 60);
+            if( (int)$item['dif'] <= 15 ){
+              $caract['nue']['1-15'] += 1;
+              self::$general['caract-nue-1-15'][] = $item['id'];
+              self::$general['total-1'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 30 ){
+              $caract['nue']['16-30'] += 1;
+              self::$general['caract-nue-16-30'][] = $item['id'];
+              self::$general['total-2'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 45 ){
+              $caract['nue']['31-45'] += 1;
+              self::$general['caract-nue-31-45'][] = $item['id'];
+              self::$general['total-3'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] > 45 ){
+              $caract['nue']['45'] += 1;
+              self::$general['caract-nue-45'][] = $item['id'];
+              self::$general['total-4'][] = array( $item['id'], 45);
             }
 
           }else{
@@ -480,10 +480,10 @@ class FuncionesEvaluacion
     $mat['local']['11-15'] = 0;
     $mat['local']['15'] = 0;
 
-    $mat['cidec']['1-20'] = 0;
-    $mat['cidec']['21-40'] = 0;
-    $mat['cidec']['41-60'] = 0;
-    $mat['cidec']['60'] = 0;
+    $mat['cidec']['1-15'] = 0;
+    $mat['cidec']['16-30'] = 0;
+    $mat['cidec']['31-45'] = 0;
+    $mat['cidec']['45'] = 0;
 
     self::$general['materiales-local-1-5'] = array();
     self::$general['materiales-local-6-10'] = array();
@@ -491,10 +491,10 @@ class FuncionesEvaluacion
     self::$general['materiales-local-15'] = array();
     self::$general['materiales-local-total'] = array();
 
-    self::$general['materiales-cidec-1-20'] = array();
-    self::$general['materiales-cidec-21-40'] = array();
-    self::$general['materiales-cidec-41-60'] = array();
-    self::$general['materiales-cidec-60'] = array();
+    self::$general['materiales-cidec-1-15'] = array();
+    self::$general['materiales-cidec-16-30'] = array();
+    self::$general['materiales-cidec-31-45'] = array();
+    self::$general['materiales-cidec-45'] = array();
     self::$general['materiales-cidec-total'] = array();
 
     foreach ($evaluaciones['data'] as $key => $item) {
@@ -532,23 +532,22 @@ class FuncionesEvaluacion
 
             self::$general['materiales-cidec-total'][] = $item['id'];
 
-            if( (int)$item['dif'] <= 20 ){
-              $mat['cidec']['1-20'] += 1;
-              self::$general['materiales-cidec-1-20'][] = $item['id'];
-              self::$general['total-1'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] <= 40 ){
-              $mat['cidec']['21-40'] += 1;
-              self::$general['materiales-cidec-21-40'][] = $item['id'];
-              self::$general['total-2'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] <= 60 ){
-              $mat['cidec']['41-60'] += 1;
-              self::$general['materiales-cidec-41-60'][] = $item['id'];
-              self::$general['total-3'][] = array( $item['id'], 60);
-            }else if( (int)$item['dif'] > 60 ){
-              $mat['cidec']['60'] += 1;
-              self::$general['materiales-cidec-60'][] = $item['id'];
-              
-              self::$general['total-4'][] = array( $item['id'], 60);
+            if( (int)$item['dif'] <= 15 ){
+              $mat['cidec']['1-15'] += 1;
+              self::$general['materiales-cidec-1-15'][] = $item['id'];
+              self::$general['total-1'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 30 ){
+              $mat['cidec']['16-30'] += 1;
+              self::$general['materiales-cidec-16-30'][] = $item['id'];
+              self::$general['total-2'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] <= 45 ){
+              $mat['cidec']['31-45'] += 1;
+              self::$general['materiales-cidec-31-45'][] = $item['id'];
+              self::$general['total-3'][] = array( $item['id'], 45);
+            }else if( (int)$item['dif'] > 45 ){
+              $mat['cidec']['45'] += 1;
+              self::$general['materiales-cidec-45'][] = $item['id'];
+              self::$general['total-4'][] = array( $item['id'], 45);
             }
 
           }
