@@ -13,8 +13,10 @@ class ReporteEvaluacion
 		'Ll' => "Explotación/José Luis Baños Barrera",
 		'Lp' => "Ingeniería/Víctor Hugo Guzmán León",
 		'S' => "Desarrollo Tecnológico/Valerio Torres Tovar",
-		'Ta' => "Compras/Miguel Ángel Gómez Chibli",
-		'To' => "Compras/Miguel Ángel López Lugo"
+		'Ta' => "Compras/Consuelo Gómez Colín",
+		#'Ta' => "Compras/Miguel Ángel Gómez Chibli",
+		'To' => "Compras/Consuelo Gómez Colín",
+		'Lx' => "Explotación/José Luis Baños Barrera"
 	);
 
 	
