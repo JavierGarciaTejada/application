@@ -81,6 +81,18 @@ $(function(){
 		});
 	}
 
+	var setProductoExistente = function(){
+		e.prioridad = getJson(e.url + "getProductoExistente", null, function(a){
+			setValuesSelect('pe', a.data, 'id', 'no', '');
+		});
+	}
+
+	var setSubproductoExistente = function(rx){
+		e.prioridad = getJson(e.url + "getSubproductoExistente", {rx: rx}, function(a){
+			setValuesSelect('spe', a.data, 'id', 'no', '');
+		});
+	}
+
 	var setIngenieros = function(){
 		e.prioridad = getJson(e.url + "getUsuariosGerencia", null, function(a){
 			var todos = a.Subgerente.concat(a.Ingeniero);
@@ -162,6 +174,9 @@ $(function(){
 	setResultados();
 	setNuevos();
 	setNuevosProducto();
+	// setProductoExistente();
+	// setSubproductoExistente(5);
+
 	setIngenieros();
 	setTecnologiaEquipo();
 	setProyectoAsociado();
@@ -170,6 +185,24 @@ $(function(){
 	setDiasLiberacion();
 	setMotivoRechazo();
 	setMotivoCancelacion();
+
+
+	$("#pd").change(function(){
+		var tipo = $(this).val()
+		if( parseInt(tipo) == 2 ){
+			$("#pe").attr({'disabled': false});
+			setProductoExistente();
+		}else{
+			$("#pe").attr({'disabled': true}).val('');
+		}
+
+	});
+
+	$("#pe").change(function(){
+		var tipo = $(this).val()
+		$("#spe").attr({'disabled': false});
+		setSubproductoExistente(tipo);
+	});
 
 	$('#table-evaluaciones thead tr').clone(true).appendTo( '#table-evaluaciones thead' );
     $('#table-evaluaciones thead tr:eq(1) th').each( function (i) {
@@ -319,6 +352,8 @@ $(function(){
 			{ "data" : "f_sol"},
 			{ "data" : "f_com"},
 			{ "data" : "producto"},
+			{ "data" : "prod_ex"},
+			{ "data" : "subprod_ex"},
 			{ "data" : "ob"},
 			{ "data" : "f_lib"},
 			{ "data" : "f_can"}
@@ -600,10 +635,12 @@ $(function(){
 				te: $("#te").val(),
 				nu: $("#nu").val(),
 				pa: $("#pa").val(),
+				pe: $("#pe").val(),
+				spe: $("#spe").val(),
 				me: $("#me").val()
 				// ,meta: $("#meta").val()
         	}
-			
+
 			setPost(e.url + "aceptarEvaluacion", data, function(response){
 				console.log(response);
 				if( response.estatus === true ){

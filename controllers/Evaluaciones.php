@@ -8,6 +8,7 @@ require_once Config::$configuration->get('modelsFolder') . 'catalogos/AreasLabor
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/ResultadosDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/NuevosDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/NuevosProductosDAO.php';
+require_once Config::$configuration->get('modelsFolder') . 'catalogos/ProductoExistenteDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/TecnologiaEquipoDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/ProyectoAsociadoDAO.php';
 require_once Config::$configuration->get('modelsFolder') . 'catalogos/MercadoDAO.php';
@@ -176,6 +177,17 @@ class Evaluaciones
 	public function getNuevosProductos(){
 		$nuevosProductos = NuevosProductosDAO::All();
 		Funciones::imprimeJson($nuevosProductos);
+	}
+
+	public function getProductoExistente(){
+		$productoExistente = ProductoExistenteDAO::Producto();
+		Funciones::imprimeJson($productoExistente);
+	}
+
+	public function getSubproductoExistente(){
+		$data = Funciones::getDataGet();
+		$subproductoExistente = ProductoExistenteDAO::Subproducto($data['rx']);
+		Funciones::imprimeJson($subproductoExistente);
 	}
 
 	public function getUsuariosGerencia(){

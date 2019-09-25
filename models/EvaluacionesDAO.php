@@ -141,7 +141,9 @@ class EvaluacionesDAO
 		l.no proyecto_asociado,
 		m.no mercado,
 		DATEDIFF(NOW(),fs) dias_t,
-		n.no producto 
+		n.no producto,
+		(SELECT no FROM ad_prd_cat WHERE id = a.pe) prod_ex,
+		(SELECT no FROM ad_prd_cat WHERE id = a.spe) subprod_ex
 		FROM so_sol a 
 		LEFT JOIN ad_gcl b ON a.ac = b.ix 
 		LEFT JOIN ad_pri c ON a.pr = c.ix 
@@ -362,7 +364,7 @@ class EvaluacionesDAO
 
 		try{
 
-			$sql = "UPDATE so_sol SET pv = :pv, ts = :ts, pr = :pr, fo = :fo, sg = :sg, ig = :ig, te = :te, nu = :nu, pa = :pa, me = :me, et = :et, fa = :fa, ft = :ft, dl = :dl WHERE id = :id";
+			$sql = "UPDATE so_sol SET pv = :pv, ts = :ts, pr = :pr, fo = :fo, sg = :sg, ig = :ig, te = :te, nu = :nu, pa = :pa, me = :me, et = :et, fa = :fa, ft = :ft, dl = :dl, pe = :pe, spe = :spe WHERE id = :id";
 			Conexion::$connect = new Conexion();
 
 			Conexion::$query = $sql;
@@ -380,6 +382,8 @@ class EvaluacionesDAO
 			Conexion::$prepare->bindParam(':me', $data['me']);
 			Conexion::$prepare->bindParam(':ft', $data['ft']);
 			Conexion::$prepare->bindParam(':dl', $data['dl']);
+			Conexion::$prepare->bindParam(':pe', $data['pe']);
+			Conexion::$prepare->bindParam(':spe', $data['spe']);
 			Conexion::$prepare->bindParam(':et', $data['et']);
 			Conexion::$prepare->bindParam(':fa', $data['fa']);
 			Conexion::$prepare->bindParam(':id', $data['id']);

@@ -145,7 +145,12 @@ function resizeBody() {
 
 function setValuesSelect(idSelect, data, keyValue, keyText, keyRef){
 
-	if( data.length <= 0 ) return false;
+	if( data.length <= 0 ){
+		$( "#"+idSelect ).empty();
+		$( "#"+idSelect ).html('<option value="">Seleccionar</option>');
+		$( "#"+idSelect ).attr({'disabled': true});
+		return false;
+	}
 
 	$( "#"+idSelect ).empty();
 	var options = ['<option value="">Seleccionar</option>'];
