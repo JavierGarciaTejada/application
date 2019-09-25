@@ -194,13 +194,15 @@ $(function(){
 			setProductoExistente();
 		}else{
 			$("#pe").attr({'disabled': true}).val('');
+			$("#spe").attr({'disabled': true}).val('');
 		}
 
 	});
 
 	$("#pe").change(function(){
-		var tipo = $(this).val()
+		var tipo = $(this).val();
 		$("#spe").attr({'disabled': false});
+		$("#lbl-spe").text( $("#pe option:selected").text() );
 		setSubproductoExistente(tipo);
 	});
 
