@@ -156,5 +156,31 @@ class ReporteEvaluacion
 
 	}
 
+	public function ExistenteSolicitante(){
+
+		$data = Funciones::getDataGet();
+		$where = Funciones::generaFiltroSql($data['filtros']);
+		$evaluaciones = EvaluacionesDAO::EvaluacionesPerfil($where);
+
+		$resultado = array();
+		$resultado['total_general'] = count($evaluaciones['data']);
+		$resultado['solicitantes'] = array();
+
+		foreach ($evaluaciones['data'] as $key => $value) {
+
+			$siglas = substr($value['s_cliente'], 0, 2);
+			$resultado['table'][ $this->subdirecciones[$siglas] ][ $value['prod_ex'] ][] = $value['el'];
+			$resultado['totales'][ $this->subdirecciones[$siglas] ]++;
+			$resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['total'][] = $value['el'];
+			$row = $value['prod_ex'] ."_". $value['subprod_ex'];
+			if( !in_array($row, $resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['rowspan']) )
+				$resultado['solicitantes'][ $this->subdirecciones[$siglas] ]['rowspan'][] = $row;
+
+		}
+
+		Funciones::imprimeJson($resultado);
+
+	}
+
 
 }

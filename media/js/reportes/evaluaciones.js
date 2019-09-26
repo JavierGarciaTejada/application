@@ -42,6 +42,39 @@ $(function(){
     }
 
 
+    var getExistenteSolicitante = function(){
+        var filtros = {
+            proceso: ['a.fl', '=', '0000-00-00 00:00:00', 'string'],
+            nuevo: ['a.pd', '<>', '1', '']
+        };
+        var dataGet = { filtros: filtros };
+        getJson(e.url + "ExistenteSolicitante", dataGet, function(data){
+
+            console.log(data)
+            $.each(data.table, function(i, v){
+
+                var tr = $("<tr>");
+                tr.append( $("<td>").html(i) );
+                tr.append( $("<td>").html(data.totales[i]) );
+
+                var txt = "";
+                $.each(v, function(ind, val){
+                    txt += ind +" - "+ v[ind].length + "<br> ";
+                })
+                tr.append( $("<td>").html(txt) );
+                // sumaSolicitante += val[inda].length;
+                // tr.append( $("<td>").html( val[inda].length ).addClass('text-center') )
+                $("#table-existente-sol tbody").append( tr[0].outerHTML );
+                
+            })
+
+            $("#total_existente_sol").text(data.total_general)
+            // $("#total_general_sol").text( data.total_general )
+
+        });
+    }
+
+
     var getEvaluacionesSolicitante = function(){
         var filtros = {
             proceso: ['a.fl', '=', '0000-00-00 00:00:00', 'string'],
@@ -142,7 +175,7 @@ $(function(){
     getEvaluacionesProceso();
     getEvaluacionesSolicitante();
     getEvaluacionesGeneral();
-
+    getExistenteSolicitante();
 
 
 })
