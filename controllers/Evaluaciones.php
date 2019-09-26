@@ -266,8 +266,12 @@ class Evaluaciones
 
 		$values = array_merge($e, $l);
 		$diasLimite = $this->asignaTiempoLiberacion($values);
+
 		$values['dl'] = $diasLimite;
 		$values['ft'] = date('Y-m-d', strtotime( $values['fs']."+ $diasLimite days"  ) );
+
+		$values['pe'] = ( isset($values['pe']) ) ? $values['pe'] : 0 ;
+		$values['spe'] = ( isset($values['spe']) ) ? $values['spe'] : 0 ;
 		
 		$update = EvaluacionesDAO::EditarEvaluacionProceso($values);
 		Funciones::imprimeJson($update);
