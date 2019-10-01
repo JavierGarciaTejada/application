@@ -1,0 +1,66 @@
+<div class="row" id="row-table-proyecto">
+
+	<div class="col-md-4 col-md-offset-4 col-sm-12">
+		<table class="table table-striped" id="table-proyecto">
+			<thead class="text-capitalize">
+				<tr class="text-12">
+					<th>Operacion</th>
+					<th>ID</th>
+					<th>Proyecto Asociado</th>
+				</tr>
+			</thead>
+			<tbody class="text-12">
+				
+			</tbody>
+			<tfoot>
+	            <tr>
+					<th>Operacion</th>
+					<th>ID</th>
+					<th>Proyecto Asociado</th>
+	            </tr>
+	        </tfoot>
+		</table>
+	</div>
+
+	<!-- Modal Editar-->
+	<div class="col-sm-12">
+		<div class="modal fade" id="modal-proyecto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header bg-primary">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-head-title"></h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<form id="form-proyecto">
+								<input type="hidden" id="ix" name="ix">
+								<input type="hidden" id="id" name="id">
+								
+								<div class="form-group col-sm-12 col-md-12">
+								    <label for="no">Proyecto Asociado</label>
+								    <input type="text" class="form-control input-sm" name="no" id="no">
+								</div>
+								<div class="form-group col-sm-12 col-md-12">
+								    <label for="sx">Estatus</label>
+								    <select name="sx" id="sx" class="form-control input-sm">
+								    	<option value="0">Activo</option>
+								    	<option value="1">Inactivo</option>
+								    </select>
+                                </div>
+                                
+
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btn-guardar-pro">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
