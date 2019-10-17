@@ -329,39 +329,39 @@ class Evaluaciones
 			//prueba de concepto
 			case '719056262954161': $diasLimite = 30; break;
 			//especificaciones
-			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
+			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); break;
 			//Caracterizaciones, Interoperabilidad, Equipos, Plataformas, Servicio, Software
 			case '719056262954153': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			case '719056262954154': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			case '719056262954155': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			case '719056262954157': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			case '719056262954158': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			case '719056262954159': 
-				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 60, 30); 
+				if( !in_array($data['te'], $modemOntAp) ) $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 45, 30); 
 				else $equipo = true;
 				break;
 			//especificaciones
-			case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
+			// case '719056262954164': $diasLimite = $this->ProyectoNuevo($data, "219056265840691", 90, 30); break;
 			
 			default:
 				//materiales
 				if( $data['me'] == '831264706543203' ){
-					$diasLimite = $this->ProyectoNuevo($data, "219056265840694", 15, 60); break;
+					$diasLimite = $this->ProyectoNuevo($data, "219056265840694", 15, 45); break;
 				}
 		}
 
