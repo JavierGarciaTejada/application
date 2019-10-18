@@ -77,7 +77,7 @@ class Reportes
 		$this->sumaPorPeriodo($intervalos['especial']);
 
 		$intervalos['producto'] = FuncionesEvaluacion::IntervaloProductoNuevo($evaluaciones);
-		$this->sumaPorPeriodo($intervalos['nuevo']);
+		$this->sumaPorPeriodo($intervalos['producto']);
 
 		$intervalos['docs'] = FuncionesEvaluacion::IntervaloDocumentosFoas($evaluaciones);
 		$this->sumaPorPeriodo($intervalos['docs']);
