@@ -1,0 +1,132 @@
+<div class="row" id="">
+	
+	<div id="div-inventario" class="col-sm-12">
+		
+		<table class="table table-striped table-condensed text-12" id="table-inventario">
+			<thead>
+				<tr>
+					<th>Actualizar</th>
+					<th>Red</th>
+					<th>Equipo</th>
+					<th>Tecnología</th>
+					<th>Proveedor</th>
+					<th>Modelo de Equipo</th>
+					<th>Gestor</th>
+					<th>Versión de Gestor</th>
+					<th>Versión de Equipo en Producción</th>
+					<th>Cantidad de equipos con la Versión en Producción</th>
+					<th>Última Versión Liberada</th>
+					<th>Cantidad de Equipos Actualizados a la última Versión</th>
+					<th>Porcentaje de Avance de Actualización de Versión</th>
+					<th>Cantidad de Equipos instalados en la Red</th>
+					<th>Problemas que Soluciona Ultima Versión</th>
+					<th>lineas</th>
+					<th>usuarios</th>
+					<th>troncales</th>
+				</tr>
+			</thead>
+		</table>
+		
+	</div>
+
+</div>
+
+<div class="col-sm-12">
+	<div class="modal fade" id="modal-inv-equipos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="modal-head-title">Inventario</h4>
+				</div>
+				<?php $anio = date('Y'); ?>
+				<div class="modal-body">
+					<div class="row">
+						<form id="form-inv-equipos">
+							<input type="hidden" id="id" name="id">
+
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="red">Red</label>
+							    <!-- <input type="text" class="form-control input-sm" name="gerencia" id="gerencia"> -->
+							    <select  class="form-control input-sm" name="red" id="red"></select>
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="equipo">Equipo</label>
+							    <!-- <input type="text" class="form-control input-sm" name="equipo" id="equipo"> -->
+							    <select  class="form-control input-sm" name="equipo" id="equipo"></select>
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="tecnologia">Tecnología</label>
+							    <input type="text" class="form-control input-sm" name="tecnologia" id="tecnologia">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="proveedor">Proveedor</label>
+							    <!-- <input type="text" class="form-control input-sm" name="proveedor" id="proveedor"> -->
+							    <select class="form-control input-sm" name="proveedor" id="proveedor"></select>
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="modelo_equipo">Modelo Equipo</label>
+							    <input type="text" class="form-control input-sm" name="modelo_equipo" id="modelo_equipo">
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="gestor">Gestor</label>
+							    <input type="text" class="form-control input-sm" name="gestor" id="gestor">
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="version_gestor">Versión Gestor</label>
+							    <input type="text" class="form-control input-sm" name="version_gestor" id="version_gestor">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="version_eq_prod">Versión Equipo Prod.</label>
+							    <input type="text" class="form-control input-sm" name="version_eq_prod" id="version_eq_prod">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="cant_eq_ver_prod">Equipos con Ult. Ver. en Prod.</label>
+							    <input type="text" class="form-control input-sm" name="cant_eq_ver_prod" id="cant_eq_ver_prod">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="ultima_ver_lib">Ultima Ver. Liberada</label>
+							    <input type="text" class="form-control input-sm" name="ultima_ver_lib" id="ultima_ver_lib">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="cant_eq_act_ult_ver">Equipos Act. Ult. Ver.</label>
+							    <input type="text" class="form-control input-sm" name="cant_eq_act_ult_ver" id="cant_eq_act_ult_ver">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="porcentaje_eq_act">Porcentaje</label>
+							    <input type="text" class="form-control input-sm" name="porcentaje_eq_act" id="porcentaje_eq_act">
+							</div>
+							<div class="form-group col-sm-12 col-md-3">
+							    <label for="cant_eq_inst_red">Cantidad Instalados Total</label>
+							    <input type="text" class="form-control input-sm" name="cant_eq_inst_red" id="cant_eq_inst_red">
+							</div>
+
+							<div class="form-group col-sm-12 col-md-6">
+							    <label for="prob_sol_ult_ver">Problemas que Soluciona Ult. Versión</label>
+							    <textarea class="form-control input-sm" name="prob_sol_ult_ver" id="prob_sol_ult_ver" cols="10" rows="1"></textarea>
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="lineas">Lineas</label>
+							    <input type="text" class="form-control input-sm procesamiento" name="lineas" id="lineas" readonly="readonly">
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="usuarios">Usuarios</label>
+							    <input type="text" class="form-control input-sm procesamiento" name="usuarios" id="usuarios" readonly="readonly">
+							</div>
+							<div class="form-group col-sm-12 col-md-2">
+							    <label for="troncales">Troncales</label>
+							    <input type="text" class="form-control input-sm procesamiento" name="troncales" id="troncales" readonly="readonly">
+							</div>
+
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btn-guardar-inv">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
