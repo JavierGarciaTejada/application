@@ -136,12 +136,14 @@ $(function(){
                 tr.append( $("<td>").html(v.no) )
                 tr.append( $("<td>").html(v.proveedor) )
                 tr.append( $("<td>").html(v.etapa) )
-                tr.append( $("<td>").html(v.f_com) )
-                tr.append( $("<td>").html(v.ob) )
-                tr.append( $("<td>").html(v.solicitante_sub) )
-                tr.append( $("<td>").html(v.producto) )
+                
                 tr.append( $("<td>").html(v.fs) )
                 tr.append( $("<td>").html(v.dias_t) )
+                tr.append( $("<td>").html(v.solicitante_sub) )
+
+                tr.append( $("<td>").html(v.f_com) )
+                tr.append( $("<td>").html(v.ob) )
+                tr.append( $("<td>").html(v.producto) )
                 $("#table-general tbody").append(tr[0].outerHTML)
                 item.push( tr[0].outerHTML );
                 ind++;
