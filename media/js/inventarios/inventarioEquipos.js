@@ -49,8 +49,8 @@ $(function(){
         $(this).html( '<input type="text" class="form-control input-sm" />' );
  
         $( 'input', this ).on( 'keyup change', function () {
-            if ( tableEvaluaciones.column(i).search() !== this.value ) {
-                tableEvaluaciones
+            if ( tableInventario.column(i).search() !== this.value ) {
+                tableInventario
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -67,7 +67,7 @@ $(function(){
 		"scrollCollapse" : true,
 		"orderCellsTop": true,
         "fixedHeader": true,
-        "searching": false,
+        // "searching": false,
 		"ajax" : {
 			"url" : e.url + "getInventarioGeneral/",
 			"type" : "GET"
