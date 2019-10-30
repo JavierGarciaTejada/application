@@ -144,6 +144,7 @@ $(function(){
                 tr.append( $("<td>").html(v.f_com) )
                 tr.append( $("<td>").html(v.ob) )
                 tr.append( $("<td>").html(v.producto) )
+                tr.append( $("<td>").html(v.prod_ex) )
                 $("#table-general tbody").append(tr[0].outerHTML)
                 item.push( tr[0].outerHTML );
                 ind++;
