@@ -131,7 +131,8 @@ $(function(){
 				"createdCell" : function( td, data ) {
 
 					var botones = [];
-					botones.push( '<button class="btn btn-sm btn-info modificar-inv" id='+ data.id +' title="Actualizar Registro"><i class="fa fa-edit" aria-hidden="true"></i></button>' );
+					if( data.gerencia == $("#siglas").val().toUpperCase() )
+						botones.push( '<button class="btn btn-sm btn-info modificar-inv" id='+ data.id +' title="Actualizar Registro"><i class="fa fa-edit" aria-hidden="true"></i></button>' );
 					$( td ).html( '' + botones.join(' ') + '' );
 				}
 			},
