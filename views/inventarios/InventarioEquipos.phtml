@@ -8,6 +8,9 @@
 					<th>Actualizar</th>
 					<th>Red</th>
 					<th>Equipo</th>
+
+					<th>Clasificación CMDB</th>
+
 					<th>Tecnología</th>
 					<th>Proveedor</th>
 					<th>Modelo de Equipo</th>
@@ -19,10 +22,17 @@
 					<th>Cantidad de Equipos Actualizados a la última Versión</th>
 					<th>Porcentaje de Avance de Actualización de Versión</th>
 					<th>Cantidad de Equipos instalados en la Red</th>
-					<th>Problemas que Soluciona Ultima Versión</th>
+					<th>Mejoras que Provee Ultima Versión</th>
+
+					<th>Consideraciones Actualización Ultima Versión</th>
+
 					<th>lineas</th>
 					<th>usuarios</th>
 					<th>troncales</th>
+
+					<th>Equipos que Gestionan</th>
+					<th>Versión de los equipos</th>
+					<th>Observaciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,8 +69,15 @@
 							    <select  class="form-control input-sm" name="equipo" id="equipo"></select>
 							</div>
 							<div class="form-group col-sm-12 col-md-3">
-							    <label for="tecnologia">Tecnología</label>
-							    <input type="text" class="form-control input-sm" name="tecnologia" id="tecnologia">
+
+								<label for="tecnologia">Tecnología</label>
+								<div class="input-group">
+									<span class="input-group-btn">
+										<button class="btn btn-default btn-sm" id="btn-tecnologia" type="button">Seleccionar</button>
+									</span>
+									<input type="text" class="form-control input-sm" name="tecnologia" id="tecnologia" readonly="readonly">
+								</div>
+							    
 							</div>
 							<div class="form-group col-sm-12 col-md-3">
 							    <label for="proveedor">Proveedor</label>
@@ -127,6 +144,32 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 						<button type="button" class="btn btn-primary" id="btn-guardar-inv">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-sm-12">
+	<div class="modal fade" id="modal-inv-tecnologia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="modal-head-title">Tecnología</h4>
+				</div>
+				<?php $anio = date('Y'); ?>
+				<div class="modal-body">
+					<div class="row">
+						<form id="form-inv-tecnologia">
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="btn-selec-tec">Seleccionar</button>
 					</div>
 				</div>
 			</div>

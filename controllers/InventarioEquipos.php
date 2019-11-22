@@ -71,7 +71,6 @@ class InventarioEquipos
 		Funciones::imprimeJson($proveedor);
 	}
 
-
 	public function getInventarioGeneral(){
 		$inventario = InventarioEquiposDAO::InventarioGeneral();
 		Funciones::imprimeJson($inventario);
@@ -87,6 +86,11 @@ class InventarioEquipos
 		$data = Funciones::getDataPost();
 		$inventario = InventarioEquiposDAO::ModificarInventario($data);
 		Funciones::imprimeJson($inventario);
+	}
+
+	public function getTecnologia(){
+		$tecnologia = InventarioEquiposDAO::Tecnologia();
+		Funciones::imprimeJson($tecnologia);
 	}
 
 }

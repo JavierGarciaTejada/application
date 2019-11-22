@@ -49,6 +49,12 @@ class InventarioEquiposDAO
 		return $filas;
 	}
 
+	public static function Tecnologia(){
+		$sql = "SELECT * FROM ct_inv_tec WHERE sx = 0";
+		$filas['data'] = self::executeQuery($sql);
+		$filas['sql'] = $sql;
+		return $filas;
+	}
 
 	public static function InventarioGeneral(){
 
@@ -76,7 +82,7 @@ class InventarioEquiposDAO
 			ultima_ver_lib = :ultima_ver_lib,
 			cant_eq_act_ult_ver = :cant_eq_act_ult_ver,
 			porcentaje_eq_act = :porcentaje_eq_act,
-			cant_eq_inst_red = :cant_eq_inst_red
+			cant_eq_inst_red = :cant_eq_inst_red,
 			prob_sol_ult_ver = :prob_sol_ult_ver,
 			lineas = :lineas,
 			usuarios = :usuarios,
@@ -131,7 +137,7 @@ class InventarioEquiposDAO
 			ultima_ver_lib = :ultima_ver_lib,
 			cant_eq_act_ult_ver = :cant_eq_act_ult_ver,
 			porcentaje_eq_act = :porcentaje_eq_act,
-			cant_eq_inst_red = :cant_eq_inst_red 
+			cant_eq_inst_red = :cant_eq_inst_red,
 			prob_sol_ult_ver = :prob_sol_ult_ver,
 			lineas = :lineas,
 			usuarios = :usuarios,

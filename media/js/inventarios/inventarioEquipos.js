@@ -1,7 +1,8 @@
 $(function(){
 	
 	var e = {
-		url: path + "index.php/InventarioEquipos/"
+		url: path + "index.php/InventarioEquipos/",
+		tecItems: null
 	}
 
 	var setValoresFormulario = function(row, formId){
@@ -21,7 +22,7 @@ $(function(){
 	}
 
 	$("#red").change(function(){
-		var r = ( $(this).val() == "Procesamiento" ) ? 3 : 0;
+		var r = ( $(this).val() == "PROCESAMIENTO" ) ? 3 : 0;
 		$(".procesamiento").attr('readonly', 'readonly');
 		if( r == 3)
 			$(".procesamiento").attr('readonly', false);
@@ -42,6 +43,35 @@ $(function(){
 	setRed();
 	setEquipos();
 	setProveedores();
+
+
+	//BTN SELECCIONAR TECNOLOGIA 
+	$("#btn-tecnologia").click(function(){
+
+		e.tecItems = $("#tecnologia").val().split(',');
+		getJson(e.url + "getTecnologia", null, function(a){
+			var items = [];
+			$.each(a.data, function(i, v){
+				var chk = ( e.tecItems.includes(v.no) ) ? 'checked' : '';
+				items.push( '<div class="col-sm-3"><label><input type="checkbox" class="chk_tec" '+chk+' id="chk_'+v.no+'" value="'+v.no+'"> '+v.no+'</label></div>' );
+			})
+			$("#form-inv-tecnologia").html(items.join(''));
+		});
+		$("#modal-inv-tecnologia").modal('show');
+
+	});
+
+	$("#btn-selec-tec").click(function(){
+		e.tecItems = []
+		$(".chk_tec").each(function(i, v){
+			if( $(this).is(":checked") )
+				e.tecItems.push($(this).val())
+		})
+		$("#tecnologia").val( e.tecItems.join(',') );
+		$("#modal-inv-tecnologia").modal('hide');
+	})
+
+
 
 	$('#table-inventario thead tr').clone(true).appendTo( '#table-inventario thead' );
     $('#table-inventario thead tr:eq(1) th').each( function (i) {
@@ -107,6 +137,7 @@ $(function(){
 			},
 			{ "data" : "red"},
 			{ "data" : "equipo"},
+			{ "data" : "clasificacion_cmdb"},
 			{ "data" : "tecnologia"},
 			{ "data" : "proveedor"},
 			{ "data" : "modelo_equipo"},
@@ -119,9 +150,13 @@ $(function(){
 			{ "data" : "porcentaje_eq_act"},
 			{ "data" : "cant_eq_inst_red"},
 			{ "data" : "prob_sol_ult_ver"},
+			{ "data" : "cons_actualizar"},
 			{ "data" : "lineas"},
 			{ "data" : "usuarios"},
-			{ "data" : "troncales"}
+			{ "data" : "troncales"},
+			{ "data" : "equipos_gestionan"},
+			{ "data" : "version_eq_gestion"},
+			{ "data" : "observaciones"}
 			
 		]
 	} );
@@ -167,184 +202,6 @@ $(function(){
 		$("#modal-inv-equipos").modal('show');
 	})
 
-	//BOTON CANCELAR
-	// $(document).on('click', '.estado', function(){
-
- //    	var ope = $(this).attr('data-ref');
- //    	var mov = $(this).attr('data-ope'); 
-
- //    	var msg = "¿Está seguro de "+mov+" el soporte?";
- //    	if( confirm(msg) ){
-
- //    		var dataRow = tableInventario.row( $(this).parents('tr') ).data();
- //    		setPost(e.url + ope, dataRow, function(response){
-	// 			console.log(response);
-	// 			if( response === true ){
-	// 				mensaje = "Se realizó correctamente.";
-	// 				clase = "alertify-success";
-	// 				$("#modal-evaluacion").modal('hide');
-	// 				tableInventario.ajax.reload();
-	// 			}else{
-	// 				mensaje = "Ocurrio un error.";
-	// 				clase = "alertify-danger";
-	// 			}
-
-	// 			alertMessage(mensaje, clase);
-	// 		});
-
- //    	}
-
-	// })
-
-	// $(document).on('click', '.finalizar', function(){
-
-	// 	$("#form-finalizar")[0].reset();
-	// 	$("#id_rep_fin").val( $(this).attr('id') );
-	// 	var dataRow = tableInventario.row( $(this).parents('tr') ).data();
-	// 	$("#fecha_soporte_upd").val( dataRow.fecha_soporte );
-	// 	$("#modal-finalizar").modal('show');
-
-	// })
-
-	// $("#btn-finalizar").click(function(){
-
-	// 	var validator = $('#form-finalizar').data('bootstrapValidator');
- //        validator.validate();
- //        if (!validator.isValid())
-	// 		return false;
-
-	// 	var serial = $("#form-finalizar").serialize();
-	// 	setPost(e.url + 'finalizarReporte', serial, function(response){
-	// 		if( response === true ){
-	// 			mensaje = "Se realizó correctamente.";
-	// 			clase = "alertify-success";
-	// 			$("#modal-evaluacion").modal('hide');
-	// 			tableInventario.ajax.reload();
-	// 		}else{
-	// 			mensaje = "Ocurrio un error.";
-	// 			clase = "alertify-danger";
-	// 		}
-
-	// 		alertMessage(mensaje, clase);
-	// 	});
-
-	// })
-
-
-	// //BOTON ESCALADO
-	// $(document).on('click', '.escalado', function(){
- //    	$("#form-escalado").data('bootstrapValidator').resetForm();
-	// 	setValoresFormulario( $(this), "#form-escalado" );
-	// 	$("#id_rep_escalado").val( $(this).attr('id') );
-	// 	$("#modal-escalado").modal('show');
-	// })
-
-	// $("#btn-escalado").click(function(){
-
-	// 	var validator = $('#form-escalado').data('bootstrapValidator');
- //        validator.validate();
- //        if (!validator.isValid())
-	// 		return false;
-
-	// 	var serial = $("#form-escalado").serialize();
-	// 	setPost(e.url + 'escalarReporte', serial, function(response){
-	// 		if( response === true ){
-	// 			mensaje = "Se realizó correctamente.";
-	// 			clase = "alertify-success";
-	// 			$("#modal-evaluacion").modal('hide');
-	// 			tableInventario.ajax.reload();
-	// 		}else{
-	// 			mensaje = "Ocurrio un error.";
-	// 			clase = "alertify-danger";
-	// 		}
-
-	// 		alertMessage(mensaje, clase);
-	// 	});
-
-	// })
-
-
-	// //BOTON ARCHIVOS
-	// $(document).on('click', '.archivos', function(){
-
-	// 	$("#id_rep").val( $(this).attr('id') );
-	// 	$(".messages").hide();
-	// 	setListadoAnexos($(this).attr('id'));
- //    	$("#modal-anexo").modal('show');
-
-	// })
-
-	// //ANEXO DE EVALUACION
-	// $(".messages").hide();
-	// function showMessage(message){
-	// 	$(".messages").html("").show();
-	// 	$(".messages").html(message);
-	// }
-
- //    $( document ).on('change','#file-soporte' , function(){
- //        var file = $("#file-soporte")[0].files[0];
- //        var fileName = file.name;
- //        showMessage("<span class='info'>Archivo para subir: <strong>"+fileName+"</strong></span>");
-	// });
-
-	// var registraArchivoBD = function(result){
-
-	// 	var data = {
-	// 		no: result.nombre,
-	// 		no_generado: result.nombreGenerado,
-	// 		rx: $("#id_rep").val(),
-	// 		tp: 'liberacion'
-	// 	}
-	// 	setPost(e.url + "registaAnexo", data, function(response){
-	// 		console.log(response);
-	// 		setListadoAnexos($("#id_rep").val());
-	// 	});
-  
-	// }
-	
-	// $('#btn-file').click(function(ev){
-	// 	ev.preventDefault();
-
-	// 	//valida si se cargo archivo para enviar
-	// 	if( $("#file-soporte")[0].files[0] == undefined )
-	// 		return 0;
-
-	// 	//información del formulario
-	// 	var formData = new FormData($(".formulario")[0]);
-	// 	var message = ""; 
-
-	// 	//hacemos la petición ajax  
-	// 	$.ajax({
-	// 		url: e.url + "cargaAnexosReporte", method: 'POST', dataType: 'json',
-	// 		data: formData,
-	// 		cache: false,
-	// 		contentType: false,
-	// 		processData: false,
-	// 		beforeSend: function(){
-
-	// 			$("#btn-file").prop('disabled', true);
-	// 			showMessage(message);
-				
-	// 		},
-
-	// 		success: function(data){
-
-	// 			if( data.estatus === true ) registraArchivoBD( data );
-				
-	// 			$(".formulario")[0].reset();
-	// 			message = $("<span style='font-size: 12px' class='label label-success'>"+ data.mensaje +"</span>");
-	// 			showMessage(message);
-	// 			$("#btn-file").prop('disabled', false);
-
-	// 		},
-	// 		//si ha ocurrido un error
-	// 		error: function(){
-	// 			message = $("<span class='error'>Ha ocurrido un error.</span>");
-	// 			showMessage(message);
-	// 		}
-	// 	});
-		
-	// })
 
 
 });
