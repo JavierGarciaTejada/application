@@ -110,15 +110,15 @@ class FuncionesEvaluacion
   public static function IntervaloProductoNuevo($evaluaciones){
 
     $nuevo = array();
-    $nuevo['1-10'] = 0;
-    $nuevo['11-20'] = 0;
-    $nuevo['21-30'] = 0;
-    $nuevo['30'] = 0;
+    $nuevo['1-15'] = 0;
+    $nuevo['16-30'] = 0;
+    $nuevo['31-45'] = 0;
+    $nuevo['45'] = 0;
 
-    self::$general['nuevo-1-10'] = array();
-    self::$general['nuevo-11-20'] = array();
-    self::$general['nuevo-21-30'] = array();
-    self::$general['nuevo-30'] = array();
+    self::$general['nuevo-1-15'] = array();
+    self::$general['nuevo-16-30'] = array();
+    self::$general['nuevo-31-45'] = array();
+    self::$general['nuevo-45'] = array();
     self::$general['nuevo-total'] = array();
 
     foreach ($evaluaciones['data'] as $key => $item) {
@@ -129,22 +129,22 @@ class FuncionesEvaluacion
 
           self::$ids[] = $item['id'];
           self::$general['nuevo-total'][] = $item['id'];
-          if( (int)$item['dif'] <= 10 ){
-            $nuevo['1-10'] += 1;
-            self::$general['nuevo-1-10'][] = $item['id'];
-            self::$general['total-1'][] = array( $item['id'], 30);
-          }else if( (int)$item['dif'] <= 20 ){
-            $nuevo['11-20'] += 1;
-            self::$general['nuevo-11-20'][] = $item['id'];
-            self::$general['total-2'][] = array( $item['id'], 30);
+          if( (int)$item['dif'] <= 15 ){
+            $nuevo['1-15'] += 1;
+            self::$general['nuevo-1-15'][] = $item['id'];
+            self::$general['total-1'][] = array( $item['id'], 45);
           }else if( (int)$item['dif'] <= 30 ){
-            $nuevo['21-30'] += 1;
-            self::$general['nuevo-21-30'][] = $item['id'];
-            self::$general['total-3'][] = array( $item['id'], 30);
-          }else if( (int)$item['dif'] > 30 ){
-            $nuevo['30'] += 1;
-            self::$general['nuevo-30'][] = $item['id'];
-            self::$general['total-4'][] = array( $item['id'], 30);
+            $nuevo['16-30'] += 1;
+            self::$general['nuevo-16-30'][] = $item['id'];
+            self::$general['total-2'][] = array( $item['id'], 45);
+          }else if( (int)$item['dif'] <= 45 ){
+            $nuevo['31-45'] += 1;
+            self::$general['nuevo-31-45'][] = $item['id'];
+            self::$general['total-3'][] = array( $item['id'], 45);
+          }else if( (int)$item['dif'] > 45 ){
+            $nuevo['45'] += 1;
+            self::$general['nuevo-45'][] = $item['id'];
+            self::$general['total-4'][] = array( $item['id'], 45);
           }
 
         }
