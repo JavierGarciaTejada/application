@@ -65,6 +65,27 @@ class InventarioEquiposDAO
 
 	}
 
+	public static function InventarioRed(){
+
+		$sql = "SELECT red, equipo, FORMAT(SUM( cant_eq_inst_red ), 0) conteo FROM inv_equipos_red GROUP BY equipo ORDER BY red,equipo";
+		$inventario = self::executeQuery($sql);
+		foreach ($inventario as $key => $value) {
+			$filas['data'][$value['red']][] = $value;
+		}
+		$filas['sql'] = $sql;
+		return $filas;
+
+	}
+
+	public static function InventarioRedTotales(){
+
+		$sql = "SELECT red, equipo, SUM( cant_eq_inst_red ) total FROM inv_equipos_red WHERE red IS NOT NULL GROUP BY red ORDER BY red,equipo";
+		$filas['data'] = self::executeQuery($sql);
+		$filas['sql'] = $sql;
+		return $filas;
+
+	}
+
 	public static function RegistraInventario($data){
 
 		try{
