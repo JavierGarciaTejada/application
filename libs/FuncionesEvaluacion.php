@@ -14,7 +14,7 @@ class FuncionesEvaluacion
     $direcciones = array(
         '119056262939066' => array(
             'to' => array('smuratal@telmex.com'),
-            'cp' => array('jvgomez@telmexomsasi.com','rmerlos@telmex.com', 'ovguerre@telmex.com', 'rjimener@telmex.com', 'uireyes@telmex.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
+            'cp' => array('jvgomez@telmexomsasi.com','rmerlos@telmex.com', 'ovguerre@telmex.com', 'rjimener@telmex.com', 'uireyes@telmexomsasi.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
             'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
         ),
         '119056262939067' => array(

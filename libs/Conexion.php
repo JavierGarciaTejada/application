@@ -95,6 +95,7 @@ class Conexion
 	{
 		try
 		{
+			self::$_connect->exec("SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION'");
 			empty(self::$config['charset']) ? '' : self::$_connect->exec("SET CHARACTER SET ". self::$config['charset']);
 			empty(self::$config['interactive_timeout']) ? '' : self::$_connect->exec("SET interactive_timeout = ". self::$config['interactive_timeout']);
 			empty(self::$config['wait_timeout']) ? '' : self::$_connect->exec("SET wait_timeout = ". self::$config['wait_timeout']);
