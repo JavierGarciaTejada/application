@@ -11,6 +11,14 @@ class FuncionesEvaluacion
 
   public static function RemitenteGerencia($gerenciaIX){
 
+    if( $gerenciaIX === true ){
+      return array(
+        'to' => array('fgtejada@telmex.com'),
+        'cp' => array(),
+        'bc' => array()
+      );
+    }
+
     $direcciones = array(
         '119056262939066' => array(
             'to' => array('smuratal@telmex.com'),
@@ -18,9 +26,6 @@ class FuncionesEvaluacion
             'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
         ),
         '119056262939067' => array(
-            // 'to' => array('fgtejada@telmex.com'),
-            // 'cp' => array(),
-            // 'bc' => array()
             'to' => array('rdvences@telmexomsasi.com'),
             'cp' => array('jcmagana@serviciostmx.com', 'cablanco@telmexomsasi.com', 'ovgarcia@telmexomsasi.com', 'zvazquep@telmex.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
             'bc' => array('fgtejada@telmex.com')

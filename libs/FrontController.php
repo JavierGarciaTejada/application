@@ -9,11 +9,10 @@ class FrontController
 	
 	private static function loadClassCore()
 	{
+		require_once PROJECTPATH .'/libs/Funciones.php';
 	    require_once PROJECTPATH .'/libs/Conexion.php';
 	    require_once PROJECTPATH .'/libs/View.php';
-	    require_once PROJECTPATH .'/libs/Funciones.php';
 	    require_once PROJECTPATH .'/libs/FuncionesEvaluacion.php';
-	    // require_once PROJECTPATH .'/libs/Validaciones.php';
 	    require_once PROJECTPATH .'/libs/Log.php';
 	    require_once PROJECTPATH .'/libs/GeneradorIx.php';
 	    require_once PROJECTPATH .'/libs/Session.php';

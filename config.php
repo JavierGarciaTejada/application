@@ -2,7 +2,7 @@
 
 Config::$configuration = Config::singleton();
 
-Config::$configuration->set('file_config_db', PROJECTPATH .'/libs/config/db_configuration.ini');
+Config::$configuration->set('file_config', PROJECTPATH .'/libs/config/env.ini');
 Config::$configuration->set('anexos_path', PROJECTPATH .'/anexos/');
 
 Config::$configuration->set('controllersFolder', PROJECTPATH .'/controllers/');

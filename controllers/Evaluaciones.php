@@ -103,8 +103,9 @@ class Evaluaciones
 		$subject = " Nuevo registro de solicitud de evaluación - ".$el;
 		$body = $plantilla;
 		$nameMail = "Sistema Automático de Administración de Evaluaciones";
-		// $al = "119056262939067"; //PRUEBA PARA ENVIAR CORREO
-		$directorio = FuncionesEvaluacion::RemitenteGerencia($al); // array('javigar31@gmail.com', 'fgtejada@telmex.com');
+
+		$gerenciaIX = ( isset($data['test']) ) ? true : $al;
+		$directorio = FuncionesEvaluacion::RemitenteGerencia($gerenciaIX);
 		$mail = Funciones::sendMailEvaluciones($subject, $body, $nameMail, $directorio['to'], $directorio['cp'], $directorio['bc']);
 		Funciones::imprimeJson($mail);
 	}

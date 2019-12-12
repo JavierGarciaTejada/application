@@ -22,13 +22,13 @@ class Conexion
 	{
 		try
 		{
-			$this->parseIniFileConf();
-			$this->_type = isset(self::$config['type']) ? self::$config['type'] : '';
-			$this->_host = isset(self::$config['host']) ? self::$config['host'] : '';
-			$this->_port = isset(self::$config['port']) ? self::$config['port'] : '';
-			self::$_base = isset(self::$_base) ? self::$_base : self::$config['db'];
-			$this->_user = isset(self::$config['user']) ? self::$config['user'] : '';
-			$this->_pass = isset(self::$config['pass']) ? self::$config['pass'] : '';
+			self::$config = Funciones::parseIniFileConf();
+			$this->_type = isset(self::$config['DB_TYPE']) ? self::$config['DB_TYPE'] : '';
+			$this->_host = isset(self::$config['DB_HOST']) ? self::$config['DB_HOST'] : '';
+			$this->_port = isset(self::$config['DB_PORT']) ? self::$config['DB_PORT'] : '';
+			self::$_base = isset(self::$_base) ? self::$_base : self::$config['DB_NAME'];
+			$this->_user = isset(self::$config['DB_USER']) ? self::$config['DB_USER'] : '';
+			$this->_pass = isset(self::$config['DB_PASS']) ? self::$config['DB_PASS'] : '';
 
 			self::$_connect = new PDO(
 					$this->_type .':host='. $this->_host .';port='. $this->_port .';dbname='. self::$_base, 
@@ -72,13 +72,13 @@ class Conexion
 	{
 		try
 		{
-			self::parseIniFileConf();
-			$_type = empty($type) ? self::$config['type'] : '';
-			$_host = empty($host) ? self::$config['host'] : $host;
-			$_port = empty($port) ? self::$config['port'] : $port;
-			$_base = empty($base) ? self::$config['db'] : $base;
-			$_user = empty($user) ? self::$config['user'] : $user;
-			$_pass = empty($pass) ? self::$config['pass'] : $pass;
+			self::$config = Funciones::parseIniFileConf();
+			$_type = empty($type) ? self::$config['DB_TYPE'] : '';
+			$_host = empty($host) ? self::$config['DB_HOST'] : $host;
+			$_port = empty($port) ? self::$config['DB_PORT'] : $port;
+			$_base = empty($base) ? self::$config['DB_NAME'] : $base;
+			$_user = empty($user) ? self::$config['DB_USER'] : $user;
+			$_pass = empty($pass) ? self::$config['DB_PASS'] : $pass;
 
 			self::$_connect = new PDO($_type .':host='. $_host .';port='. $_port .';dbname='. $_base, $_user, $_pass, array(PDO::MYSQL_ATTR_LOCAL_INFILE => 1));
 			self::$_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -96,22 +96,13 @@ class Conexion
 		try
 		{
 			self::$_connect->exec("SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION'");
-			empty(self::$config['charset']) ? '' : self::$_connect->exec("SET CHARACTER SET ". self::$config['charset']);
-			empty(self::$config['interactive_timeout']) ? '' : self::$_connect->exec("SET interactive_timeout = ". self::$config['interactive_timeout']);
-			empty(self::$config['wait_timeout']) ? '' : self::$_connect->exec("SET wait_timeout = ". self::$config['wait_timeout']);
+			empty(self::$config['CHARSET']) ? '' : self::$_connect->exec("SET CHARACTER SET ". self::$config['CHARSET']);
+			empty(self::$config['INTERACTIVE_TIMEOUT']) ? '' : self::$_connect->exec("SET interactive_timeout = ". self::$config['INTERACTIVE_TIMEOUT']);
+			empty(self::$config['WAIT_TIMEOUT']) ? '' : self::$_connect->exec("SET wait_timeout = ". self::$config['WAIT_TIMEOUT']);
 		}
 		catch(PDOException $e)
 		{
 			throw new Exception("Error al setear variables de mysql. Error!: ". $e->getMessage());
 		}
-	}
-
-	private static function parseIniFileConf()
-	{
-		if( !file_exists(Config::$configuration->get('file_config_db')) )
-		{
-			die("Archivo de configuracion de base de datos no existe.");
-		}
-		self::$config = parse_ini_file(Config::$configuration->get('file_config_db'));
 	}
 }

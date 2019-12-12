@@ -4,11 +4,19 @@ class Funciones
 {
   
   private static $object;
+  public static $env;
 
   public static function imprimeJson($json)
   {
     header("Content-Type: application/json; charset=UTF-8");
     echo json_encode($json);
+  }
+
+  public static function parseIniFileConf(){
+    if( !file_exists(Config::$configuration->get('file_config')) )
+      die("Archivo de configuracion de entorno no existe.");
+    
+    return parse_ini_file(Config::$configuration->get('file_config'));
   }
 
 
@@ -19,18 +27,14 @@ class Funciones
 
     $mail = new PHPMailer(true); // Passing `true` enables exceptions                             
     try {
+        self::$env = self::parseIniFileConf();
         //Server settings
-        $mail->SMTPDebug = 0; // Enable verbose debug output                                 
-        $mail->isSMTP(); //Set mailer to use SMTP                                      
-        //$mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
-        $mail->Host = '10.192.10.9';
-        $mail->SMTPAuth = false; // Enable SMTP authentication
-        //$mail->Username = 'saaeapi@gmail.com';
-        $mail->Username = 'SAAE@telmexomsasi.com';
-        //$mail->Password = 'Sa@3_2019';
-        $mail->Password = 'TmX.11500337';
-        // $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
-        //$mail->Port = 587; // TCP port to connect to
+        $mail->SMTPDebug = 0;                                
+        $mail->isSMTP();                                   
+        $mail->Host = self::$env['MAIL_HOST'];
+        $mail->SMTPAuth = self::$env['MAIL_AUTH'];
+        $mail->Username = self::$env['MAIL_USER'];
+        $mail->Password = self::$env['MAIL_PASS'];
         $mail->CharSet = 'UTF-8';
 
         $mail->SMTPOptions = array(
@@ -41,8 +45,8 @@ class Funciones
             )
         );
 
-        //$mail->setFrom('soplepr@gmail.com', 'Jonathan Bustos'); // Sender email and name
-        $mail->setFrom('SAAE@telmexomsasi.com', $nameMail);
+
+        $mail->setFrom(self::$env['MAIL_USER'], $nameMail);
         foreach ($arrayAddress as $key => $value) {
             $mail->addAddress($value); // Reciver email
         }
@@ -75,81 +79,7 @@ class Funciones
     }
 
   }
-  
-  
-  public static function enviaCorreoMIME($auth, $charset, $secure, $host, $port, $user, $pass, $from, $name, $subject, $altBody, $msgBody, $attachment, $address, $cc, $type, $bcc)
-  {
-    //echo "Generando mail";
-    require_once(Config::$configuration->get('nomad_mimemail'));
-    
-    $mail = new nomad_mimemail();
 
-    $mail->set_charset( (empty($charset) ? "UTF-8" : $charset) );
-    $mail->mail_from = empty($from) ? 'SICETH <frida@telmexomsasi.com>' : $from;
-
-    if( is_array($address) )
-    {
-      foreach ($address as $value)
-      {
-        $mail->add_to($value);
-      }
-    }
-    elseif( !empty($address) )
-    {
-      $mail->set_to($address);
-    }
-
-    $mail->set_subject( (emptY($subject) ? "Asunto" : $subject) );
-
-    if( $type == "text" )
-    {
-      $mail->set_text($msgBody);
-    }
-    else 
-    {
-      $mail->set_html($msgBody);
-    }
-    
-    if( is_array($cc) )
-    {
-      foreach( $cc as $value )
-      {
-        $mail->add_cc($value);
-      }
-    }
-    elseif( !empty($cc) )
-    {
-      $mail->set_cc($cc);
-    }
-    
-    if( is_array($bcc) )
-    {
-      foreach ( $bcc as $value )
-      {
-        $mail->add_bcc($value);
-      }
-    }
-    elseif( !empty($bcc) )
-    {
-      $mail->set_bcc($bcc);
-    }
-
-    $mail->set_smtp_host( (empty($host) ? 'TMXMAILHUB02.ad.intranet.telmex.com' : $host) );
-    $mail->set_smtp_auth( (empty($user) ? '' : $user), (empty($pass) ? 'Frid@2017' : $pass) );
-
-    ob_start();
-
-    if( $mail->Send() )
-    {
-      return true;
-    }
-    else
-    {
-			$output = ob_get_clean();
-			throw new ErrException($output);
-      //return false;
-    }
-  }//close enviacorreo
   
   public static function getPlantillaEmail($file, $array)
   {

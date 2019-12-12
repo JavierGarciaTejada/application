@@ -23,15 +23,14 @@ class ConexionGenerica
 
   public function __construct() 
   {
-    self::$config = parse_ini_file("config_db.ini");
-    
-    self::$_type    = isset(self::$_type)     ? self::$_type    : self::$config['type'];
-    self::$_host    = isset(self::$_host)     ? self::$_host    : self::$config['host'];
-    self::$_port    = isset(self::$_port)     ? self::$_port    : self::$config['port'];
-    self::$_base    = isset(self::$_base)     ? self::$_base    : self::$config['db'];
-    self::$_user    = isset(self::$_user)     ? self::$_user    : self::$config['user'];
-    self::$_pass    = isset(self::$_pass)     ? self::$_pass    : self::$config['pass'];
-    self::$_charset = isset(self::$_charset)  ? self::$_charset : self::$config['charset']
+    self::$config = Funciones::parseIniFileConf();
+    self::$_type    = isset(self::$_type)     ? self::$_type    : self::$config['DB_TYPE'];
+    self::$_host    = isset(self::$_host)     ? self::$_host    : self::$config['DB_HOST'];
+    self::$_port    = isset(self::$_port)     ? self::$_port    : self::$config['DB_PORT'];
+    self::$_base    = isset(self::$_base)     ? self::$_base    : self::$config['DB_NAME'];
+    self::$_user    = isset(self::$_user)     ? self::$_user    : self::$config['DB_USER'];
+    self::$_pass    = isset(self::$_pass)     ? self::$_pass    : self::$config['DB_PASS'];
+    self::$_charset = isset(self::$_charset)  ? self::$_charset : self::$config['CHARSET']
     
     try 
     {
