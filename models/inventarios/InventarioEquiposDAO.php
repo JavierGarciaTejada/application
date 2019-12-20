@@ -107,7 +107,12 @@ class InventarioEquiposDAO
 			prob_sol_ult_ver = :prob_sol_ult_ver,
 			lineas = :lineas,
 			usuarios = :usuarios,
-			troncales = :troncales";
+			troncales = :troncales,
+			plataforma = :plataforma,
+			ciclo = :ciclo,
+			estatus_por_contrato = :estatus_por_contrato,
+			vigencia = :vigencia,
+			estatus_del_contrato = :estatus_del_contrato";
 
 			Conexion::$connect = new Conexion();
 			Conexion::$query = $sql;
@@ -130,6 +135,13 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':lineas', $data['lineas']);
 			Conexion::$prepare->bindParam(':usuarios', $data['usuarios']);
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
+
+
+			Conexion::$prepare->bindParam(':plataforma', $data['plataforma']);
+			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
+			Conexion::$prepare->bindParam(':estatus_por_contrato', $data['estatus_por_contrato']);
+			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
+			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
 
 			$result = Conexion::$prepare->execute();
 
@@ -162,7 +174,12 @@ class InventarioEquiposDAO
 			prob_sol_ult_ver = :prob_sol_ult_ver,
 			lineas = :lineas,
 			usuarios = :usuarios,
-			troncales = :troncales WHERE id = :id";
+			troncales = :troncales,
+			plataforma = :plataforma,
+			ciclo = :ciclo,
+			estatus_por_contrato = :estatus_por_contrato,
+			vigencia = :vigencia,
+			estatus_del_contrato = :estatus_del_contrato WHERE id = :id";
 
 			Conexion::$connect = new Conexion();
 			Conexion::$query = $sql;
@@ -185,6 +202,12 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':lineas', $data['lineas']);
 			Conexion::$prepare->bindParam(':usuarios', $data['usuarios']);
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
+
+			Conexion::$prepare->bindParam(':plataforma', $data['plataforma']);
+			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
+			Conexion::$prepare->bindParam(':estatus_por_contrato', $data['estatus_por_contrato']);
+			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
+			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
 
 			Conexion::$prepare->bindParam(':id', $data['id']);
 

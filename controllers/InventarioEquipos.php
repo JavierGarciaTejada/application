@@ -52,6 +52,7 @@ class InventarioEquipos
 				'librerias/Bootstrap/bootstrapvalidator-master/dist/js/bootstrapValidator.min.js',
 				'librerias/jquery-ui-1.12.1/jquery-ui.js',
 				'librerias/moment/moment.js',
+				'js/validaciones/inventario-validation.js',
 				'js/inventarios/inventarioEquipos.js'
 			)
 		);

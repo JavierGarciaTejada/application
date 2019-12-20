@@ -157,6 +157,13 @@ $(function(){
 			{ "data" : "troncales"},
 			{ "data" : "equipos_gestionan"},
 			{ "data" : "version_eq_gestion"},
+
+			{ "data" : "plataforma"},
+			{ "data" : "ciclo"},
+			{ "data" : "estatus_por_contrato"},
+			{ "data" : "vigencia"},
+			{ "data" : "estatus_del_contrato"},
+
 			{ "data" : "observaciones"}
 			
 		]
@@ -167,10 +174,10 @@ $(function(){
 
 
 	$("#btn-guardar-inv").click(function(){
-		// var validator = $('#form-inv-equipos').data('bootstrapValidator');
-  //       validator.validate();
-  //       if (!validator.isValid())
-		// 	return false;
+		var validator = $('#form-inv-equipos').data('bootstrapValidator');
+        validator.validate();
+        if (!validator.isValid())
+			return false;
 
 		var serial = $("#form-inv-equipos").serialize();
 
@@ -198,6 +205,7 @@ $(function(){
 
 	//BOTON EDITAR
 	$(document).on('click', '.modificar-inv', function(){
+		$("#form-inv-equipos").data('bootstrapValidator').resetForm();
 		$("#form-inv-equipos")[0].reset();
 		setValoresFormulario( $(this), "#form-inv-equipos" );
 		$("#modal-inv-equipos").modal('show');
