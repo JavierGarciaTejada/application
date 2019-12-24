@@ -162,19 +162,9 @@ class Login
 	private function validatePasswd()
 	{
 		$valid_pass = $this->verifyPassword(UsuariosDAO::$_contrasena, $this->_data_user['ps']);
-		UsuariosDAO::$_login = Funciones::GetValueVar($this->_data_user['ni'], 'text');
-		/*if($this->_data_user['intentos'] <= 1)
+		UsuariosDAO::$_login = trim(strip_tags(strval($this->_data_user['ni'])));
+		if($valid_pass === false)
 		{
-			UsuariosDAO::$_status = 'Bloqueado';
-			UsuariosDAO::updateStatus();
-			throw new ErrException("Se agoto el numero de intentos, tu cuenta se ha bloqueado, contacta a un administrador para desbloquear tu cuenta.");
-		}
-		else*/if($valid_pass === false)
-		{
-			//UsuariosDAO::$_intentos = Funciones::GetValueVar(($this->_data_user['intentos'] - 1), 'int');
-			//UsuariosDAO::updateIntentos();
-			// throw new ErrException( "La contraseña es incorrecta, número de intentos restantes \"".
-			// (intval($this->_data_user['intentos']) - 1) ."\".");
 			throw new ErrException( "La contraseña es incorrecta" );
 		}
 		return true;
@@ -235,11 +225,11 @@ class Login
 		// 	$user = $exp_user[0];
 		// }
 				
-		UsuariosDAO::$_login = isset($_POST['usuario']) ? Funciones::GetValueVar($_POST['usuario'], "text") : "";
+		UsuariosDAO::$_login = isset($_POST['usuario']) ? trim(strip_tags(strval($_POST['usuario']))) : "";
 	}
 	
 	private function setPasswd()
 	{
-		UsuariosDAO::$_contrasena = isset($_POST['passwd']) ? Funciones::GetValueVar($_POST['passwd'], "text") : "";
+		UsuariosDAO::$_contrasena = isset($_POST['passwd']) ? trim(strip_tags(strval($_POST['passwd']))) : "";
 	}
 }
