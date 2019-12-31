@@ -23,7 +23,7 @@ class FuncionesEvaluacion
         '119056262939066' => array(
             'to' => array('smuratal@telmex.com'),
             'cp' => array('jvgomez@telmexomsasi.com','rmerlos@telmex.com', 'ovguerre@telmex.com', 'rjimener@telmex.com', 'uireyes@telmexomsasi.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
+            'bc' => array('ovgarcia@telmexomsasi.com')
         ),
         '119056262939067' => array(
             'to' => array('rdvences@telmexomsasi.com'),
@@ -33,27 +33,27 @@ class FuncionesEvaluacion
         '119056262939068' => array(
             'to' => array('bpruiz@telmexomsasi.com'),
             'cp' => array('vfflores@telmex.com', 'llvalenc@telmexomsasi.com', 'ccampa@telmex.com', 'ealcantz@telmexomsasi.com', 'avgalvan@telmex.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
+            'bc' => array('ovgarcia@telmexomsasi.com')
         ),
         '119056262939069' => array(
             'to' => array('juanmv@telmex.com'),
             'cp' => array('dcarranz@telmex.com','jmdelaro@telmex.com','jglarios@telmex.com','mpgodine@telmex.com','bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com') 
+            'bc' => array('ovgarcia@telmexomsasi.com') 
         ),
         '119056262939070' => array(
             'to' => array('CHERNANJ@telmexomsasi.com'),
             'cp' => array('bpruiz@telmexomsasi.com','momercad@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
+            'bc' => array('ovgarcia@telmexomsasi.com')
         ),
         '119056262939071' => array(
             'to' => array('msilva@telmexomsasi.com'),
             'cp' => array('ehpale@telmex.com', 'apmancil@telmexomsasi.com', 'cmendezl@telmex.com','momercad@telmexomsasi.com','bpruiz@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
+            'bc' => array('ovgarcia@telmexomsasi.com')
         ),
         '119056262939072' => array(
             'to' => array('bpruiz@telmexomsasi.com'),
             'cp' => array('vfflores@telmex.com', 'llvalenc@telmexomsasi.com', 'ccampa@telmex.com', 'ealcantz@telmexomsasi.com', 'avgalvan@telmex.com','momercad@telmexomsasi.com','bpruiz@telmexomsasi.com'),
-            'bc' => array('fgtejada@telmex.com', 'ovgarcia@telmexomsasi.com')
+            'bc' => array('ovgarcia@telmexomsasi.com')
         )// ,'jczenten@telmexomsasi.com'
     );
 
