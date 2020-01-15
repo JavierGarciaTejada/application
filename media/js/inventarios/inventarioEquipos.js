@@ -131,7 +131,7 @@ $(function(){
 				"createdCell" : function( td, data ) {
 
 					var botones = [];
-					if( data.gerencia == $("#siglas").val().toUpperCase() )
+					if( data.gerencia == $("#siglas").val().toUpperCase() || $("#_id").val() == '146')
 						botones.push( '<button class="btn btn-sm btn-info modificar-inv" id='+ data.id +' title="Actualizar Registro"><i class="fa fa-edit" aria-hidden="true"></i></button>' );
 					$( td ).html( '' + botones.join(' ') + '' );
 				}
@@ -148,7 +148,7 @@ $(function(){
 			{ "data" : "cant_eq_ver_prod"},
 			{ "data" : "ultima_ver_lib"},
 			{ "data" : "cant_eq_act_ult_ver"},
-			{ "data" : "porcentaje_eq_act"},
+			{ "data" : "porcentaje_act"},
 			{ "data" : "cant_eq_inst_red"},
 			{ "data" : "prob_sol_ult_ver"},
 			{ "data" : "cons_actualizar"},

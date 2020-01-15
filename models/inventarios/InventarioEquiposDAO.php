@@ -58,7 +58,7 @@ class InventarioEquiposDAO
 
 	public static function InventarioGeneral(){
 
-		$sql = "SELECT * FROM inv_equipos_red";
+		$sql = "SELECT *,ROUND((porcentaje_eq_act * 100),2) porcentaje_act FROM inv_equipos_red";
 		$filas['data'] = self::executeQuery($sql);
 		$filas['sql'] = $sql;
 		return $filas;
