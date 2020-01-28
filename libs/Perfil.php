@@ -27,9 +27,10 @@ class Perfil
 		$ixCli 	= Session::getSession("gcl");
 
 		$filtros = array();
-		$anterior = date('Y', strtotime('-1 year'));
+		$anterior = date('Y', strtotime('-2 year'));
 		$actual = date('Y');
-		array_push($filtros, " YEAR(a.fs) IN ($anterior, $actual) OR YEAR(a.fl) > $anterior ");
+		array_push($filtros, " YEAR(a.fl) >= $anterior ");
+		// array_push($filtros, " YEAR(a.fs) IN ($anterior, $actual) OR YEAR(a.fl) > $anterior ");
 
 
 		//ADMINISTRADOR NO TIENE FILTROS, VE TODO
