@@ -84,9 +84,9 @@ class Tablero
 
 	public function dataTablaBasic(){
 		$data = Funciones::getDataGet();
-		$anio = $data['anio'];
+		$anterior = date('Y', strtotime('-1 year'));
 		$gerencia = empty($data['gerencia']) ? "" : " AND al = '".$data['gerencia']."' ";
-		$filtro = " fl LIKE '$anio%' $gerencia";
+		$filtro = " YEAR(fl) >= '$anterior' $gerencia";
 
 		$total = TableroDAO::EvaluacionesLiberadasAnio($filtro);
 		$mensual = TableroDAO::EvaluacionesLiberadasMes($filtro);
