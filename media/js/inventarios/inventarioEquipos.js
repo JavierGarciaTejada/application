@@ -158,7 +158,7 @@ $(function(){
 			{ "data" : "equipos_gestionan"},
 			{ "data" : "version_eq_gestion"},
 
-			{ "data" : "plataforma"},
+			{ "data" : "estado_vigencia"},
 			{ "data" : "ciclo_anios"},
 			{ "data" : "inicio_contrato"},
 			{ "data" : "vigencia_contrato"},
