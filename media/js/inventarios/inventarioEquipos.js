@@ -159,9 +159,9 @@ $(function(){
 			{ "data" : "version_eq_gestion"},
 
 			{ "data" : "plataforma"},
-			{ "data" : "ciclo"},
-			{ "data" : "estatus_por_contrato"},
-			{ "data" : "vigencia"},
+			{ "data" : "ciclo_anios"},
+			{ "data" : "inicio_contrato"},
+			{ "data" : "vigencia_contrato"},
 			{ "data" : "estatus_del_contrato"},
 
 			{ "data" : "observaciones"}
