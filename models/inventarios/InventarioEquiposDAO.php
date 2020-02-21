@@ -197,9 +197,7 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':usuarios', $data['usuarios']);
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
 
-			Conexion::$prepare->bindParam(':plataforma', $data['plataforma']);
 			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
-			Conexion::$prepare->bindParam(':estatus_por_contrato', $data['estatus_por_contrato']);
 			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
 			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
 
