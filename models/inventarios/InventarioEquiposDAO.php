@@ -108,10 +108,8 @@ class InventarioEquiposDAO
 			lineas = :lineas,
 			usuarios = :usuarios,
 			troncales = :troncales,
-			plataforma = :plataforma,
-			ciclo = :ciclo,
-			estatus_por_contrato = :estatus_por_contrato,
-			vigencia = :vigencia,
+			ciclo_anios = :ciclo,
+			vigencia_contrato = :vigencia,
 			estatus_del_contrato = :estatus_del_contrato";
 
 			Conexion::$connect = new Conexion();
@@ -137,9 +135,7 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
 
 
-			Conexion::$prepare->bindParam(':plataforma', $data['plataforma']);
 			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
-			Conexion::$prepare->bindParam(':estatus_por_contrato', $data['estatus_por_contrato']);
 			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
 			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
 
@@ -175,10 +171,8 @@ class InventarioEquiposDAO
 			lineas = :lineas,
 			usuarios = :usuarios,
 			troncales = :troncales,
-			plataforma = :plataforma,
-			ciclo = :ciclo,
-			estatus_por_contrato = :estatus_por_contrato,
-			vigencia = :vigencia,
+			ciclo_anios = :ciclo,
+			vigencia_contrato = :vigencia,
 			estatus_del_contrato = :estatus_del_contrato WHERE id = :id";
 
 			Conexion::$connect = new Conexion();
