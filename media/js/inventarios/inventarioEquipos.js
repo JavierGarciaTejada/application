@@ -148,7 +148,7 @@ $(function(){
 			{ "data" : "cant_eq_ver_prod"},
 			{ "data" : "ultima_ver_lib"},
 			{ "data" : "cant_eq_act_ult_ver"},
-			{ "data" : "porcentaje_act"},
+			{ "data" : "porcentaje_eq_act"},
 			{ "data" : "cant_eq_inst_red"},
 			{ "data" : "prob_sol_ult_ver"},
 			{ "data" : "cons_actualizar"},

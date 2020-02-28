@@ -58,7 +58,8 @@ class InventarioEquiposDAO
 
 	public static function InventarioGeneral(){
 
-		$sql = "SELECT *,ROUND((porcentaje_eq_act * 100),2) porcentaje_act FROM inv_equipos_red";
+		#ROUND((porcentaje_eq_act * 100),2) porcentaje_act
+		$sql = "SELECT * FROM inv_equipos_red";
 		$filas['data'] = self::executeQuery($sql);
 		$filas['sql'] = $sql;
 		return $filas;
@@ -91,6 +92,7 @@ class InventarioEquiposDAO
 		try{
 
 			$sql = "INSERT INTO inv_equipos_red SET
+			red = :red,
 			gerencia = :gerencia,
 			equipo = :equipo,
 			tecnologia = :tecnologia,
@@ -109,13 +111,20 @@ class InventarioEquiposDAO
 			usuarios = :usuarios,
 			troncales = :troncales,
 			ciclo_anios = :ciclo,
+			inicio_contrato = :inicio,
 			vigencia_contrato = :vigencia,
-			estatus_del_contrato = :estatus_del_contrato";
+			estatus_del_contrato = :estatus_del_contrato,
+			estado_vigencia = :estado_vigencia,
+			cons_actualizar = :cons_actualizar,
+			criticidad_act = :criticidad_act,
+			equipos_gestionan = :equipos_gestionan,
+			version_eq_gestion = :version_eq_gestion";
 
 			Conexion::$connect = new Conexion();
 			Conexion::$query = $sql;
 			Conexion::$prepare = Conexion::$connect->prepare(Conexion::$query);
 
+			Conexion::$prepare->bindParam(':red', $data['red']);
 			Conexion::$prepare->bindParam(':gerencia', $data['gerencia']);
 			Conexion::$prepare->bindParam(':equipo', $data['equipo']);
 			Conexion::$prepare->bindParam(':tecnologia', $data['tecnologia']);
@@ -135,9 +144,16 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
 
 
-			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
-			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
+			Conexion::$prepare->bindParam(':ciclo', $data['ciclo_anios']);
+			Conexion::$prepare->bindParam(':inicio', $data['inicio_contrato']);
+			Conexion::$prepare->bindParam(':vigencia', $data['vigencia_contrato']);
 			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
+
+			Conexion::$prepare->bindParam(':estado_vigencia', $data['estado_vigencia']);
+			Conexion::$prepare->bindParam(':cons_actualizar', $data['cons_actualizar']);
+			Conexion::$prepare->bindParam(':criticidad_act', $data['criticidad_act']);
+			Conexion::$prepare->bindParam(':equipos_gestionan', $data['equipos_gestionan']);
+			Conexion::$prepare->bindParam(':version_eq_gestion', $data['version_eq_gestion']);
 
 			$result = Conexion::$prepare->execute();
 
@@ -154,7 +170,7 @@ class InventarioEquiposDAO
 		try{
 
 			$sql = "UPDATE inv_equipos_red SET
-			gerencia = :gerencia,
+			red = :red,
 			equipo = :equipo,
 			tecnologia = :tecnologia,
 			proveedor = :proveedor,
@@ -172,14 +188,21 @@ class InventarioEquiposDAO
 			usuarios = :usuarios,
 			troncales = :troncales,
 			ciclo_anios = :ciclo,
+			inicio_contrato = :inicio,
 			vigencia_contrato = :vigencia,
-			estatus_del_contrato = :estatus_del_contrato WHERE id = :id";
+			estatus_del_contrato = :estatus_del_contrato,
+			estado_vigencia = :estado_vigencia,
+			cons_actualizar = :cons_actualizar,
+			criticidad_act = :criticidad_act,
+			equipos_gestionan = :equipos_gestionan,
+			version_eq_gestion = :version_eq_gestion
+			WHERE id = :id";
 
 			Conexion::$connect = new Conexion();
 			Conexion::$query = $sql;
 			Conexion::$prepare = Conexion::$connect->prepare(Conexion::$query);
 
-			Conexion::$prepare->bindParam(':gerencia', $data['gerencia']);
+			Conexion::$prepare->bindParam(':red', $data['red']);
 			Conexion::$prepare->bindParam(':equipo', $data['equipo']);
 			Conexion::$prepare->bindParam(':tecnologia', $data['tecnologia']);
 			Conexion::$prepare->bindParam(':proveedor', $data['proveedor']);
@@ -197,9 +220,16 @@ class InventarioEquiposDAO
 			Conexion::$prepare->bindParam(':usuarios', $data['usuarios']);
 			Conexion::$prepare->bindParam(':troncales', $data['troncales']);
 
-			Conexion::$prepare->bindParam(':ciclo', $data['ciclo']);
-			Conexion::$prepare->bindParam(':vigencia', $data['vigencia']);
+			Conexion::$prepare->bindParam(':ciclo', $data['ciclo_anios']);
+			Conexion::$prepare->bindParam(':inicio', $data['inicio_contrato']);
+			Conexion::$prepare->bindParam(':vigencia', $data['vigencia_contrato']);
 			Conexion::$prepare->bindParam(':estatus_del_contrato', $data['estatus_del_contrato']);
+
+			Conexion::$prepare->bindParam(':estado_vigencia', $data['estado_vigencia']);
+			Conexion::$prepare->bindParam(':cons_actualizar', $data['cons_actualizar']);
+			Conexion::$prepare->bindParam(':criticidad_act', $data['criticidad_act']);
+			Conexion::$prepare->bindParam(':equipos_gestionan', $data['equipos_gestionan']);
+			Conexion::$prepare->bindParam(':version_eq_gestion', $data['version_eq_gestion']);
 
 			Conexion::$prepare->bindParam(':id', $data['id']);
 
