@@ -208,6 +208,7 @@ $(function(){
 		$("#form-inv-equipos").data('bootstrapValidator').resetForm();
 		$("#form-inv-equipos")[0].reset();
 		setValoresFormulario( $(this), "#form-inv-equipos" );
+		$("#red").change();
 		$("#modal-inv-equipos").modal('show');
 	})
 
