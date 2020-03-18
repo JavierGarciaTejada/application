@@ -30,13 +30,14 @@
 		<script type="text/javascript" src="<?=$this->pathMedia?>librerias/Bootstrap/Bootstrap3.3.7/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			var path = "<?=Config::$configuration->get('server_path')?>/";
+
 		</script>
 		<script type="text/javascript" src="<?=$this->pathMedia?>js/functions.js"></script>
 		<script type="text/javascript" src="<?=$this->pathMedia?>js/login_admin_afa.js"></script>
 	</head>
 	<body>
 		<div class="container">
-			
+			<?php $host = Config::$configuration->get('host'); ?>
 			<center> <img src="<?=$this->pathMedia?>images/logo.png" border="0" width="180" height="80" align="center" title="TELMEX está contigo"></img>
 			<h5>Sistema Automático de Administración de Evaluaciones</h5></center>
 			<form class="form-signin" id='form-login'>
@@ -47,7 +48,17 @@
 				<input type="password" id="passwd" name="passwd" class="form-control" placeholder="Contraseña" required="">
 				<div class="checkbox">
 				</div>
-				<button class="btn btn-lg btn-primary btn-block" id="btn-login">Acceder</button>
+
+				<?php if( $host !== "http://10.205.51.78" ): ?>
+				<div id="err-msg">
+					<p style="font-size: 12px">El sistema SAAE se ha migrado a un ambiente virtual para mejorar el rendimiento, por favor ingrese desde esta liga: <a href="http://10.205.51.78/application">http://10.205.51.78/application</a> <br> Pronto dejará de funcionar este servidor, guarde la nueva ruta en su navegador.</p>
+				</div>
+				<?php endif; ?>
+
+				<?php if( $host === "http://10.205.51.78" or $host === "http://localhost" ): ?>
+					<button class="btn btn-lg btn-primary btn-block" id="btn-login">Acceder</button>
+				<?php endif; ?>
+
 			</form>	
 			<center><p>Copyright &copy; Telmex. All rights reserved.</p></center>
 		</div>
