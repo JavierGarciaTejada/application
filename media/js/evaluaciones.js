@@ -351,6 +351,7 @@ $(function(){
 					$( td ).html("<p>"+text+"</p>")
 				}
 			},
+			{ "data" : "se"},
 			{ "data" : "f_sol"},
 			{ "data" : "f_com"},
 			{ "data" : "producto"},
@@ -639,7 +640,8 @@ $(function(){
 				pa: $("#pa").val(),
 				pe: $("#pe").val(),
 				spe: $("#spe").val(),
-				me: $("#me").val()
+				me: $("#me").val(),
+				se: $("#se").val()
 				// ,meta: $("#meta").val()
         	}
 
