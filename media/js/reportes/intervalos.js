@@ -41,7 +41,8 @@ $(function(){
 
     	var total = [];
     	total['nue'] = 0;
-    	total['act'] = 0;
+        total['act'] = 0;
+        total['conti'] = 0;
 
     	$.each(equipos, function(i, v){	
     		$.each(v, function(ia, va){
@@ -53,7 +54,8 @@ $(function(){
     	});
 
     	$("#equipos-nue-total").text( total['nue'] );
-		$("#equipos-act-total").text( total['act'] );
+        $("#equipos-act-total").text( total['act'] );
+        $("#equipos-conti-total").text( total['conti'] );
 
     }
 
@@ -61,7 +63,8 @@ $(function(){
 
     	var total = [];
     	total['cidec'] = 0;
-    	total['local'] = 0;
+        total['local'] = 0;
+        total['conti'] = 0;
 
     	$.each(materiales, function(i, v){	
     		$.each(v, function(ia, va){
@@ -73,7 +76,8 @@ $(function(){
     	});
 
     	$("#materiales-cidec-total").text( total['cidec'] );
-		$("#materiales-local-total").text( total['local'] );
+        $("#materiales-local-total").text( total['local'] );
+        $("#materiales-conti-total").text( total['conti'] );
 
     }
 
@@ -89,7 +93,8 @@ $(function(){
 			total += parseInt(v);
     	});
 
-		$("#docs-total").text( total );
+        $("#docs-total").text( total );
+        $("#docs-conti-total").text( total );
 
     }
 
@@ -114,7 +119,8 @@ $(function(){
 
     	var total = [];
     	total['nue'] = 0;
-    	total['act'] = 0;
+        total['act'] = 0;
+        total['conti'] = 0;
 
     	$.each(caract, function(i, v){	
     		$.each(v, function(ia, va){
@@ -126,7 +132,8 @@ $(function(){
     	});
 
     	$("#caract-nue-total").text( total['nue'] );
-		$("#caract-act-total").text( total['act'] );
+        $("#caract-act-total").text( total['act'] );
+        $("#caract-conti-total").text( total['conti'] );
 
     }
 
@@ -134,7 +141,8 @@ $(function(){
 
     	var total = [];
     	total['nue'] = 0;
-    	total['act'] = 0;
+        total['act'] = 0;
+        total['conti'] = 0;
 
     	$.each(espec, function(i, v){	
     		$.each(v, function(ia, va){
@@ -146,7 +154,8 @@ $(function(){
     	});
 
     	$("#espec-nue-total").text( total['nue'] );
-		$("#espec-act-total").text( total['act'] );
+        $("#espec-act-total").text( total['act'] );
+        $("#espec-conti-total").text( total['conti'] );
 
     }
 
@@ -205,7 +214,7 @@ $(function(){
                 tr.append( $("<td>").html(v.subgerente) );
                 tr.append( $("<td>").html(v.fs).addClass('bg-info') );
                 tr.append( $("<td>").html(v.dias_t).addClass('bg-warning') );
-
+                
                 if( diasVence == "especial" ){
                     var text = "N/A";
                     var bg = '';
@@ -222,6 +231,7 @@ $(function(){
                 
                 // var text = ( diasParaVencer > 0 ) ? diasParaVencer + " para vencer" : "vencido por " + Math.abs(diasParaVencer);
                 tr.append( $("<td>").html(text).addClass(bg) );
+                tr.append( $("<td>").html(v.se));
                 items.push(tr[0].outerHTML);
 
                 count++;
