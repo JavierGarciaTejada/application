@@ -192,11 +192,26 @@ class FuncionesEvaluacion
     $docs['6-10'] = 0;
     $docs['11-15'] = 0;
     $docs['15'] = 0;
+
+    $docs['conti-1-3'] = 0;
+    $docs['conti-4-5'] = 0;
+    $docs['conti-6-7'] = 0;
+    $docs['conti-7'] = 0;
+
+
     self::$general['docs-1-5'] = array();
     self::$general['docs-6-10'] = array();
     self::$general['docs-11-15'] = array();
     self::$general['docs-15'] = array();
     self::$general['docs-total'] = array();
+
+    self::$general['docs-conti-1-3'] = array();
+    self::$general['docs-conti-4-5'] = array();
+    self::$general['docs-conti-6-7'] = array();
+    self::$general['docs-conti-7'] = array();
+    self::$general['docs-conti-total'] = array();
+
+
     // self::$general['total'] = array();
 
     foreach ($evaluaciones['data'] as $key => $item) {
@@ -207,6 +222,21 @@ class FuncionesEvaluacion
 
           self::$ids[] = $item['id'];
           self::$general['docs-total'][] = $item['id'];
+          self::$general['docs-conti-total'][] = $item['id'];
+
+          if( (int)$item['dif'] <= 3 ){
+            $docs['conti-1-3'] += 1;
+            self::$general['docs-conti-1-3'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 5 ){
+            $docs['conti-4-5'] += 1;
+            self::$general['docs-conti-4-5'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 7 ){
+            $docs['conti-6-7'] += 1;
+            self::$general['docs-conti-6-7'][] = $item['id'];
+          }else if( (int)$item['dif'] > 7 ){
+            $docs['conti-7'] += 1;
+            self::$general['docs-conti-7'][] = $item['id'];
+          }
 
           if( (int)$item['dif'] <= 5 ){
             $docs['1-5'] += 1;
@@ -305,6 +335,11 @@ class FuncionesEvaluacion
     $espec['act']['21-30'] = 0;
     $espec['act']['30'] = 0;
 
+    $espec['conti']['1-3'] = 0;
+    $espec['conti']['4-5'] = 0;
+    $espec['conti']['6-7'] = 0;
+    $espec['conti']['7'] = 0;
+
 
     self::$general['espec-nue-1-15'] = array();
     self::$general['espec-nue-16-30'] = array();
@@ -318,6 +353,12 @@ class FuncionesEvaluacion
     self::$general['espec-act-30'] = array();
     self::$general['espec-act-total'] = array();
 
+    self::$general['espec-conti-1-3'] = array();
+    self::$general['espec-conti-4-5'] = array();
+    self::$general['espec-conti-6-7'] = array();
+    self::$general['espec-conti-7'] = array();
+    self::$general['espec-conti-total'] = array();
+
 
     foreach ($evaluaciones['data'] as $key => $item) {
 
@@ -326,6 +367,23 @@ class FuncionesEvaluacion
         if( !in_array($item['id'], self::$ids) ){
          
           self::$ids[] = $item['id'];
+
+          self::$general['espec-conti-total'][] = $item['id'];
+          if( (int)$item['dif'] <= 3 ){
+            $espec['conti']['1-3'] += 1;
+            self::$general['espec-conti-1-3'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 5 ){
+            $espec['conti']['4-5'] += 1;
+            self::$general['espec-conti-4-5'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 7 ){
+            $espec['conti']['6-7'] += 1;
+            self::$general['espec-conti-6-7'][] = $item['id'];
+          }else if( (int)$item['dif'] > 7 ){
+            $espec['conti']['7'] += 1;
+            self::$general['espec-conti-7'][] = $item['id'];
+          }
+
+
           if( $item['nu'] == '219056265840691' ){
 
             self::$general['espec-nue-total'][] = $item['id'];
@@ -400,6 +458,11 @@ class FuncionesEvaluacion
     $caract['act']['21-30'] = 0;
     $caract['act']['30'] = 0;
 
+    $caract['conti']['1-5'] = 0;
+    $caract['conti']['6-10'] = 0;
+    $caract['conti']['11-15'] = 0;
+    $caract['conti']['15'] = 0;
+
     self::$general['caract-nue-1-15'] = array();
     self::$general['caract-nue-16-30'] = array();
     self::$general['caract-nue-31-45'] = array();
@@ -412,12 +475,34 @@ class FuncionesEvaluacion
     self::$general['caract-act-30'] = array();
     self::$general['caract-act-total'] = array();
 
+    self::$general['caract-conti-1-5'] = array();
+    self::$general['caract-conti-6-10'] = array();
+    self::$general['caract-conti-11-15'] = array();
+    self::$general['caract-conti-15'] = array();
+    self::$general['caract-conti-total'] = array();
+
     foreach ($evaluaciones['data'] as $key => $item) {
 
       if( in_array($item['ts'], $auth) && !in_array($item['te'], $noAuth)  ){
 
         if( !in_array($item['id'], self::$ids) ){
           self::$ids[] = $item['id'];
+
+          self::$general['caract-conti-total'][] = $item['id'];
+          if( (int)$item['dif'] <= 5 ){
+            $caract['conti']['1-5'] += 1;
+            self::$general['caract-conti-1-5'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 10 ){
+            $caract['conti']['6-10'] += 1;
+            self::$general['caract-conti-6-10'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 15 ){
+            $caract['conti']['11-15'] += 1;
+            self::$general['caract-conti-11-15'][] = $item['id'];
+          }else if( (int)$item['dif'] > 15 ){
+            $caract['conti']['15'] += 1;
+            self::$general['caract-conti-15'][] = $item['id'];
+          }
+
 
           if( $item['nu'] == '219056265840691' ){
             self::$general['caract-nue-total'][] = $item['id'];
@@ -490,6 +575,11 @@ class FuncionesEvaluacion
     $mat['cidec']['31-45'] = 0;
     $mat['cidec']['45'] = 0;
 
+    $mat['conti']['1-5'] = 0;
+    $mat['conti']['6-10'] = 0;
+    $mat['conti']['11-15'] = 0;
+    $mat['conti']['15'] = 0;
+
     self::$general['materiales-local-1-5'] = array();
     self::$general['materiales-local-6-10'] = array();
     self::$general['materiales-local-11-15'] = array();
@@ -502,6 +592,12 @@ class FuncionesEvaluacion
     self::$general['materiales-cidec-45'] = array();
     self::$general['materiales-cidec-total'] = array();
 
+    self::$general['materiales-conti-1-5'] = array();
+    self::$general['materiales-conti-6-10'] = array();
+    self::$general['materiales-conti-11-15'] = array();
+    self::$general['materiales-conti-15'] = array();
+    self::$general['materiales-conti-total'] = array();
+
     foreach ($evaluaciones['data'] as $key => $item) {
 
       if( $item['me'] == '831264706543203' && $item['ts'] != '719056262954164' ){
@@ -509,6 +605,23 @@ class FuncionesEvaluacion
         if( !in_array($item['id'], self::$ids) ){
 
           self::$ids[] = $item['id'];
+
+          // CONTINGENCIA
+          self::$general['materiales-conti-total'][] = $item['id'];
+          if( (int)$item['dif'] <= 5 ){
+            $mat['conti']['1-5'] += 1;
+            self::$general['materiales-conti-1-5'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 10 ){
+            $mat['conti']['6-10'] += 1;
+            self::$general['materiales-conti-6-10'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 15 ){
+            $mat['conti']['11-15'] += 1;
+            self::$general['materiales-conti-11-15'][] = $item['id'];
+          }else if( (int)$item['dif'] > 15 ){
+            $mat['conti']['15'] += 1;
+            self::$general['materiales-conti-15'][] = $item['id'];
+          }
+
 
           //SI NO VA CIDEC
           if( $item['nu'] == '219056265840694' ){
@@ -584,6 +697,12 @@ class FuncionesEvaluacion
     $equipos['act']['21-30'] = 0;
     $equipos['act']['30'] = 0;
 
+    $equipos['conti']['1-5'] = 0;
+    $equipos['conti']['6-10'] = 0;
+    $equipos['conti']['11-15'] = 0;
+    $equipos['conti']['15'] = 0;
+
+
     self::$general['equipos-nue-1-15'] = array();
     self::$general['equipos-nue-16-30'] = array();
     self::$general['equipos-nue-31-45'] = array();
@@ -596,12 +715,34 @@ class FuncionesEvaluacion
     self::$general['equipos-act-30'] = array();
     self::$general['equipos-act-total'] = array();
 
+    self::$general['equipos-conti-1-5'] = array();
+    self::$general['equipos-conti-6-10'] = array();
+    self::$general['equipos-conti-11-15'] = array();
+    self::$general['equipos-conti-15'] = array();
+    self::$general['equipos-conti-total'] = array();
+
     foreach ($evaluaciones['data'] as $key => $item) {
 
       if( in_array($item['te'], $auth) ){
 
         if( !in_array($item['id'], self::$ids) ){
           self::$ids[] = $item['id'];
+
+          // CONTINGENICIA
+          self::$general['equipos-conti-total'][] = $item['id'];
+          if( (int)$item['dif'] <= 5 ){
+            $equipos['conti']['1-5'] += 1;
+            self::$general['equipos-conti-1-5'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 10 ){
+            $equipos['conti']['6-10'] += 1;
+            self::$general['equipos-conti-6-10'][] = $item['id'];
+          }else if( (int)$item['dif'] <= 15 ){
+            $equipos['conti']['11-15'] += 1;
+            self::$general['equipos-conti-11-15'][] = $item['id'];
+          }else if( (int)$item['dif'] > 15 ){
+            $equipos['conti']['15'] += 1;
+            self::$general['equipos-conti-15'][] = $item['id'];
+          }
 
           //SI NO VA CIDEC
           if( $item['nu'] == '219056265840691' ){
