@@ -20,7 +20,7 @@ $(function(){
 	var autorizacionNueva = ( role == "Administrador" ) ? true : false;
 
 	var diasLiberacion = [ moment().format("YYYY-MM-DD") ];
-	for(var i = 1; i <= 5; i++){
+	for(var i = 1; i <= 12; i++){
 		diasLiberacion.push( moment().subtract(i,'d').format('YYYY-MM-DD') );
 	}
 
